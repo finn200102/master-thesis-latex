@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper, twoside, openright]{book}
+
+% Input preamble with all packages and settings
+\input{preamble/preamble}
+
+% Document metadata
+\input{preamble/metadata}
+
+\begin{document}
+
+% Front matter
+\frontmatter
+\input{frontmatter/titlepage}
+\input{frontmatter/declaration}
+\input{frontmatter/abstract}
+\input{frontmatter/acknowledgements}
+
+% Table of contents, figures, tables
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Main matter
+\mainmatter
+
+% Chapters
+\input{chapters/01_introduction}
+\input{chapters/02_theory}
+%\input{chapters/03_setup}
+
+%\input{chapters/04_preprocessing}
+
+\input{chapters/05_overview}
+
+\input{chapters/06_features}
+
+
+
+%\input{chapters/07_event_classes}
+
+%\input{chapters/08_event_start}
+
+%\input{chapters/08_prediction.tex}
+
+
+% Add more chapters here as needed
+% \input{chapters/02_theory}
+% \input{chapters/03_experimental}
+
+% Appendices
+\appendix
+
+% Back matter
+\backmatter
+
+\printbibliography[heading=bibintoc,title={References}]
+
+% Glossary if needed
+% \printglossary
+
+\end{document}

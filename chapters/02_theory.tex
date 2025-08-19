@@ -1,0 +1,340 @@
+\chapter{Theorie}
+\label{chap:theory}
+
+\section{Gasentladungen}
+\label{sec:gasdischarges}
+\subsection{Ionisationsmechanismen}
+Ein Gasteilchen kann durch verschiedene Mechanismen ionisiert werden, bei allen diesen Mechanismen interagiert das zu ionisierende Teilchen mit mindestens einem weiteren Teilchen, das die notwendige Energie zur Verfügung stellt um das Elektron aus der Hülle des Atoms zu heben. Die dazu notwendige Energie ist die Ionisationsenergie \(E_i\), die als die Differenz der Energie des ionisierten und des neutralen Atoms definiert ist \eqref{eq:energy-ion}. Für Wasserstoff beträgt die Ionisationsenergie \(\SI{13,6}{\electronvolt}\), entsprechend der Rydbergkonstante.
+
+\begin{equation}
+    E_{i} = E^{*} - E
+    \label{eq:energy-ion}
+\end{equation}
+
+\subsubsection{Elektron-Stoßionisation}
+Ein durch ein elektrisches Feld beschleunigtes Elektron kann in einem unelastischen Stoß ein Quantum seiner Energie auf ein Atom übertragen. Wenn diese Energie größer als die Ionisationsenergie ist, dann kann das Elektron das Atom ionisieren. Dieser Prozess kann auch stufenweise geschehen, d.h. das erste Elektron regt das Atom an und hebt ein Elektron in einen Zustand höherer Energie und das zweite stellt nun die restliche Energie zur Verfügung um das Atom zu ionisieren. Dieser Prozess der Ionisation lässt sich über den Ionisations-Wirkungsquerschnitt \(\sigma_{ion}\) der Atome und der Dichte \(n\) der Atome quantifizieren. Das Produkt aus diesen beiden Größen heißt Koeffizient der Entladung bzw. erster Townsend-Koeffizient dieser ist in \eqref{eq:townsedfirst} dargestellt.
+\begin{equation}
+    \alpha = \sigma_{ion} n
+    \label{eq:townsedfirst}
+\end{equation}
+Der inverse Wert des Koeffizienten der Entladung ist die mittlere freie Weglänge \(\lambda_{ion}\), die Strecke die ein Elektron zurücklegen kann bevor es ein Atom ionisiert. In \eqref{eq:middelwaylen} ist diese Größe dargestellt.
+
+\begin{equation}
+    \lambda_{ion} = \frac{1}{\alpha} = \frac{1}{\sigma_{ion} n}
+    \label{eq:middelwaylen}
+\end{equation}
+Die Wahrscheinlichkeit das es zur Ionisation kommt lässt sich bestimmen wenn der totale Wirkungsquerschnitt \(\sigma\) bekannt ist.
+\begin{equation}
+    P_{ion} = \frac{\sigma_{ion}}{\sigma}
+    \label{eq:ionizationprop}
+\end{equation}
+Somit entspricht die Ionisationswahrscheinlichkeit dem Quotienten aus dem Ionizationsquerschnitt und dem totalen Wirkungsquerschnitt. Die Ionisationskonstante lässt sich über die folgende Formel bestimmen:
+\begin{equation}
+    \frac{\alpha}{p} = A e^{-\frac{B}{\frac{E}{p}}}
+    \label{eq:ionconst}
+\end{equation}
+Hierbei ist \(p\) der Druck, \(E\) das elektrische Feld und \(A\) und \(B\) Konstanten, die von dem verwendeten Gas abhängen. \cite{cooray2014}
+
+\subsubsection{Photoionisation}
+Auch Photonen können die notwendige Energie auf ein Atom übertragen um dieses in einen Zustand höherer Energie zu überführen. Wenn diese Energie \(E_{p} = \mathrm{h}f\) größer als die Ionisationsenergie des Atoms \(E_{ion}\) ist, dann kommt es zur Ionisation. Hierbei ist \(\mathrm{h}\) die Plankkonstante und \(f\) die Frequenz des Photons. Die kinetische Energie des Elektrons ist somit:
+\begin{equation}
+    E_{e} = \mathrm{h}f - E_{ion}
+    \label{eq:photoenergyion}
+\end{equation}
+Wenn die Energie geringer als die Ionisationsenergie ist, dann kann jedoch das Atom angeregt werden und ein Elektron in einen Zustand höherer Energie versetzt werden, so dass ein weiteres Photon die nun verringerete Ionisationsenergie aufbringen kann, um das Atom nun zu ionisieren. Dies ist die Mehrphotonionisation, wobei die Wahrscheinlichkeit etwa mit \(I^n\) skaliert, wenn \(n\) Photonen absorbiert werden.
+\cite{kuffel2000}
+
+\subsubsection{Thermische Ionisation}
+\label{sec:thermion}
+Ein Gas mit steigender Temperatur entspricht auch einer steigenden kinetischen Energie der Teilchen. Die Geschwindigkeit der Atome in einem Gas wird durch die Maxwell-Boltzmann-Verteilung beschrieben, sie folgt also einer statistischen Verteilung, somit gibt es Ausreißer in diesem System die schon früher eine so hohe kinetische Energie besitzen so dass es zu Kollisionen mit genügender Energie kommt um Atome zu ionisieren. Sobald es zu Ionisationen kommt gibt es mehrere Prozesse die dafür verantwortlich sind. Die Kollision von neutralen Atomen mit anderen neutralen Atomen. Die Kollisionen von thermischen Ionen mit neutralen Atomen. Die Kollision von Elektronen mit neutralen Atomen, hierbei wurden die Elektronen durch die oberen Ionisationsmechanismen erzeugt, also Elektron-Stoßionisation. Mit der Annahme, dass alle diese Teilchen und Prozesse im thermischen Gleichgewicht miteinander stehen, lässt sich die Boltzmann-Verteilung auf die verschiedenen Teilchen einzeln anwenden. Damit lässt sich die Saha-Gleichung formulieren:
+\begin{equation}
+    \frac{\beta^2}{1 - \beta^2} = \frac{2,4 \cdot 10^{-4}}{p}T^{2,5}e^{\frac{-E_{ion}}{kT}}
+    \label{eq:saha}
+\end{equation}
+Hierbei ist \(\beta = \frac{n_i}{n}\) das Verhältnis aus der Anzahl an ionisierten Teilchen \(n_i\) und der totalen Anzahl an Teilchen. Die Sahagleichung zeigt, dass die thermische Ionisation in Luft erst ab ca. \(\SI{4000}{\kelvin}\) eine Rolle spielt. \cite{kuffel2000}
+
+\subsubsection{Ionstoß Ionisation}
+Auch geladene Teilchen neben Elektronen, also Ionen werden in einem elektrischen Feld beschleunigt und gewinnen so kinetische Energie. Ein Stoß zwischen einem Ion mit genügender kinetischer Energie und einem neutralen Atom kann ebenfalls zu einer Ionisation führen. Es wird jedoch im Vergleich zum Elektron eine höhere Energie benötig, da der Übertrag der Energie wegen der schweren Masse weniger effizient ist, imgegensatz zum Elektronstoß wo nur ca. die Ionisationsenergie benötigt wird. Dies führt zu einer mehr als 2 mal höheren benötigten Energie des Ions.
+
+\subsection{Rekombinationsmechanismen}
+\subsubsection{Elektron-Ion-Rekombination}
+Wenn Elektronen und positiv geladene Ionen in Form eines Stoßes interagieren, kann es zu einer Rekombination kommen, d.h. es bildet sich wieder ein neutrales Teilchen. Die so frei werdene Energie die der kinetischen Energie des Elektrons entspricht muss diesem System entweichen, dies geschieht über verschiedene Prozesse.\newline\newline
+\textbf{Strahlungsrekombination}
+In der Strahlungsrekombination stößt ein Elektron mit einem Ion und diese rekombinieren, die übrige Energie wird in Form eines Photons abgestrahlt, dieser Prozess ist noch nicht notwendigerweise zu Ende, denn das so entstandene neutrale Atom kann sich noch in einem angeregten Zustand befinden. Die Abregung dieses Zustandes führt dann ebenfalls zur Abstrahlung eines Photons:
+\begin{equation}
+    A^+ + e^- \rightarrow A^* + hf \rightarrow A + hf' + hf
+    \label{eq:radiationrecombination}
+\end{equation}\newline
+\textbf{Dissoziative Rekombination}
+In diesem Prozess stößt ein molekulares Ion mit einem Elektron und die frei werdene Energie in der Rekombination spaltet das Molekühl in zwei Teilchen. Der Prozess der Spaltung ist nicht instantan, sonder es entsteht zuerst ein angeregtes Molekühl das sich anschießend durch die Spaltung abregt und die Energie auf in Form von kinetischer auf die Spaltprodukte überträgt. In molekularen Gasen, indenen dieser Prozess möglich ist, kommt es so zu einer sehr viel schnelleren Rekombination als in atomaren Gasen (ca. 2 Größenordungen), da die Übertragung der kinetischen Energie des Elektrons auf angeregte Vibrationszustände sehr schnell geht.
+\begin{equation}
+    AB^+ + e^- \leftrightarrow AB^* \leftrightarrow A^* + B + E_{kin}
+\end{equation}\newline
+\textbf{Dreikörper Rekombination}
+In der dreikörper Rekombination wird die übrige Energie an einen dritten Körper \(M\) weiter gegeben, also einem weiteren Teilchen. Bei niedrigen Drücken ist die Wahrscheinlichtkeit einen dritten Körper im Volumen zu finden sehr klein, so dass dieser Prozess fast auschließlich an den Wänden des Volumens stattfindet, also an diese die kinetische Energie abgeben.
+\begin{equation}
+    A^+ + e^- + M \rightarrow A + M
+\end{equation}
+
+\subsection{Kathodenprozesse}
+Entladungen unter experimental Bedingungen im Labor finden zwischen zwei Elektroden statt. Die notwendigen Elekronen für eine Entladung können über verschiedene Mechanismen aus der Elektrode gelöst werden, die dabei notwendige Energie ist durch die Arbeitsfunktion des Elektrodenmetalls gegeben:
+\begin{equation}
+    W = -e \phi - E_f
+\end{equation}
+Hierbei ist \(\phi\) das elektrostatische Potential und \(E_f\) das Fermienergielevel. Diese Barriere muss überkommen werden durch das Einwirken von Energie auf die Elektrode um die Elektronen direkt herauszulösen oder durch das herabsenken der Barriere durch das anlegen eines elektrischen Feldes.
+\subsubsection{Photoelektrische Emission}
+Die photoelektrische Emission, erstmals von Heinrich Hertz 1887 beobachtet und später von Albert Einstein theoretisch erklärt, beschreibt den Prozess, bei dem Elektronen durch Lichteinwirkung aus einer Metalloberfläche herausgelöst werden.
+\paragraph{Physikalischer Mechanismus}
+Ein einfallendes Photon mit der Frequenz \(f\) überträgt seine gesamte Energie \(E_p = hf\) auf ein einzelnes Elektron im Metall. Dabei wird die Energie vollständig absorbiert. Es handelt sich um einen quantenmechanischen Prozess ohne klassische Entsprechung. Das Elektron erhält diese Energie instantan und kann, sofern sie ausreicht, die Potentialbarriere der Arbeitsfunktion \(W\) überwinden. Die kinetische Energie des austretenden Elektrons ergibt sich aus der Energieerhaltung: 
+\begin{equation}
+    E_e = hf - W
+\end{equation}
+\paragraph{Eigenschaften}
+Beim photoelektrischen Effekt gilt Folgendes: Unterhalb der materialspezifischen Schwellenfrequenz \(f_0 = \frac{f}{h}\) tritt keine Elektronenemission auf, und das unabhängig von der Intensität des einfallenden Lichts. Die maximale kinetische Energie der emittierten Photoelektronen hängt ausschließlich von der Frequenz des Lichts ab und nicht von seiner Intensität. Dagegen ist die Anzahl der emittierten Elektronen, also der Photostrom, direkt proportional zur Lichtintensität. Schließlich erfolgt die Elektronenemission praktisch verzögerungsfrei, sobald das Material beleuchtet wird. \cite{cooray2014}
+\subsubsection{Thermische Emmision}
+Das heizen der Elektrode erhöht die thermische und somit kinetische Energie der Elektroden in dem Metall und senkt somit die notwendige Energie das Material zu verlassen. Wenn die Temperatur hoch genug ist, können die Elektronen die Potentialbarriere allein überwinden und das Metall verlassen.
+\subsubsection{Schottky Effekt}
+Die Barriere die die Elektronen überwinden müssen lässt sich durch das anlegen eines richtig ausgerichtetem elektrischen Feldes verringern. Dies lässt sich mit der thermischen Emission kombinieren. Die Elektronen verspüren nun eine Kraft die aus dem Metall herausgerichtet ist. Dieser Effekt wird z.B. in Röhrenfernsehern verwendet um einen Strahl aus Elektronen mit hoher kinetischer Energie zu realisieren. \cite{cooray2014}
+\subsection{Entladungsarten}
+Alle Entladungsarten starten mit einer Elektronenlawine die durch ein einzelnes freies Elektron im Spalt ausgelöst wird. Diese Elektron kann z.B. durch Höhenstrahlung entstanden sein.
+\subsubsection{Elektronlawine}
+\label{chap:electronlaw}
+Ein eingebrachtes Elektron in das elektrische Felder zwischen zwei Elektroden wird in Richtung der positiv geladenen Anode beschleunigt. Wenn die angelegte Spannung und die Strecke groß genug sind, dann kann das Elektron auf dem Weg weitere neutrale Teilchen mit der Elektronstoß-Ionisation ionisieren und so weitere freie Elektronen schaffen. Dies führt zu einem exponentiellen Wachstum der Elektronenanzahl und somit zur Formierung einer Elektronenlawine. \cite{kuffel2000}
+\begin{equation}
+    n(x) = n_0 e^{\overline{\alpha}x} = n_0 e^{(\alpha - \eta)x}
+    \label{eq:electronlaw}
+\end{equation}
+Hierbei ist \(\eta\) die Rekombinationsrate. Somit steigt die Anzahl an Elektronen in der Lawine nach:
+\begin{equation}
+    n(x) = n_0e^{\overline{\alpha}x}
+\end{equation}
+Hier entspricht \(n_0\) der Anzahl an Elektronen die an der Kathode entstehen. Die lässt sich auch für den Strom and der Kathode \(I_0\) schreiben als:
+\begin{equation}
+    I(x) = I_0e^{\overline{\alpha}x}
+\end{equation}
+
+\subsubsection{Townsendmechanismus}
+
+Für geringe Abstände und geringe Drücke gilt der Townsendmechanismus, analog zur behandelten Elektronenlawine startet auch hier die Entladung mit einem freien Elektron, welches zu einer Lawine führt. Das in \eqref{eq:electronlaw} verwendete \(\alpha\) ist der erste Townsendkoeffizient, also die Anzahl an ionisierenden Kollisionen pro Streckeneinheit. Dieser sich so ergebende Strom reicht jedoch nicht für eine kontinuierliche Entladung, sondern es wird eine sekundäre Emission von Elektronen benötigt. Diese kommt durch die Kollision der freiwerdenden positiv geladenen Ionen mit der Kathode zustande, hierbei werden Elektronen aus der Kathode gelößt welche dann an der Entladung teilnehmen können. Dieser Mechanismus ist durch den zweiten Townsendkoeffizienten quantifiziert \(\gamma\), also der Anzahl an emitierten Elektronen an der Kathode pro eingeschlagenem Ion. Für eine kontinuierliche Entladung muss das Townsendsche Entladungkriterium gelten:
+\begin{equation}
+    \gamma (e^{\alpha d}-1) = 1
+    \label{eq:townsendkrit}
+\end{equation}
+Hierbei ist d der Spaltabstand. Aus diesen beiden Koeffizienten lässt sich auch der Strom der Entladung an der Anode bilden:
+\begin{equation}
+    I = \frac{I_0 e^{\alpha d}}{1-\gamma (e^{\alpha d} -1)}
+\end{equation}
+Der erste Townsendkoeffizient lässt sich über die mittlere freie Weglänge \(\lambda_e\) der Elektronen, der benötigten Ionisationsenergie des Gases \(E_{ion}\) under der Energie des Elektronenstoßes \(\epsilon_{ion}\) bestimmen:
+\begin{equation}
+    \alpha = \frac{1}{\epsilon_{ion}} e^{\frac{-E_{ion}}{\epsilon_{ion}}} 
+    = \frac{\sigma_{ion}p}{k_B T} e^{\frac{-E_{ion}}{eE\lambda_e}} 
+    = A p e^{\frac{-Bp}{E}}
+    \label{eq:firsttownsend}
+\end{equation}
+Hier sind \(A = \frac{\sigma_{ion}}{k_B T}\) und \(B = \frac{\sigma_{ion} E_{ion}}{ek_B T}\) vom Gas abhängige Konstanten. \cite{fu2020}
+
+
+\subsubsection{Paschen Gesetz}
+\label{sec:paschenlaw}
+Das Paschengesetz stellt eine Verbindung zwischen dem Produkt des Drucks \(p\) und des Spaltabstandes \(d\) und der Entladungspannung \(U_B\) her. Die sich so ergebende Funktion lässt sich durch einsetzen von \eqref{eq:firsttownsend} in \eqref{eq:townsendkrit} und der Annahme das ein gleichförmiges elektrisches Feld zwischen den beiden Elektronen vorliegt ausdrücken:
+\begin{equation}
+    U_B = \frac{Bpd}{\ln\left( Apd \right) - \ln\left[ \ln\left(1 + \frac{1}{\gamma} \right) \right]}
+    \label{eq:townsendbreak}
+\end{equation}
+In \figref{fig:paschencurve} ist der Verlauf der Paschenkurve für verschiedene Gase geplottet. Man sieht das für kleine \(pd\) also auch große hohe Durchbruchspannungen benötigt werden und es zwischen diesen ein Minimum für die Kurve gibt also für einen Wert von \(pd\) wird die Durchbruchspannung minimiert.
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../figures/raw_images/Paschen_curves.png}
+    \caption{Paschenkurve}
+    \label{fig:paschencurve}
+  \end{figure}
+
+Es ergeben sich verschiedene Paschenkurven für verschiedene Gase. Es ist möglich die Kurven zu messen durch eine Variation von \(p\) bei konstanten \(d\), umgekehrt oder auch durch Variation von beiden Gleichzeitig. Es ist zu beachten das unterschiedliche Parameterisierungen auch zu unterschiedlichen Paschenkurven führen da für \eqref{eq:townsendbreak} die Annahme getroffen wurde, dass ein gleichförmiges Elektrischesfeld vorliegt, zum einem ist das in der Realität generell nicht der Fall und eine kleine Variation der Geometrie durch \(d\) kann auch schnell zu einer Änderung des Felder führen und so zu einer anderen Paschenkurve. \cite{kuffel2000}
+
+
+\subsubsection{Streamerentladung}
+\label{sec:streamerdischarge}
+Eine Streamerenladung bezeichnet die Übergangsphase zwischen der anfänglichen Elektronenlawine und einem thermisch leitfähigen Kanal (Leader).  Diese nichtthermische Entladung ist charakterisiert durch $T_{\text{gas}} \lesssim \SI{400}{\kelvin}$ bei gleichzeitig hohen Elektronenenergien ($T_e \approx \SIrange{1}{5}{\electronvolt}$) und wird durch Raumladungsfelder sowie Photoionisation aufrechterhalten. Streamerentladungen treten typischerweise bei Drücken von $\SIrange{0.1}{10}{\bar}$ und Feldstärken von $\SIrange{10}{100}{\kilo\volt\per\centi\meter}$ auf, mit charakteristischen Zeitskalen von $\SIrange{1}{100}{\nano\second}$.
+
+\paragraph{Startbedingung (Meek-Kriterium)}
+Die Anzahl der Elektronen im Kopf der in Kapitel~\ref{chap:electronlaw} behandelten Elektronenlawine steigt exponentiell:
+\begin{equation}
+    N(x) = N_0 \exp(\overline{\alpha} x)
+\end{equation}
+
+Die kritische Elektronendichte für den Übergang zur Streamerentladung ergibt sich aus dem Gleichgewicht zwischen Raumladungsfeld und äußerem Feld. Nach \textcite{meek1940} geht die Lawine in eine Streamerentladung über, wenn:
+\begin{equation}
+    \overline{\alpha} x_c \simeq 18\text{--}20
+    \label{eq:meek}
+\end{equation}
+
+Der Wert $18 \approx \ln(10^8)$ entspricht einer kritischen Elektronenzahl von etwa $10^8$, die ein Raumladungsfeld derselben Größenordnung wie das äußere Feld $E_0$ erzeugt. Diese Bedingung ist gasartabhängig und kann durch das verallgemeinerte Raether-Kriterium $\overline{\alpha} x_c = f(pd)$ präzisiert werden, wobei $f$ eine schwach druckabhängige Funktion ist.
+
+
+\paragraph{Lawinenkopf}
+Das elektrische Feld am sphärischen Lawinenkopf lässt sich formulieren als:
+\begin{equation}
+    E_r = \frac{e N(x)}{4\pi \varepsilon_0 r^2} = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0 r^2}
+    \label{eq:electronlawfield}
+\end{equation}
+
+Die radiale Expansion durch Elektronendiffusion folgt $r = \sqrt{4Dt} = \sqrt{4Dx/v_d}$, wobei $D$ der Diffusionskoeffizient und $v_d$ die Driftgeschwindigkeit ist. Einsetzen ergibt:
+\begin{equation}
+    E_r = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0} \frac{v_d}{4Dx}
+    \label{eq:electronlawfielddif}
+\end{equation}
+
+Das Raumladungsfeld wächst proportional zu $e^x/x$ und führt zur Abschirmung des äußeren Feldes im Lawinenkopf. Die kritische Bedingung $E_r \simeq E_0$ markiert den Übergang von exponentieller zu selbsterhaltender Propagation.
+
+
+\paragraph{Propagation durch Photoionisation}
+Hochenergetische Elektronen im Streamerkopf regen Gasmoleküle zu angeregten Zuständen an:
+\begin{equation}
+    e^- + \text{M} \rightarrow e^- + \text{M}^* \rightarrow e^- + \text{M} + h\nu
+\end{equation}
+
+Die emittierten Photonen (typisch $h\nu = \SIrange{10}{20}{\electronvolt}$) ionisieren Moleküle vor dem Streamerkopf:
+\begin{equation}
+    h\nu + \text{M} \rightarrow \text{M}^+ + e^-
+\end{equation}
+
+%Die Photoionisationsrate ist gegeben durch:
+%\begin{equation}
+%    S_{\text{ph}} = \int \xi(\lambda) I(\lambda) \sigma_{\text{ph}}(\lambda) n_{\text{M}} \, d\lambda
+%\end{equation}
+%wobei $\xi(\lambda)$ der Photoionisationskoeffizient, $I(\lambda)$ die Photonenflussdichte und $\sigma_{\text{ph}}(\lambda)$ der Photoionisationsquerschnitt ist.
+
+\paragraph{Streamertypen}
+Ein positiver Streamer propagiert in Richtung der Kathode mit einer Geschwindigkeit von etwa $10^{6}\text{–}10^{7}\,\mathrm{m/s}$. Die Entladung entwickelt dabei eine stark verzweigte, baumartige Struktur, wobei die Photoionisation vor dem Streamerkopf die Ausbreitung zusätzlich begünstigt. Im Gegensatz dazu bewegt sich ein negativer Streamer mit etwa $10^{5}\text{–}10^{6}\,\mathrm{m/s}$ langsamer in Richtung der Anode und bildet dünnere, weniger verzweigte Filamente. Er benötigt eine höhere lokale Feldstärke – typischerweise $E \gtrsim 100\,\mathrm{kV/cm}$ – und da die Photoionisation hauptsächlich hinter dem Kopf stattfindet, wird seine Ausbreitung entsprechend erschwert.
+%\paragraph{Kontinuitätsgleichungen}
+%Die Streamerdynamik wird durch gekoppelte Kontinuitätsgleichungen beschrieben:
+%\begin{align}
+%    \frac{\partial n_e}{\partial t} &= \nabla \cdot (D_e \nabla n_e) - \nabla \cdot (n_e \vec{v}_e) + S_{\text{ion}} + S_{\text{ph}} \\
+%    \frac{\partial n_+}{\partial t} &= \nabla \cdot (D_+ \nabla n_+) - \nabla \cdot (n_+ \vec{v}_+) + S_{\text{ion}} + S_{\text{ph}}
+%\end{align}
+Das selbstkonsistente elektrische Feld folgt aus der Poisson-Gleichung:
+\begin{equation}
+    \nabla^2 \phi = -\frac{e}{\varepsilon_0}(n_+ - n_e)
+\end{equation}
+\paragraph{Übergang zum Leader}
+Bei ausreichender Stromstärke ($I \gtrsim \SI{1}{\ampere}$) führt Joule-Erwärmung zur thermischen Instabilität. Die Kanaltemperatur steigt auf $T > \SI{2000}{\kelvin}$, die Gasdichte sinkt gemäß $\rho \propto T^{-1}$, und der Kanal wird thermisch leitfähig. Charakteristische Zeitskalen: 1) Streamerphase: $\SIrange{1}{100}{\nano\second}$, 2) Leader-Übergang: $\SIrange{1}{10}{\micro\second}$, 3) Leader-Propagation: $\SIrange{10}{100}{\micro\second}$
+
+\subsubsection{Corona}
+Wenn das elektrische Feld lokal eine Feldstärke erreicht, die groß genug ist um die Durchbruchfeldstärke zu überschreiten, dann kommt es zu einer Corona-Entladung. Dieser Entladungstyp tritt nur lokal in einem Bereich hoher Feldstärken auf, wie an scharfen Kanten und nicht über die gesammte Spaltbreite, also ein elektrischer Ǔberschlag zwischen einem Punkt der Elektrode und einem anderen Punkt der Elektrode, also z.B. zwischen der Spitze und der Seite der Spitze.
+\subsubsection{Glimmentladung}
+Eine Glimmentladung findet unter niedrigen Drücken und kleinen Entladungsströmen statt, das in Reihe schalten eine Widerstandes ermöglicht die Begrenzung des Stromes.
+Dieser Entladungsstyp zeichnet sich durch charakteristisch leuchtende Bereiche zwischen Kathode und Anode aus. Die an der Kathode emmitierten Elektronen werden beschleunigt in Richtung der Anode, in der Nähe der Kathode haben diese noch nicht genügend Energie aufgenommen um Atome weder zu ionisieren noch anzuregen, dies ist der Astom-Dunkelraum. Anschließend folgt die leuchtende Kathodenschicht, in dieser haben die Elektronen genügend Energie erreicht um Anregungsprozesse zu starten die zu einem leuchten führen. Nach dieser Schicht erreichen die Elektronen eine genügende Energie um Atome zu ionisieren, dies führt zu einer Vervielfältigung der Ladungen, diese müssen nun jedoch erst wieder beschleunigt werden um genügend Energie zu erreichen um weitere Atome zu ionisieren, somit bildet sich der Hirttorf-Dunkelraum, der nur ein geringes leuchten aufweist. Die in diesem Raum entstandenen postiv geladenen Ionen werden in Richtung der Kathode beschleunigt, die sich so langsam in Richtung der Kathode bewegenden Ionen führen zu einer positiven Raumladung in diesem Bereich, diese Schirm das Felder der Kathode ab. Es liegt nun nach der Vervielfältigung im letzten Bereich eine sehr viel höhere Elektronenanzahl vor jedoch ist das Feld nun so verringert, dass die Elektronen nur noch langsam beschleunigt werden und so in der der negativen Glühzone primär Anregungsprozesse auftretten diese jedoch mit einer erhöhten Häufigkeit aufgrund der erhöhten Anzahl an Elektronen. Das Feld nimmt weiter ab und es kommt zu keinen Anregungsprozessen mehr im Faraday-Dunkelraum. Die nun aber erhöhte Elektronendichte im Vergleich zu der Ionendichte am Ender der Glimmzone führt zu einen nun wieder steigenden Feld, also zu einer wieder steigenen Energie der Elektronen. In diesem Bereich bildet sich nun ein Gleichgewicht und es kommt zu einer kontinuierlich Entladung, jedoch erneut bei einem niedrigen Feld, da an der Anode sich wieder ein stärkers Feld bildet was zur Ionisierung führt und dieses Ionen zu einer erhöhten positiven Raumladung in der Glimmzone führen, die Ionisationen ergeben sich durch die statistische Verteilung der Geschwindigkeiten der Elektroden, das die mittlere Energie zu niedrig für Ionisationsprozesse ist. \cite{stroth2018}
+
+\subsubsection{Spark}
+Ein Spark ist eine hochstromige Entladung die durch eine hohe Temperatur ausgezeichnet ist. Die Entstehung eines solchen Sparkes lässt sich in mehrere Phasen unterteilen. Die ersten Phasen entsprechen der Bildung eines Streamerkanals, da der Streamer nur eine geringe elektrische Leitfähigkeit besitzt sind die Ströme zuerst klein, wenn sich der Kanal jedoch genug erwärmt hat, steigt die Leitfähigkeit so dass ein großer Strom fließen kann und so die Sparkentlung möglich wird.
+Die Energie eines solchen Sparks lässt sich folgendermaßen quantifizieren:
+\begin{equation}
+    W = \int_{0}^{t} U(t)I(t)dt = W_{therm} + W_{strahl} + W_{mech}
+\end{equation}
+\subsubsection{Ark}
+Eine Arkentladung ist eine kontinuierliche und selbsterhaltende Entladung.
+% \subsection{Partielle Entladungen}
+
+% Klassen: Townsend, Glow, Arc, Spark
+% Hindergrund: Ionisation, Elektron Lawine, Zusammenbruch
+% Paschen Gesetz
+% Elektroden Effekte
+
+
+
+%\section{Vorläufer Phenomene}
+%\label{sec:precursors}
+
+%\section{Physikalische Modellierung der Entladung}
+%\label{sec:modeling}
+% Townsend Gausian model
+% Ratengleichung
+
+%\section{Oszillatorisches Verhalten und EM-Emissionen}
+
+\section{Schwingkreis}
+\label{sec:oscillations}
+
+\subsection{LC-Resonanz}
+Ein System aus einer Induktivität \(L\), einer Kapazität \(C\) und einem Widerstand \(R\) bilden einen gedämpften Schwingkreis. Die Eigenfrequenz \(f_0\) ist
+
+\begin{equation}
+f_0 = \frac{1}{2\pi \sqrt{LC}}
+\end{equation}
+
+\subsection{Gedämpfter RLC-Schwingkreis}
+In realen Systemem wie den gemessenen Entladungen müssen die sowohl die \(RLC\) Anteile der Komponenten wie der Funkenstrecke berücksichtigt werden also auch die parasitären Effekte der verwendeten Kabel. Ein solcher gedämpfter \(RLC\)-Kreis wird durch die folgende Differentialgleichung beschrieben:
+
+\begin{equation}
+L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{q}{C} = 0
+\end{equation}
+Der Fall geringer Dämpfung, also mit längeren oszillatorischen Effekten, ist interessant für die Betrachtung von Entladungen, wie sie in der Hochspannungstechnik auftreten. Die Fälle von kritischer oder aperiodischer Dämpfung klingen ohne längere Osilationen ab.
+\subsection{Qualitätsfaktor}
+Der Qualitätsfaktor \(Q\) gibt das Verhältnis aus gespeicherter und dissipierter Energie an:
+\begin{equation}
+Q = \frac{1}{R} \sqrt{\frac{L}{C}}
+\end{equation}
+Hohe Werte entsprechen niedrigen Verlusten des Schwingkreises und niedrige Werte entsprechen einer stärkeren Dämpfung und somit stärkeren Verslusten.
+
+\subsection{Spannungsteiler}
+\label{sec:voltagedividertheo}
+Um hohe Spannungen zumessen muss deren Spannung auf ein niedrigers Level reduziert um die empfindlichen Komponenten der Messelektronik zu schützen. Diese Aufgabe übernimmt ein Spannungsteiler, dieser wird über die Kombination aus zwei Widerständen realisiert, die Ausgangsspannung wird folgenderweise bestimmt
+\begin{equation}
+    U_{out} = U_{in} \frac{R_2}{R_1 + R_2}
+    \label{eq:voltagedivider}
+\end{equation}
+Hierbei ist \(R_2\) der kleinere Widerstand über den gemessen wird und \(R_1\) der größere Widerstand. Nicht nur das Verhältnis ist relevant, sonder auch der totale Widerstand in Reihe \(R = R_1 + R_2\) da bei niedrigen Widerständen ein großer Strom fließen würde, somit müssen genügend große gewählt werden. Unter Gleichspannung muss nichts weiter beachtet werden, jedoch für Wechselspannung wird das Verhalten wegen limitierender parasitären Effekte beinträchtigt. Für große Widerstände liegt jedoch auch eine hohe Impedanz für das Element vor. Die Ausgangsimpendanz lässt sich folgender weise berechenen:
+\begin{equation}
+    Z_{out} = \frac{R_1 R_2}{R_1 + R_2}
+    \label{eq:voltagedividerimp}
+\end{equation}
+Somit ergibt sich für große \(Z_out\) ein Tiefpassfilter. Neben der Ausgangsimpendanz des Spannungsteilers müssen ebenfalls die kapazitiven parasitären Effekte betrachtet werden, also die Kapazitivität des Intrumentes und der verbundenen Kabel.
+\begin{equation}
+    f_c = \frac{1}{2\pi Z_out C_in}
+    \label{eq: voltagedividerfreq}
+\end{equation}
+Somit ist die Bandbreite der Spannungsmesung mit einem Spannungsteiler auf diese Bandbreite begrenzt. Anteile die über dieser Frequenz liegen werden verstärkt und verschoben und führen so zu Ungenauigkeiten. 
+
+% LC Resonanz
+% Antenne
+% Kapazitive Kupplung, Induktive Kupplung
+% Parasitäre Effekte
+
+%\section{Signalverarbeitung}
+%\label{sec:signalprocessing}
+% Filter
+
+%\section{Messsystem und Kopplungseffekte}
+%\label{sec:measurementsystem}
+% Rowgowski coil
+% BNC
+% Trigger setup
+
+\section{Maschine Learning}
+\label{sec:maschinelearning}
+\subsection{Regression}
+Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model dieser Daten. Dieses Model wird durch Parameter spezifizierte, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'residuar sum of squares' (RSS) minimieren.
+\subsection{Lineareregression}
+Die Lineareregression ist ein Modell aus der Statistik welches den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) herstellt. Das verwendete Modell ist ein lineares Modell es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\), diese zubestimmen ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
+\begin{equation}
+    Y \simeq \beta_0 + \beta_1 X
+    \label{eq:linreg1}
+\end{equation}
+Es ist zu unterscheiden zwischen den Modell Koeffizienten \(\beta\) und den Schätzungen dieser Koeffizienten \(\hat{\beta}\), die sich aus den verwendeten Trainingsdaten ergeben. 
+Für das lineare Modell lässt sich ein direkter Ausdruck für die geschätzen Werte bilden, ausgedrückt über den Mittelwert von \(Y\) und \(X\):
+\begin{equation}
+    \hat{\beta_1} = \frac{\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2}
+\end{equation}
+\begin{equation}
+    \hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x}
+\end{equation}
+
+\cite{james2013}
+
+
+% Clustering Verfahren kmeans, hdbscan, pca
+% Features (statisticle, fft)
+% deeplearning (cnn, lstm, pinn)
+% Dimensionsreduktioin (PCA, UMAP, t-SNE)
+

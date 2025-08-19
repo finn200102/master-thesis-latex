@@ -1,0 +1,38 @@
+\chapter{Datenaufbereitung}
+\label{chap:features}
+
+Für die Auswertung der Entladungen werden verschieden Parameter wie Eventstart, Pre-Eventstart, Entladungslänge und weitere benötigt, diese werden in diesem Kaptitel definiert.
+
+\section{Eventstart}
+\label{sec:eventstart}
+
+Der Start des Events wurde in der Anfangszeit als der Punkt definiert, ab dem der Strom eine gewisse Schwelle überschritten hatte. Der Wert dieser Schwelle wurde bei der Aufnahme der Daten vor einer längeren Messreihe empirisch durch die Wahl der Triggerschwelle realisiert. Diese Wahl des Eventstartes führte jedoch zu Schwierigkeiten für Events bei denen vor dem Start des maximalen Entladungsstromes schon kleinere Ströme vorher fließen, also im Fall von Vorevents bzw. den Eventauslösern (Townsendlawinen). Die Schwierigkeit ist nun, dass der Trigger auch auf diese anfällig ist, dies ist bei der richting Wahl des Triggerlevels wenn die Entladungen alle die gleiche Strom Größenordung besitzen unproblematisch, wenn aber bei der Änderung des Drucks dies sich ändert, dann muss eine andere Definition gewählt werden. Als Eventstart wird das überschreiten von $65 \%$ des maximalen Stroms dieser Entladung gewählt, dieser empirische Wert hat sich als am genausten bewährt, da dieser noch nicht auf hohe Vorevents anspringt aber auch nicht innerhalb des Events liegt, für Events die die nicht direkt mit dem maximalen Strom starten. 
+
+\section{Eventende}
+\label{sec:eventende}
+Das Ende des Events ist definiert as der Punkt an dem nach dem maximalen Strom der Strom wieder auf \(10\%\) des ursprünglichen Events abgesunken ist. Da in dem Strom aufgrund der Oszillationen mehrere Punkte auftreten, wo kurzeitig ein solcher Strom erreicht ist, wird vor der Bestimmung dieses Wertes eine Einhüllende des Signals gebildet. 
+
+\section{Eventlänge}
+\label{sec:eventlen}
+Die Länge des Events wird aus der Differenz des Endes des Events \ref{sec:eventende} und dem Start des Events \ref{sec:eventstart} gebildet. 
+
+\section{Vorläufer Eventstart}
+\label{sec:preeventstart}
+
+Der Start des Präevents, wenn ein solches vorhanden ist, wird über das Abweichen von mind. $20$ Punkten die um einen Faktor von $4$ über dem Mittelwert des Stroms liegen müssen definiert. Die Bedingung das mehreren Punkte über dem Schwellwert legen müssen ist dazu da um nicht auf einzelne Ausreißer sensitiv zu sein, die Wahl der Schwelle und dieser Anzahl ergab sich empirisch als gut zu den Daten passend. Nach dem Start eines solchen Vorevents wird in einem Zeitfenster von \SI{10}{\micro\second} vor dem Eventstart gesucht. Wenn der Abstand zwischen Eventstart und Präeventstart kleiner als \SI{10}{\nano\second} ist, dann liegt kein Vorevent vor. Dies gilt auch wenn in dem Intervall kein Wert gefunden wurde.
+
+\section{Vorläufer Eventende}
+\label{sec.preeventend}
+
+\section{Durchbruchspannung}
+\label{sec:breakdownvoltage}
+Die Durchbruchspannung \(U_B\) ist die Spannung direkt vor der Entladung, also die Spannung die zum Zusammenbruch des System geführt hat, dies ist die Spannung die in \equref{eq:townsendbreak} eingeführt wurde. Diese wird aus den ersten 1000 Spannungspunken die aufgezeichnet wurden durch Mittelwertbildung bestimmt. 
+
+\section{Abgeschnittener Strom}
+\label{sec:cutoffcurrent}
+
+\section{Maximaler Strom}
+\label{sec:maxcurrent}
+
+
+

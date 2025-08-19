@@ -1,0 +1,20 @@
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.synctex.gz
+build/
+
+# figures
+*.pgf
+*.pdf
+*.png
+figures/
+
+
