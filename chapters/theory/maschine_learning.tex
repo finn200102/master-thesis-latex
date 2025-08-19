@@ -1,0 +1,22 @@
+
+\section{Maschine Learning}
+\label{sec:maschinelearning}
+\subsection{Regression}
+Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model dieser Daten. Dieses Model wird durch Parameter spezifizierte, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'residuar sum of squares' (RSS) minimieren.
+\subsection{Lineareregression}
+Die Lineareregression ist ein Modell aus der Statistik welches den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) herstellt. Das verwendete Modell ist ein lineares Modell es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\), diese zubestimmen ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
+\begin{equation}
+    Y \simeq \beta_0 + \beta_1 X
+    \label{eq:linreg1}
+\end{equation}
+Es ist zu unterscheiden zwischen den Modell Koeffizienten \(\beta\) und den Schätzungen dieser Koeffizienten \(\hat{\beta}\), die sich aus den verwendeten Trainingsdaten ergeben. 
+Für das lineare Modell lässt sich ein direkter Ausdruck für die geschätzen Werte bilden, ausgedrückt über den Mittelwert von \(Y\) und \(X\):
+\begin{equation}
+    \hat{\beta_1} = \frac{\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2}
+\end{equation}
+\begin{equation}
+    \hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x}
+\end{equation}
+
+\cite{james2013}
+
