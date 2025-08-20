@@ -1,0 +1,140 @@
+\subsection{Entladungsarten}
+Alle Entladungsarten starten mit einer Elektronenlawine die durch ein einzelnes freies Elektron im Spalt ausgelöst wird. Diese Elektron kann z.B. durch Höhenstrahlung entstanden sein.
+\subsubsection{Elektronlawine}
+\label{chap:electronlaw}
+Ein eingebrachtes Elektron in das elektrische Felder zwischen zwei Elektroden wird in Richtung der positiv geladenen Anode beschleunigt. Wenn die angelegte Spannung und die Strecke groß genug sind, dann kann das Elektron auf dem Weg weitere neutrale Teilchen mit der Elektronstoß-Ionisation ionisieren und so weitere freie Elektronen schaffen. Dies führt zu einem exponentiellen Wachstum der Elektronenanzahl und somit zur Formierung einer Elektronenlawine. \cite{kuffel2000}
+\begin{equation}
+    n(x) = n_0 e^{\overline{\alpha}x} = n_0 e^{(\alpha - \eta)x}
+    \label{eq:electronlaw}
+\end{equation}
+Hierbei ist \(\eta\) die Rekombinationsrate. Somit steigt die Anzahl an Elektronen in der Lawine nach:
+\begin{equation}
+    n(x) = n_0e^{\overline{\alpha}x}
+\end{equation}
+Hier entspricht \(n_0\) der Anzahl an Elektronen die an der Kathode entstehen. Die lässt sich auch für den Strom and der Kathode \(I_0\) schreiben als:
+\begin{equation}
+    I(x) = I_0e^{\overline{\alpha}x}
+\end{equation}
+
+\subsubsection{Townsendmechanismus}
+
+Für geringe Abstände und geringe Drücke gilt der Townsendmechanismus, analog zur behandelten Elektronenlawine startet auch hier die Entladung mit einem freien Elektron, welches zu einer Lawine führt. Das in \eqref{eq:electronlaw} verwendete \(\alpha\) ist der erste Townsendkoeffizient, also die Anzahl an ionisierenden Kollisionen pro Streckeneinheit. Dieser sich so ergebende Strom reicht jedoch nicht für eine kontinuierliche Entladung, sondern es wird eine sekundäre Emission von Elektronen benötigt. Diese kommt durch die Kollision der freiwerdenden positiv geladenen Ionen mit der Kathode zustande, hierbei werden Elektronen aus der Kathode gelößt welche dann an der Entladung teilnehmen können. Dieser Mechanismus ist durch den zweiten Townsendkoeffizienten quantifiziert \(\gamma\), also der Anzahl an emitierten Elektronen an der Kathode pro eingeschlagenem Ion. Für eine kontinuierliche Entladung muss das Townsendsche Entladungkriterium gelten:
+\begin{equation}
+    \gamma (e^{\alpha d}-1) = 1
+    \label{eq:townsendkrit}
+\end{equation}
+Hierbei ist d der Spaltabstand. Aus diesen beiden Koeffizienten lässt sich auch der Strom der Entladung an der Anode bilden:
+\begin{equation}
+    I = \frac{I_0 e^{\alpha d}}{1-\gamma (e^{\alpha d} -1)}
+\end{equation}
+Der erste Townsendkoeffizient lässt sich über die mittlere freie Weglänge \(\lambda_e\) der Elektronen, der benötigten Ionisationsenergie des Gases \(E_{ion}\) under der Energie des Elektronenstoßes \(\epsilon_{ion}\) bestimmen:
+\begin{equation}
+    \alpha = \frac{1}{\epsilon_{ion}} e^{\frac{-E_{ion}}{\epsilon_{ion}}} 
+    = \frac{\sigma_{ion}p}{k_B T} e^{\frac{-E_{ion}}{eE\lambda_e}} 
+    = A p e^{\frac{-Bp}{E}}
+    \label{eq:firsttownsend}
+\end{equation}
+Hier sind \(A = \frac{\sigma_{ion}}{k_B T}\) und \(B = \frac{\sigma_{ion} E_{ion}}{ek_B T}\) vom Gas abhängige Konstanten. \cite{fu2020}
+
+
+\subsubsection{Paschen Gesetz}
+\label{sec:paschenlaw}
+Das Paschengesetz stellt eine Verbindung zwischen dem Produkt des Drucks \(p\) und des Spaltabstandes \(d\) und der Entladungspannung \(U_B\) her. Die sich so ergebende Funktion lässt sich durch einsetzen von \eqref{eq:firsttownsend} in \eqref{eq:townsendkrit} und der Annahme das ein gleichförmiges elektrisches Feld zwischen den beiden Elektronen vorliegt ausdrücken:
+\begin{equation}
+    U_B = \frac{Bpd}{\ln\left( Apd \right) - \ln\left[ \ln\left(1 + \frac{1}{\gamma} \right) \right]}
+    \label{eq:townsendbreak}
+\end{equation}
+In \figref{fig:paschencurve} ist der Verlauf der Paschenkurve für verschiedene Gase geplottet. Man sieht das für kleine \(pd\) also auch große hohe Durchbruchspannungen benötigt werden und es zwischen diesen ein Minimum für die Kurve gibt also für einen Wert von \(pd\) wird die Durchbruchspannung minimiert.
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../figures/theory/Paschen_curves.pdf}
+    \caption{Paschenkurve}
+    \label{fig:paschencurve}
+  \end{figure}
+
+Es ergeben sich verschiedene Paschenkurven für verschiedene Gase. Es ist möglich die Kurven zu messen durch eine Variation von \(p\) bei konstanten \(d\), umgekehrt oder auch durch Variation von beiden Gleichzeitig. Es ist zu beachten das unterschiedliche Parameterisierungen auch zu unterschiedlichen Paschenkurven führen da für \eqref{eq:townsendbreak} die Annahme getroffen wurde, dass ein gleichförmiges Elektrischesfeld vorliegt, zum einem ist das in der Realität generell nicht der Fall und eine kleine Variation der Geometrie durch \(d\) kann auch schnell zu einer Änderung des Felder führen und so zu einer anderen Paschenkurve. \cite{kuffel2000}
+
+
+\subsubsection{Streamerentladung}
+\label{sec:streamerdischarge}
+Eine Streamerenladung bezeichnet die Übergangsphase zwischen der anfänglichen Elektronenlawine und einem thermisch leitfähigen Kanal (Leader).  Diese nichtthermische Entladung ist charakterisiert durch $T_{\text{gas}} \lesssim \SI{400}{\kelvin}$ bei gleichzeitig hohen Elektronenenergien ($T_e \approx \SIrange{1}{5}{\electronvolt}$) und wird durch Raumladungsfelder sowie Photoionisation aufrechterhalten. Streamerentladungen treten typischerweise bei Drücken von $\SIrange{0.1}{10}{\bar}$ und Feldstärken von $\SIrange{10}{100}{\kilo\volt\per\centi\meter}$ auf, mit charakteristischen Zeitskalen von $\SIrange{1}{100}{\nano\second}$.
+
+\paragraph{Startbedingung (Meek-Kriterium)}
+Die Anzahl der Elektronen im Kopf der in Kapitel~\ref{chap:electronlaw} behandelten Elektronenlawine steigt exponentiell:
+\begin{equation}
+    N(x) = N_0 \exp(\overline{\alpha} x)
+\end{equation}
+
+Die kritische Elektronendichte für den Übergang zur Streamerentladung ergibt sich aus dem Gleichgewicht zwischen Raumladungsfeld und äußerem Feld. Nach \textcite{meek1940} geht die Lawine in eine Streamerentladung über, wenn:
+\begin{equation}
+    \overline{\alpha} x_c \simeq 18\text{--}20
+    \label{eq:meek}
+\end{equation}
+
+Der Wert $18 \approx \ln(10^8)$ entspricht einer kritischen Elektronenzahl von etwa $10^8$, die ein Raumladungsfeld derselben Größenordnung wie das äußere Feld $E_0$ erzeugt. Diese Bedingung ist gasartabhängig und kann durch das verallgemeinerte Raether-Kriterium $\overline{\alpha} x_c = f(pd)$ präzisiert werden, wobei $f$ eine schwach druckabhängige Funktion ist.
+
+
+\paragraph{Lawinenkopf}
+Das elektrische Feld am sphärischen Lawinenkopf lässt sich formulieren als:
+\begin{equation}
+    E_r = \frac{e N(x)}{4\pi \varepsilon_0 r^2} = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0 r^2}
+    \label{eq:electronlawfield}
+\end{equation}
+
+Die radiale Expansion durch Elektronendiffusion folgt $r = \sqrt{4Dt} = \sqrt{4Dx/v_d}$, wobei $D$ der Diffusionskoeffizient und $v_d$ die Driftgeschwindigkeit ist. Einsetzen ergibt:
+\begin{equation}
+    E_r = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0} \frac{v_d}{4Dx}
+    \label{eq:electronlawfielddif}
+\end{equation}
+
+Das Raumladungsfeld wächst proportional zu $e^x/x$ und führt zur Abschirmung des äußeren Feldes im Lawinenkopf. Die kritische Bedingung $E_r \simeq E_0$ markiert den Übergang von exponentieller zu selbsterhaltender Propagation.
+
+
+\paragraph{Propagation durch Photoionisation}
+Hochenergetische Elektronen im Streamerkopf regen Gasmoleküle zu angeregten Zuständen an:
+\begin{equation}
+    e^- + \text{M} \rightarrow e^- + \text{M}^* \rightarrow e^- + \text{M} + h\nu
+\end{equation}
+
+Die emittierten Photonen (typisch $h\nu = \SIrange{10}{20}{\electronvolt}$) ionisieren Moleküle vor dem Streamerkopf:
+\begin{equation}
+    h\nu + \text{M} \rightarrow \text{M}^+ + e^-
+\end{equation}
+
+%Die Photoionisationsrate ist gegeben durch:
+%\begin{equation}
+%    S_{\text{ph}} = \int \xi(\lambda) I(\lambda) \sigma_{\text{ph}}(\lambda) n_{\text{M}} \, d\lambda
+%\end{equation}
+%wobei $\xi(\lambda)$ der Photoionisationskoeffizient, $I(\lambda)$ die Photonenflussdichte und $\sigma_{\text{ph}}(\lambda)$ der Photoionisationsquerschnitt ist.
+
+\paragraph{Streamertypen}
+Ein positiver Streamer propagiert in Richtung der Kathode mit einer Geschwindigkeit von etwa $10^{6}\text{–}10^{7}\,\mathrm{m/s}$. Die Entladung entwickelt dabei eine stark verzweigte, baumartige Struktur, wobei die Photoionisation vor dem Streamerkopf die Ausbreitung zusätzlich begünstigt. Im Gegensatz dazu bewegt sich ein negativer Streamer mit etwa $10^{5}\text{–}10^{6}\,\mathrm{m/s}$ langsamer in Richtung der Anode und bildet dünnere, weniger verzweigte Filamente. Er benötigt eine höhere lokale Feldstärke – typischerweise $E \gtrsim 100\,\mathrm{kV/cm}$ – und da die Photoionisation hauptsächlich hinter dem Kopf stattfindet, wird seine Ausbreitung entsprechend erschwert.
+%\paragraph{Kontinuitätsgleichungen}
+%Die Streamerdynamik wird durch gekoppelte Kontinuitätsgleichungen beschrieben:
+%\begin{align}
+%    \frac{\partial n_e}{\partial t} &= \nabla \cdot (D_e \nabla n_e) - \nabla \cdot (n_e \vec{v}_e) + S_{\text{ion}} + S_{\text{ph}} \\
+%    \frac{\partial n_+}{\partial t} &= \nabla \cdot (D_+ \nabla n_+) - \nabla \cdot (n_+ \vec{v}_+) + S_{\text{ion}} + S_{\text{ph}}
+%\end{align}
+Das selbstkonsistente elektrische Feld folgt aus der Poisson-Gleichung:
+\begin{equation}
+    \nabla^2 \phi = -\frac{e}{\varepsilon_0}(n_+ - n_e)
+\end{equation}
+\paragraph{Übergang zum Leader}
+Bei ausreichender Stromstärke ($I \gtrsim \SI{1}{\ampere}$) führt Joule-Erwärmung zur thermischen Instabilität. Die Kanaltemperatur steigt auf $T > \SI{2000}{\kelvin}$, die Gasdichte sinkt gemäß $\rho \propto T^{-1}$, und der Kanal wird thermisch leitfähig. Charakteristische Zeitskalen: 1) Streamerphase: $\SIrange{1}{100}{\nano\second}$, 2) Leader-Übergang: $\SIrange{1}{10}{\micro\second}$, 3) Leader-Propagation: $\SIrange{10}{100}{\micro\second}$
+
+\subsubsection{Corona}
+Wenn das elektrische Feld lokal eine Feldstärke erreicht, die groß genug ist um die Durchbruchfeldstärke zu überschreiten, dann kommt es zu einer Corona-Entladung. Dieser Entladungstyp tritt nur lokal in einem Bereich hoher Feldstärken auf, wie an scharfen Kanten und nicht über die gesammte Spaltbreite, also ein elektrischer Ǔberschlag zwischen einem Punkt der Elektrode und einem anderen Punkt der Elektrode, also z.B. zwischen der Spitze und der Seite der Spitze.
+\subsubsection{Glimmentladung}
+Eine Glimmentladung findet unter niedrigen Drücken und kleinen Entladungsströmen statt, das in Reihe schalten eine Widerstandes ermöglicht die Begrenzung des Stromes.
+Dieser Entladungsstyp zeichnet sich durch charakteristisch leuchtende Bereiche zwischen Kathode und Anode aus. Die an der Kathode emmitierten Elektronen werden beschleunigt in Richtung der Anode, in der Nähe der Kathode haben diese noch nicht genügend Energie aufgenommen um Atome weder zu ionisieren noch anzuregen, dies ist der Astom-Dunkelraum. Anschließend folgt die leuchtende Kathodenschicht, in dieser haben die Elektronen genügend Energie erreicht um Anregungsprozesse zu starten die zu einem leuchten führen. Nach dieser Schicht erreichen die Elektronen eine genügende Energie um Atome zu ionisieren, dies führt zu einer Vervielfältigung der Ladungen, diese müssen nun jedoch erst wieder beschleunigt werden um genügend Energie zu erreichen um weitere Atome zu ionisieren, somit bildet sich der Hirttorf-Dunkelraum, der nur ein geringes leuchten aufweist. Die in diesem Raum entstandenen postiv geladenen Ionen werden in Richtung der Kathode beschleunigt, die sich so langsam in Richtung der Kathode bewegenden Ionen führen zu einer positiven Raumladung in diesem Bereich, diese Schirm das Felder der Kathode ab. Es liegt nun nach der Vervielfältigung im letzten Bereich eine sehr viel höhere Elektronenanzahl vor jedoch ist das Feld nun so verringert, dass die Elektronen nur noch langsam beschleunigt werden und so in der der negativen Glühzone primär Anregungsprozesse auftretten diese jedoch mit einer erhöhten Häufigkeit aufgrund der erhöhten Anzahl an Elektronen. Das Feld nimmt weiter ab und es kommt zu keinen Anregungsprozessen mehr im Faraday-Dunkelraum. Die nun aber erhöhte Elektronendichte im Vergleich zu der Ionendichte am Ender der Glimmzone führt zu einen nun wieder steigenden Feld, also zu einer wieder steigenen Energie der Elektronen. In diesem Bereich bildet sich nun ein Gleichgewicht und es kommt zu einer kontinuierlich Entladung, jedoch erneut bei einem niedrigen Feld, da an der Anode sich wieder ein stärkers Feld bildet was zur Ionisierung führt und dieses Ionen zu einer erhöhten positiven Raumladung in der Glimmzone führen, die Ionisationen ergeben sich durch die statistische Verteilung der Geschwindigkeiten der Elektroden, das die mittlere Energie zu niedrig für Ionisationsprozesse ist. \cite{stroth2018}
+
+\subsubsection{Spark}
+Ein Spark ist eine hochstromige Entladung die durch eine hohe Temperatur ausgezeichnet ist. Die Entstehung eines solchen Sparkes lässt sich in mehrere Phasen unterteilen. Die ersten Phasen entsprechen der Bildung eines Streamerkanals, da der Streamer nur eine geringe elektrische Leitfähigkeit besitzt sind die Ströme zuerst klein, wenn sich der Kanal jedoch genug erwärmt hat, steigt die Leitfähigkeit so dass ein großer Strom fließen kann und so die Sparkentlung möglich wird.
+Die Energie eines solchen Sparks lässt sich folgendermaßen quantifizieren:
+\begin{equation}
+    W = \int_{0}^{t} U(t)I(t)dt = W_{therm} + W_{strahl} + W_{mech}
+\end{equation}
+\subsubsection{Ark}
+Eine Arkentladung ist eine kontinuierliche und selbsterhaltende Entladung.
+%

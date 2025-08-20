@@ -7,7 +7,7 @@ Der in \secref{sec:voltage_divider} behandelte Spannungsteiler führt nicht zu e
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../figures/generated/preprocessing/plots/voltage_linear_fit.pdf}
+    \includegraphics[width=\textwidth]{figures/preprocessing/fit_voltage_data.pdf}
     \caption{Netzteil-Spannung aufgetragen gegen die Ausgangsspannung mit linearen fit}
     \label{fig:voltage_linear_fit}
 \end{figure}
@@ -37,9 +37,79 @@ Der in \secref{sec:voltage_divider} behandelte Spannungsteiler führt nicht zu e
 \section{Spannungsteiler Frequenz}
 Da die verwenden Widerstände groß sind, folgt nach \equref{eq:voltagedividerimp} eine Ausgangsimpendanz von \(Z_{out} = 99,90\) und mit einer angenommenen parasitären Kapazitivität von \(C_{in} = \SI{20}{\pico\farad}\) ergibt sich für die Frequenz des sich ergebenden Tiefpassfilters nach \equref{eq: voltagedividerfreq} \(f_c = \SI{80,38}{\kilo\hertz}\).
 
+\section{Zuordnung der fehlenden Spaltdaten}
+  \begin{figure}[htbp]
+    \centering
+    % Top row
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure0.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SI{0}{\milli\bar}}
+        \label{fig:fix_gap_p00}
+    \end{minipage}\hfill
+
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure1.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{0}{1}{\milli\bar}}
+        \label{fig:fix_gap_p0}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure2.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{1}{2}{\milli\bar}}
+        \label{fig:fix_gap_p1}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure3.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{2}{3}{\milli\bar}}
+        \label{fig:fix_gap_p2}
+    \end{minipage}
+
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure4.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{3}{4}{\milli\bar}}
+        \label{fig:fix_gap_p3}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure5.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{4}{5}{\milli\bar}}
+        \label{fig:fix_gap_p4}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure6.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{5}{6}{\milli\bar}}
+        \label{fig:fix_gap_p5}
+    \end{minipage}
+
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure7.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{6}{7}{\milli\bar}}
+        \label{fig:fix_gap_p6}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_gap__pressure8.pdf}
+        \caption{Spannung U gegen Spaltabstand d für den Druck p = \SIrange{7}{8}{\milli\bar}}
+        \label{fig:fix_gap_p7}
+    \end{minipage}\hfill
+
+
+
+    \vspace{0.5em} % vertical spacing between rows
+   \end{figure}
+
+
+
 \section{Zuordnung von p = 0}
 \label{sec:pressurenull}
-Wie in \figref{fig:histogram-pressure-stab} und \figref{fig:histogram-pressure-platte} zu sehen liegen etwa \(3780\) Events vor, beidenen ein Druck von 0 aufgezeichnet wurde, dies ist nicht physikalisch und auf Kommunikationsprobleme zwischen der Druckmessröhre und dem Server zurückzuführen. Um diese Daten für die weitere Auswertung verwenden zu können werden diese ihren in der Spannung am nächsten liegenden Punkten zugeordnet. Für 5 Spaltabstände liegen solche Drücke vor, dies deutet ebenfalls darauf hin, das dies ein lokales Problem ist und nur für diese Messreihen aufgetreten ist. In \tabref{tab:updated-discharges} sind die beteiligten Spaltabstände und die Anzahl der fehlerhaften Daten für diese dargestellt. In \figref{fig:fixp-gap-1.0} bis \ref{fig:fixp-gap-11.0} sind die Plots für das jeweilige Verhältnis aus Spannung und Druck aufgetragen. Für \ref{fig:fixp-gap-3.0} bis \ref{fig:fixp-gap-11.0} werden zwei fits benötigt, ein quadratischer für Spannungen unter \(\SI{6}{\kilo\volt}\) und ein linearer Fit darüber.
+
+%Wie in \figref{fig:histogram-pressure-stab} und \figref{fig:histogram-pressure-platte} zu sehen liegen etwa \(3780\) Events vor, beidenen ein Druck von 0 aufgezeichnet wurde, dies ist nicht physikalisch und auf Kommunikationsprobleme zwischen der Druckmessröhre und dem Server zurückzuführen. Um diese Daten für die weitere Auswertung verwenden zu können werden diese ihren in der Spannung am nächsten liegenden Punkten zugeordnet. Für 5 Spaltabstände liegen solche Drücke vor, dies deutet ebenfalls darauf hin, das dies ein lokales Problem ist und nur für diese Messreihen aufgetreten ist. In \tabref{tab:updated-discharges} sind die beteiligten Spaltabstände und die Anzahl der fehlerhaften Daten für diese dargestellt. In \figref{fig:fixp-gap-1.0} bis \ref{fig:fixp-gap-11.0} sind die Plots für das jeweilige Verhältnis aus Spannung und Druck aufgetragen. Für \ref{fig:fixp-gap-3.0} bis \ref{fig:fixp-gap-11.0} werden zwei fits benötigt, ein quadratischer für Spannungen unter \(\SI{6}{\kilo\volt}\) und ein linearer Fit darüber.
 
 \begin{table}[H]
 \centering
@@ -63,44 +133,93 @@ Wie in \figref{fig:histogram-pressure-stab} und \figref{fig:histogram-pressure-p
     % Top row
     \begin{minipage}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../figures/generated/preprocessing/fixp/gap_1.0.pdf}
-        \caption{Fixierter Druck für Spaltabstand \(d = \SI{1.0}{\milli\meter}\)}
-        \label{fig:fixp-gap-1.0}
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap1.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{1}{\milli\meter}}
+        \label{fig:fix_pressure_g1}
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.3\textwidth}
+     \begin{minipage}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../figures/generated/preprocessing/fixp/gap_3.0.pdf}
-        \caption{Fixierter Druck für Spaltabstand \(d = \SI{3.0}{\milli\meter}\)}
-        \label{fig:fixp-gap-3.0}
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap3.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{3}{\milli\meter}}
+        \label{fig:fix_pressure_g3}
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.3\textwidth}
+
+   \begin{minipage}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../figures/generated/preprocessing/fixp/gap_6.0.pdf}
-        \caption{Fixierter Druck für Spaltabstand \(d = \SI{6.0}{\milli\meter}\)}
-        \label{fig:fixp-gap-6.0}
-    \end{minipage}
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap4.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{4}{\milli\meter}}
+        \label{fig:fix_pressure_g4}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap6.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{6}{\milli\meter}}
+        \label{fig:fix_pressure_g6}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap7.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{7}{\milli\meter}}
+        \label{fig:fix_pressure_g7}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap8.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{8}{\milli\meter}}
+        \label{fig:fix_pressure_g8}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap10.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{10}{\milli\meter}}
+        \label{fig:fix_pressure_g10}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap11.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{11}{\milli\meter}}
+        \label{fig:fix_pressure_g11}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap12.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{12}{\milli\meter}}
+        \label{fig:fix_pressure_g12}
+    \end{minipage}\hfill
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap13.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{13}{\milli\meter}}
+        \label{fig:fix_pressure_g13}
+    \end{minipage}\hfill
+
+   \begin{minipage}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../figures/preprocessing/fix_pressure__gap15.0.pdf}
+        \caption{Spannung U gegen Druck p für den Spaltabstand d = \SI{15}{\milli\meter}}
+        \label{fig:fix_pressure_g15}
+    \end{minipage}\hfill
+
+
+
+
+
 
     \vspace{0.5em} % vertical spacing between rows
+   \end{figure}
 
-    % Bottom row
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../figures/generated/preprocessing/fixp/gap_7.0.pdf}
-        \caption{Fixierter Druck für Spaltabstand \(d = \SI{7.0}{\milli\meter}\)}
-        \label{fig:fixp-gap-7.0}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../figures/generated/preprocessing/fixp/gap_11.0.pdf}
-        \caption{Fixierter Druck für Spaltabstand \(d = \SI{11.0}{\milli\meter}\)}
-        \label{fig:fixp-gap-11.0}
-    \end{minipage}
-\end{figure}
+
 
 
 \section{Zuordnung von p > 7}
 \label{sec:pressurelarge}
-Die verwendete Messröhre kann nur Daten bis \(\SI{7,2}{\milli\bar}\) aufzeichnen, jedoch wurden auch Experimente in einem höheren Druckbereich von ca. \(\SI{700}{\milli\bar}\) durchgeführt. In den Für \ref{fig:fixp-gap-3.0} bis \ref{fig:fixp-gap-11.0} ist ein Abflachen des Verhältnises aus Spannung und Druck ab etwa \(\SI{7}{\milli\bar}\) zu erkennen, dieser Wert deckt sich mit der Erfahrung aus der Betrachtung der Daten. Somit werden Drücke über dieser Schwelle im folgenden als hohe Drücke bezeichnet.
+%Die verwendete Messröhre kann nur Daten bis \(\SI{7,2}{\milli\bar}\) aufzeichnen, jedoch wurden auch Experimente in einem höheren Druckbereich von ca. \(\SI{700}{\milli\bar}\) durchgeführt. In den Für \ref{fig:fixp-gap-3.0} bis \ref{fig:fixp-gap-11.0} ist ein Abflachen des Verhältnises aus Spannung und Druck ab etwa \(\SI{7}{\milli\bar}\) zu erkennen, dieser Wert deckt sich mit der Erfahrung aus der Betrachtung der Daten. Somit werden Drücke über dieser Schwelle im folgenden als hohe Drücke bezeichnet.
 
 
 
@@ -111,7 +230,7 @@ Für Messreihen für die der Triggerpunk sehr niedrig gesetzt wurde, ergeben sic
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../figures/generated/preprocessing/noise/noise.pdf}
+    \includegraphics[width=\textwidth]{../figures/preprocessing/discharge_noise.pdf}
     \caption{Noise für Ströme unter \(\SI{1}{\micro\ampere}\)}
     \label{fig:noise}
 \end{figure}
