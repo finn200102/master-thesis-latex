@@ -15,6 +15,24 @@ Das Ende des Events ist definiert as der Punkt an dem nach dem maximalen Strom d
 \section{Eventlänge}
 \label{sec:eventlen}
 Die Länge des Events wird aus der Differenz des Endes des Events \ref{sec:eventende} und dem Start des Events \ref{sec:eventstart} gebildet. 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/features/event_markers.pdf}
+    \caption{Automatisch gesetzte Eventmarker}
+    \label{fig:event_markers_auto}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/features/event_markers_hand.pdf}
+    \caption{Händisch gesetzte Eventmarker}
+    \label{fig:event_markers_hand}
+  \end{subfigure}
+  \caption{Plazierung der Eventmarker}
+  \label{fig:event_markers}
+\end{figure}
+
 
 \section{Vorläufer Eventstart}
 \label{sec:preeventstart}
@@ -24,15 +42,48 @@ Der Start des Präevents, wenn ein solches vorhanden ist, wird über das Abweich
 \section{Vorläufer Eventende}
 \label{sec.preeventend}
 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/features/precursor_markers.pdf}
+    \caption{Automatisch gesetzte Vorläufermarker}
+    \label{fig:precursor_markers_auto}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/features/precursor_markers_hand.pdf}
+    \caption{Händisch gesetzte Eventmarker}
+    \label{fig:precursor_markers_hand}
+  \end{subfigure}
+  \caption{Plazierung der Eventmarker}
+  \label{fig:precursor_markers}
+\end{figure}
+
+
+
 \section{Durchbruchspannung}
 \label{sec:breakdownvoltage}
 Die Durchbruchspannung \(U_B\) ist die Spannung direkt vor der Entladung, also die Spannung die zum Zusammenbruch des System geführt hat, dies ist die Spannung die in \equref{eq:townsendbreak} eingeführt wurde. Diese wird aus den ersten 1000 Spannungspunken die aufgezeichnet wurden durch Mittelwertbildung bestimmt. 
+
+\section{Spannungsdifferenz}
+\label{sec:voltage_drop}
 
 \section{Abgeschnittener Strom}
 \label{sec:cutoffcurrent}
 
 \section{Maximaler Strom}
 \label{sec:maxcurrent}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/features/event_voltage_current.pdf}
+  \caption{Visualisierung der Spannungs und Strom Werte}
+  \label{fig:event_voltage_current}
+\end{figure}
+
+
+
 
 
 
