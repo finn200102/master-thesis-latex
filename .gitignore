@@ -18,3 +18,4 @@ build/
 figures/
 
 
+.env

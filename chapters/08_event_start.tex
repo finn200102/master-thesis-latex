@@ -1,0 +1,233 @@
+\chapter{Eventstart}
+\label{chap:eventstart}
+%Entladungen sind hoch statistische Prozesse, insbesondere in nicht vollständig homogenen Feldern und molekularen Gasen können die einzelnen Entladungen selbst under gleichen \(pd\) sich stark unterscheiden. Der Start des Events bzw. der Start der Sparkentladung unter höheren Strömen, findet in einem kurzen zeitlichen Interval von \(\SIrange{1}{10}{\nano\second}\) statt, indiesem steigt der Strom um Größenordnungen, dies wurde wegen der \secref{sec:messbox} verwendeten Dioden jedoch nicht aufgezeichnet. Damit es zu einem so starken Anstieg kommen kann, muss es einen entsprechenden Kanal mit hoher Leitfähigkeit geben. Solch ein Kanal kann durch Vorionisationsprozesse enstehen, durch z.B. den in \secref{sec:streamerdischarge} behandelte Streamermechanismus. Solche Phänomenen die, die Leitfähigkeit erhöhen, sollten in dem aufgezeichneten Strom sichtbar werden, wenn diese auftreten. In \figref{fig:violin-pelen} ist das Histogram für den zeitlichen Abstand zwischen dem Start des Vorläuferphenomenes (\ref{sec:preeventstart}) und dem Start des Events (\ref{sec:eventstart}) aufgezeigt. Es lassen sich drei Regionen erkennen, von \(\SIrange{10}{100}{\nano\second}\) liegt eine Ansammlung von Events vor, von \(\SIrange{0,1}{1}{\micro\second}\) liegt eine weitere Ballung an Events vor und für Zeiten größer \(\SI{1}{\micro\second}\) liegt eine vor. Es ist zu erkennen, dass im verwendeten Datensatz mehr Events mit kürzeren Vorläuferphenomenen vorliegen als längere. In wie fern dies mit den Experimentalbedingungen zusammenhängt wird später noch geklärt. Die Events mit längeren Vorläuferphenomenen sind in den weiteren Kapiteln der Arbeit von besonderen Intresse, da diese es ermöglichen einen Datensatz zuerstellen mit dem man Ausagen über das Event treffen kann ohne das diese schon gestartet ist bzw. vollständig gestartet ist. In den Abbildungen \ref{fig:violin-pd-vor1} bis \ref{fig:violin-pd-vor3} sind diese zeitlichen Abstände gegen pd aufgetragen. Wenn hier ebenfalls der Bereich \(\SIrange{0}{2}{\torr\centi\meter}\) gesondert betrachtet wird, dann ergibt sich für die Events mit langen Vorläuferprozessen ein Trend für größere pd, dass der Abstand weiter steigt. Für die kleineren zeitlichen Abstände lässt sich kein so klarer Trend erkennen.
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance.pdf}
+      \caption{Verteilung der Eventabstände}
+      \label{fig:histogram-eventdistance}
+    \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_hand.pdf}
+      \caption{Verteilung der Eventabstände (händisch)}
+      \label{fig:histogram-eventdistance-hand}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_box_electrodes.pdf}
+      \caption{Spaltabstand d gegen Eventabstände (Elektrode)}
+      \label{fig:box-eventdistance-electrode}
+   \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_box_plates.pdf}
+      \caption{Spaltabstand d gegen Eventabstände (Platte)}
+      \label{fig:box-eventdistance-plate}
+  \end{minipage}
+\begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_manual_box_electrodes.pdf}
+      \caption{Spaltabstand d gegen Eventabstände (Elektrode, händisch)}
+      \label{fig:box-eventdistance-electrode-hand}
+   \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_manual_box_plates.pdf}
+      \caption{Spaltabstand d gegen Eventabstände (Platte, händisch)}
+      \label{fig:box-eventdistance-plate-hand}
+  \end{minipage}
+
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance.pdf}
+      \caption{Verteilung der Vorläuferabstände}
+      \label{fig:histogram-precdistance}
+   \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_hand.pdf}
+      \caption{Verteilung der Vorläuferabstände (händisch)}
+      \label{fig:histogram-precdistance-hand}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_box_electrodes.pdf}
+      \caption{Spaltabstand d gegen Vorläuferabstände (Elektrode)}
+      \label{fig:box-precdistance-electrode}
+   \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_box_plates.pdf}
+      \caption{Spaltabstand d gegen Vorläuferabstände (Platte)}
+      \label{fig:box-precdistance-plate}
+  \end{minipage}
+\begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_manual_box_electrodes.pdf}
+      \caption{Spaltabstand d gegen Vorläuferabstände (Elektrode, händisch)}
+      \label{fig:box-precdistance-electrode-hand}
+   \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_manual_box_plates.pdf}
+      \caption{Spaltabstand d gegen Vorläuferabstände (Platte, händisch)}
+      \label{fig:box-precdistance-plate-hand}
+  \end{minipage}
+
+\end{figure}
+
+
+
+
+
+Die Struktur der vorliegenen Vorläuferphenomene ist im weiteren interessant. In \figref{fig:discharge-vor-klein-1} und in \figref{fig:discharge-vor-klein-2} sind zwei erkannte Vorläuferphenomene für den Bereich \(\SIrange{10}{100}{\nano\second}\) dargestellt, hierbei ist zu erkennen, dass einige (signifikanter Anteil) der erkannten Vorläufer im wesentlichen nur dem exponentiellen Anstieg zu Beginn des Events entsprechen, diese Klasse ist aber trotzdem im Hinblick auf den Eventstart interessant, da hier größere Anstiegszeiten auftreten, da die sonstigen apprupten Anstiege die schneller als \(\SI{10}{\nano\second}\) sind von vorhinein für die Betrachtung von Vorläufern herausgefiltert wurden. In \figref{fig:discharge-vor-klein-2} sind jedoch im Anstieg kleine Oszillationen zuerkennen, also Phänomene die charakteristisch für das Event sein sollten. In den Abbildungen \ref{fig:discharge-vor-mittel-1} bis \ref{fig:discharge-vor-mittel-2} sind zwei Entladungen exemplarisch für den mittleren Bereich von \(\SIrange{0,1}{1}{\micro\second}\) dargestellt. In diesem Bereich treten längere Vorläuferprozesse auf, die analog wie auch in \figref{fig:discharge-vor-klein-2} direkt vor dem Event stattfinden, entweder wie in \figref{fig:discharge-vor-mittel-2} den exponentiellen Anstieg begleiten oder wie in \figref{fig:discharge-vor-mittel-2} wo die Oszillationen eine höhere zweitliche Ausdehnung, höhere Amplituden und schon vor dem exponentiellen Anstiegt stattfinden, also nicht mehr nur begleitend auftreten. In \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} sind zwei Entladungen aus dem letzten Interval für \(s > \SI{1}{\micro\second}\) dargestellt. Neben der in Entladung in \figref{fig:discharge-vor-lang-2} die ähnliche wie \figref{fig:discharge-vor-mittel-1} vor dem Event stattfindet, aber trotzdem direkt im exponentiellen Anstieg des Events endet, ist in \figref{fig:discharge-vor-lang-2} ein weitere Typ and Vorläufer zu erkennen, zumeinem ist der Start diese Vorläufers noch weiter vom Start des Event entfernt, aber der oszillierende Anteil regt sich wieder ab und es bleibt zwischen Vorläufer und Event ein konstanter kleiner Strom stehen, bis es zum Event kommt. Dieser Prozess lässt sich als streamerartig identifizieren, wobei der anfängliche oszillierende Teil sich als die Lawine und die Bildung der Streamerkanäle interpretieren lässt, kann der konstante fließende Strom als der Übergang zwischen Streamer hin zum Leader und der Sparkentladung interpretieren, also der Thermalisierung diese anfänglich nur schwach leitenden Kanals.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_short_1.pdf}
+        \caption{Entladung für kleine Vorläuferabstände}
+        \label{fig:discharge-vor-klein-1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_short_2.pdf}
+        \caption{Entladungen für kleine Vorläuferabstände}
+        \label{fig:discharge-vor-klein-2}
+    \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_middle_1.pdf}
+        \caption{Entladung für mittlere Vorläuferabstände}
+        \label{fig:discharge-vor-mittel-1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_middle_2.pdf}
+        \caption{Entladungen für mittlere Vorläuferabstände}
+        \label{fig:discharge-vor-mittel-2}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_long_1.pdf}
+        \caption{Entladung für längere Vorläuferabstände}
+        \label{fig:discharge-vor-lang-1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_long_2.pdf}
+        \caption{Entladungen für längere Vorläuferabstände}
+        \label{fig:discharge-vor-lang-2}
+    \end{minipage}
+\end{figure}
+
+
+\section{Eventanstieg}
+\begin{comment}
+  
+Der Anstieg des Entladestroms lässt sich durch ein exponentielles Modell beschreiben:
+\begin{equation}
+    A e^{\frac{t}{\tau}} + C
+\end{equation}
+Somit lässt sich aus einem solchen fit insbesondere die Anstiegszeit \(\tau\) bestimmen und untersuchen wie sich diese unter verschiedenen Bedingungen verändert. In \figref{fig:start-fit-t} ist die Verteilung der \(\tau\) dargestllt, die sich aus den fits für die verschiedenen Entladungen ergibt. Somit liegen diese in einem Bereich von \SIrange{0,1}{100}{\nano\second} mit Ausreißern, die auf schlechte fits bzw. Ausreißer in den Daten hindeuten. A liegt in dem Interval \SIrange{1}{100}{\micro\ampere} und C in \SIrange{0,1}{100}{\micro\ampere}. In \figref{fig:start-fit-score} ist die Verteilung der scores des fits Verteilt, also wie genau der fit die Daten wiedergibt. Dabei ist zuerkennen, dass der Großteil der Daten sehr gut wiedergegeben wird, es jedoch wenige aber starte Ausreißer gibt, für die der Fit jedoch sehr ungenau ist. Die großem inetwa Normalverteilten Intervale für \(\tau\), A und C entsprechen fits mit einem guten score von über \(0.95\). Aus diesen Intervalen für die Parameter der fits der Entladungen sind mehrer Schlüsse zuziehen. Das C entspricht dem Stromversatz entlang der y-Achse also in dem Fall des Stromanstiegs dem Startstrom \(I_0\). Somit liegen Ströme von einigen \(\mu A\) vor der Entladung vor, diese lassen sich für die höheren Ströme durch die vor der Entladung auftretenden Vorevents wie in \figref{fig:discharge-vor-lang-1} erklären und für die kleineren Ströme können dies Vorevents wie wie in \figref{fig:discharge-vor-mittel-1} sein, die den mittleren Startstrom etwas verschieben und die kleinen \SI{0,1}{\micro\ampere} Ströme lässt sich das durch Rauschen oder auch einem schlecht gewählten fit Interval erklären. In den Abbildungen \ref{fig:start-fit-scatter-gap} bis \ref{fig:start-fit-scatter-u} sind jeweils der Spaltabstand \(d\), der Druck \(p\) und die Durchbruchspannung \(U_B\) gegen \(\tau\) aufgetragen. Es zeigt sich für die \(\tau\) die im Interval mit hohen score liegen, dass die Anstiegszeit nicht linear von diesen Parametern abhängt. Somit sind die Anstiegszeiten uniform über die Paschenkurve verteilt, dies ist ebenfalls in \figref{fig:start-fit-tau-pd} zu sehen.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/Hist-tau-all.pdf}
+        \caption{Verteilung der \(\tau\) des fits}
+        \label{fig:start-fit-t}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/Hist-a-all.pdf}
+        \caption{Verteilung der A des fits}
+        \label{fig:start-fit-a}
+    \end{minipage}
+        \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/Hist-c-all.pdf}
+        \caption{Verteilung der C des fits}
+        \label{fig:start-fit-c}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../figures/generated/eventstart/start/stats/Hist-score-all.pdf}
+    \caption{Verteilung des fit scores}
+    \label{fig:start-fit-score}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/scatter-tau-gap.pdf}
+        \caption{Der Spaltabstand aufgetragen gegen \(\tau\)}
+        \label{fig:start-fit-scatter-gap}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/scatter-tau-pressure.pdf}
+        \caption{Der Druck aufgetragen gegen \(\tau\)}
+        \label{fig:start-fit-scatter-p}
+    \end{minipage}
+        \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.2\textheight]{../figures/generated/eventstart/start/stats/scatter-tau-break.pdf}
+        \caption{Die Durchbruchspannung aufgetragen gegen \(\tau\)}
+        \label{fig:start-fit-scatter-u}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../figures/generated/eventstart/start/stats/violin-pd-t_fit.pdf}
+    \caption{\(pd\) gegen \(\tau\)}
+    \label{fig:start-fit-tau-pd}
+\end{figure}
+
+\section{Eventbeginn}
+Die verschiedenen Entladungsmechanismen führen zu verschiedenen Eventstrukturen und damit auch zu verschienen Strukturen zu Beginn der Entladung. Für Entladungen mit höherern Energien kommt es zu einem apprupten Anstieg des Stromes über \(\SIrange{1}{5}{\nano\second}\) der in den durchgeführten Messreihen für diese Art der Entladung nicht vollständig aufgelöst werden konnte, da ein Fokus auf die Zeit vor dem Event gelegt wird. Der Exponentielle Charakter entspricht dem Erwarteten einer Elektronenlawine. Für einige der hochenergetischen Entladungen ist in einem Interval von \(\SIrange{0,1}{10}{\micro\second}\) vor dem Event nicht nur der erwartete exponentielle Anstieg zu erkennen, sonders auch \(\SIrange{0.1}{1}{\micro\second}\) lange andauernde Oszillationsmuster zu erkennen. Diese können als die Bildung des noch nicht thermalisierten Streamers interpretiert werden. Für einige dieser Streamer ähnlichen Events entsteht ein Spannungseinbruch zeitgleich zu diesem kleinen Oszillationsmuster. Es werden drei dieser Gruppen beobachtet, Oszillationsmuster die direct in dem exponentiellen Anstieg liegen also direkt mit dem Eventbegin verbunden sind, Muster die einen Abstand von bis zu einigen \(\SI{1}{\micro\second}\) zum Event besitzen und anschließend der Strom wieder auf 0 abfällt und Muster nach denen der Strom leicht erhöht bleibt bei ca. \(\SI{1}{\micro\ampere}\) bis zum eintreten des Events.
+\end{comment}
+
+%\section{Vorläuferphenomene Streamer}
+
