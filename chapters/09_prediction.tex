@@ -1,0 +1,19 @@
+\chapter{Vorhersage}
+\label{chap:prediction}
+
+Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des Stroms vor dem Start des Events lassen sich verschiedene Gruppen indentifizieren. Die in \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} dargestellten Vorströme eigenen sich, aufgrund ihrem höheren zeitlichen Abstand zum Eventstart, zur Vorhersage bis zum Start des Events. Also das Intervall zwischen Vorläuferstart und Vorläuferende und die daraus zu gewinnenden features lassen sich verwenden um die Zielvariable Vorläuferabstand vorherzusagen. Gerade die automatisch definierte Grenze des Vorläuferendes könnte mit einem laufenden Fenster über den Strom laufen und dann eine solche Strukture indentifizieren und dann den Abstand zum Event vorhersagen. Besonders große Vorläuferabstände treten für die in \figref{fig:discharge-vor-lang-1} dargestellten streamer-artigen Strukturen auf, dieser Teil der Entladungen eigenet sich somit besonders um den Eventabstand bzw. Vorläuferabstand vorherzusagen, da zum einem über eine solche Dauer von über \SI{1}{\micro\second} auch ein technischer Nutze möglich wird und zum anderen der konstant fließende Strom des thermaliserenden Streamerkanals ein System darstell dass nach abgeschlossener Thermalisierung direkt in die Entladung übergeht. Neben diesen Entladungen für die sich die 2 Zeitintervalle Vorläuferstart bis Vorläuferende, Vorläuferstart (händisch) bis Vorläuferende (händisch) ergeben. Für kürzere identifizierte Vorläufer kann kein Ende von diesem vor dem Start des Events mehr identifiziert werden somit, ergeben sich dann die Intervalle Vorläuferstart bis Eventstart und die händische Version. Neben diesen Entladungen wo ein Vorläuferstart identifiziert wurde wird ein weitere Datensatz verwendet bei dem das Interval \SIrange{-1e-6}{0}{\micro\second} verwendet wird. Diese Abschnitte eigenen sich Aussagen über das Event zu treffen wie dessen Energie oder Länge. Neben diesen jeweils definierten Abschnitten kann für die Daten für die keine Vorläufer identifiziert wurden mit einem Laufenden Fenster gearbeitet werden, also die Zeit vor dem Eventstart in gleich große Abschnitte unterteilen z.B. jeweils mit \SI{1e-6}{\micro\second} so, dass sich ein Datensatz aus Abschnit und Abstand zum Event bilden lässt. Dies lässt sich auch für die Entladungen mit hoher Auflösung im Strom verwenden \figref{fig:discharge-constend}.
+
+
+
+\section{Vorläufer mit hohem zeitlichen Abstand}
+\label{sec:precursor_long}
+
+\subsection{Streamer}
+
+\section{Vorläufer mit kleinem zeitlichen Abstand}
+\label{sec:precursor_short}
+
+\section{Eventabstandvorhersage für Entladungen ohne erkannten Vorläuferstart}
+
+\section{Eventabstandvorhersage für Entladungen mit hoher Auflösung im Strom}
+

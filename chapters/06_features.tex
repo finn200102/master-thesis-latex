@@ -43,6 +43,10 @@ Der Start des Präevents, wenn ein solches vorhanden ist, wird über \equref{eq:
   \label{eq:preevent_start} 
 \end{equation}
 
+\subsection{Eventabstand}
+\label{sec:event_distance}
+Die Differenz aus Eventstart und Vorläuferstart wird als der Eventabstand bezeichnet. Dieser gibt also an wie lange vor dem Event schon Vorläuferphänomene auftreten.
+
 \section{Vorläufer Eventende}
 \label{sec.preeventend}
 Das Ende eines solchen Präevents, wenn dieser Vorläufer ein Ende besitzt und nicht direkt im Start des Events endet, wird über \equref{eq:precursor_end} definiert. Hierbei ist \{i\} der Punkt des maximalen Stroms im Zeitfenster zwischen dem Start des Vorläufers und dem Start des Events \{s = 200\} und \{th = 0.25\}. Vor der Bestimmung dieses Endwertes wurde eine Einhüllende des Stroms mit einem Fenster von 5 Punkten erstellt.
@@ -76,6 +80,9 @@ Das Ende eines solchen Präevents, wenn dieser Vorläufer ein Ende besitzt und n
   \label{fig:precursor_markers}
 \end{figure}
 
+\subsection{Vorläuferabstand}
+\label{sec:precursor_distance}
+Die Differenz aus Eventstart und Vorläuferende wird als der Vorläuferabstand bezeichnet. Diese Größe ist nicht zu verwechseln mit dem Eventabstand \ref{sec:event_distance}. Der Vorläuferabstand gibt zum einen an ob das Vorevent direkt im Eventstart endet oder ob zwischen denen es ein Intervall mit konstanten Strom gibt, der klein oder 0 ist. Dies entspricht somit auch den technisch nutzbaren zeitlichen Abstand zwischen Vorevent und Eventstart, in dem das Intervall Vorläuferstart bis Vorläuferende ausgewertet und verwendet werden kann.
 
 
 \section{Durchbruchspannung}
