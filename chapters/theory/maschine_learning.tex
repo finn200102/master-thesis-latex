@@ -2,7 +2,43 @@
 \section{Maschine Learning}
 \label{sec:maschinelearning}
 \subsection{Regression}
-Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model dieser Daten. Dieses Model wird durch Parameter spezifizierte, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'residuar sum of squares' (RSS) minimieren.
+Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model dieser Daten. Dieses Model wird durch Parameter spezifizierte, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'residuar sum of squares' (RSS) minimieren. Neben der RSS existieren weiter Fehlermaße die von Nutze sind, bei der Bewertung von Regressionsmodeelen.
+
+\subsubsection{Mean Squared Error (MSE)}
+Für die Optimierung von den meißten Regressionsmodellen ist eine Penalisierung von größeren Abweichungen gewünscht, um so schnell an das Optimum navigieren. Dies ermöglicht der Mean Squared Error (MSE), dieser entspricht der RSS dividiert durch die Anzahl der Beobachtungen und ist somit der durchschnittliche quadrierte Fehler:
+\begin{equation}
+  \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \frac{RSS}{n}
+  \label{eq:mse}
+\end{equation}
+Hierbei \(y_i\) die beobachteten Werte, \(\hat{y}_i\) die vorhergesagten Werte und \(n\) die Anzahl der Beobachtungen darstellt.
+
+\subsubsection{Root Mean Squared Error (RMSE)}
+Der MSE lässt sich aufgrund der quadratischen Form nicht intuitiv interpretieren, dies lösst der Root Mean Squared Error (RMSE). Der RMSE ist die Quadratwurzel des MSE und kann so in der selben Einheit wie die Zielvariable interpretiert werden:
+
+\begin{equation}
+  \text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+  \label{eq:rmse}
+\end{equation}
+
+Diese Eigenschaft macht den RMSE wertvoll für die praktische Interpretation der Modellgüte, da die durchschnittliche Abweichungen zwischen Vorhersage und den tatsächlichen Werten direkt angegeben wird. 
+
+\subsubsection{Mean Absolute Error}
+Die Quadratisierung der Werte für zu einem besondren Fokuss auf die großen, stark abweichenden Werte, diese eigenet sich für die mathematische Optimierung und für Datensätze ohne extreme Werte. Für Datensätze mit solchen extremen Werten eignet sich der Mean Absolute Error (MAE). Dieser verwendet die absoluten Abweichungen und ist so weniger sensitiv auf Ausreißer:
+
+\begin{equation}
+  \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+  \label{eq:mae}
+\end{equation}
+
+\subsubsection{Mean Absolute Precentage Error (MAPE)}
+
+Fehlermaße die eine Einheit tragen, lassen sich schlecht untereinander zwischen verschiedenen Datensätzen vergleichen, da die Zielvariablen im Allgemeinen in verschiedenen Größen vorliegen werden. Der Mean Absolute Precentage Error (MAPE) drückt den durchschnittliche absoluten Fehler als Prozentsatz aus und ermöglicht dadurch eine einheitenlose Bewertung der Modellgüte.
+
+\begin{equation}
+\text{MAPE} = \frac{1}{n} \sum_{i=1}^{n} \left|\frac{y_i - \hat{y}_i}{y_i}\right| \times 100\%
+\label{eq:mape}
+\end{equation}
+
 \subsection{Lineareregression}
 Die Lineareregression ist ein Modell aus der Statistik welches den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) herstellt. Das verwendete Modell ist ein lineares Modell es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\), diese zubestimmen ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
 \begin{equation}
