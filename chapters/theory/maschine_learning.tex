@@ -56,6 +56,34 @@ Für das lineare Modell lässt sich ein direkter Ausdruck für die geschätzen W
 
 \cite{james2013}
 
+\subsection{Refularisierte Lineareregression}
+
+\subsubsection{Ridge Regression (L2-Regularisierung)}
+Wenn in dem Vektor der erklärenden Variablen X viele miteinander korrelierte Werte vorliegen, dann kann die L2-Regularisierung verwendet werden, diese führt dazu dass korrelierte Variablen ähnliche Koeffizienten erhalten. Diese Methode ist Ridge Regression, also die Kombination aus Lineareregression und einem weiteren L2-Term. Die Kostenfuktion, hier der RSS, wird um einen weitren Strafterm erweitert.
+
+\begin{equation}
+\text{RSS}_{\text{Ridge}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}\beta_j^2
+\label{eq:rss-ridge}
+\end{equation}
+Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge-Regression der Lineareregression. Größere Werte von \(\lambda \) reduzieren die Größe der Koeffizienten.
+
+\subsubsection{Lasso Regression}
+Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting.
+
+\begin{equation}
+\text{RSS}_{\text{Lasso}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}|\beta_j|
+\label{eq:reg-lasso}
+\end{equation}
+
+\subsubsection{Elastic Net}
+Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch die Verwendung beider Regressionsterme.
+
+\begin{equation}
+\text{RSS}_{\text{Elastic Net}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda_1 \sum_{j=1}^{p}|\beta_j| + \lambda_2 \sum_{j=1}^{p}\beta_j^2
+\label{eq:reg-elastic}
+\end{equation}
+
+\subsection{Baumbasierte Verfahren}
 
 
 % Clustering Verfahren kmeans, hdbscan, pca
