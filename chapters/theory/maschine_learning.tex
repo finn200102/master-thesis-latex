@@ -85,6 +85,36 @@ Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch d
 
 \subsection{Baumbasierte Verfahren}
 
+\subsubsection{Entscheidungsbäume}
+
+Wenn nicht lineare Zusammenhänge vorliegen, eignen sich lineare Modelle nicht mehr. Entscheidungsbäume sind ein Verfahren, dass für nicht lineare Zusammenhänge verwendet werden, kann und trozdem eine hervorangende Interpretierbarkeit beibehält. Ein Entscheidungsbäum teilt den Merkmalsraum rekursiv in rechteckige Regionen auf, jede dieser Regionen wird durch eine einfach Regel, die nur auf einem Merkmal basiert, charakterisiert. Die Antwortvariable wird durch die Mittelwertbildung der Endregion \(R_j\) bestimmt:
+
+\begin{equation}
+\hat{y}_{R_j} = \frac{1}{|R_j|} \sum_{x_i \in R_j} y_i
+\label{eq:reg-tree}
+\end{equation}
+
+Die Optimierung erfolgt, durch die Minimierung der Summe der quadratischen Abweichungen in den Teilregionen bestimmt. Die gute Interpretierbarkeit muss mit der hohen Varianz und der Neigung zum Overfitting abgewogen werden.
+
+\subsubsection{Random Forest}
+Um das Overfitting und die Varianz eines einzelnen Baumes zu verbessern, wird der Random Forest verwendent, dieser ist ein Ensemble-Verfahren, das die finale Vorhersage von mehren einzel Bäumen kombiniert \ref{eq:reg-random}. Es werden zwei Randomisierungsstrategien verwendet, zum einem eine bootstrap Aggregation (Bagging), also jeder Baum wird auf einer Bootstrap-Stickprobe der Trainingsdaten trainiert und zum anderen die Feature Randomisierung, es wird in jeder Aufteilung des Merkmalsraums nur eine Teilmenge von den Variablen betrachtet. 
+
+\begin{equation}
+  \hat{y}_{\text{RF}} = \frac{1}{B} \sum_{b=1}^{B} \hat{y}_b
+  \label{eq:reg-random}
+\end{equation}
+
+Der Random Forest eignet sich als gute Wahl für viele Regressionsaufgaben, die nicht linear sind, jedoch ist dieser weniger Interpretierbar als, ein einzelner Entscheidungsbaum.
+
+\subsection{Gradient Boosting}
+Neben dem Random Forest, also der Wahl von mehren tiefen Bäumen, lassen sich auch schwache Lerner, z.B. flache Entscheidungsbäume verwenden. Dabei baut das Gradient Boosting Model sequenziell solche schwachen Lerner auf, wobei neue weitere Bäume die Fehler der vorheringen Iteration korrigieren. Es wird iterativ eine Verlustfunktion minimiert:
+\begin{equation}
+  F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)
+  \label{eq:reg-grad}
+\end{equation}
+
+Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hzperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. 
+
 
 % Clustering Verfahren kmeans, hdbscan, pca
 % Features (statisticle, fft)
