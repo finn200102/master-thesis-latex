@@ -3,6 +3,7 @@
 
 \subsection{Event Ladung und Energie}
 \label{sec:event_charge_energie}
+Die Verteilung der in \secref{sec:eventenergy_charge} definierte Eventenergie und Ladung für die beiden Elektrodenformen, sind in den Abbildungen \ref{fig:box-gap-eventcharge-stab} bis \ref{fig:box-gap-event-charge-energy} dargestellt. Wie nach der Definition dieser beiden Werte zu erwarten, stimmt die Verteilung der Werte für beide Werte stark miteinander überein. Es sind keine klaren Trends für sowohl die Stabelektrode als auch die Plattenektrode zu erkennen. Es liegen zwar schwache Trends der Mittelwerte pro Spaltabstand vor, jedoch ist der Trend in \figref{fig:box-gap-event-charge-plate} von \SI{1e-8}{\coulomb} nach \SI{1e-9}{\coulomb} durch starke Schwankungen für die Spaltabstände dazwischen gestört, das selbe gilt für die Eventenergie in \figref{fig:box-gap-event-energy-plate}. Für die Stabelektroden ist für diese beiden Werte ebenfalls ein leichter Trend zuerkennen, jedoch geht dieser von den kleineren Energien von \SI{1e-10}{\joule} zu den größeren Energien bei \SI{1e-9}{\joule}, aber auch hier liegt kein kontinuierlicher Trend vor. Der stärkste Änderung ist in beiden Fällen zwischen den ersten beiden Spaltabständen \SI{0.1}{\centi\meter} und \SI{0.3}{\centi\meter} und den restlichen für die Stabelektrode und zwichen dem ersten Spaltabstand \SI{0.3}{\centi\meter} und dem restlichen für die Plattenektrode. Der Unterschied zwischen den Werten für den \SI{0.1}{\centi\meter} Spaltabstand und den restlichen, lässt sich zum Teil dadurch erklären, dass für diesen die größte Statistik gesammelt wurde. Jedoch deutet diese stärkere Änderung für die ersten beiden Spaltabstände, dass für Größere ein gewisses Plato erreicht wurde, für die Stabelektroden mit der größeren Statistik ist dies auch der erwartete Trend, dass für größere Spaltabstände die Energie bzw. Ladung im Schnitt größer wird, zumindes bis dieses Plato erreicht wurde. Für die Plattenektroden ist der Trend jedoch umgekehrt, also die Energie bzw. die Ladung fällt auf das Plato wird also kleiner. Jedoch liegt das Plato bei ca. \SI{1e-9}{\joule} für die Eventenergie für beide Elektrodenformen. Die Ladung jedoch liegt für alle Spaltabstände bis auf \SI{1}{\centi\meter} für die Stabelektrode unter \SI{1e-10}{\coulomb} für die Plattenektrode liegen die Mittelwerte bis auf \SI{2.5}{\centi\meter} unter diser Schwelle.
 
 \begin{figure}[H]
   \centering
@@ -36,6 +37,7 @@
 \end{figure}
 
 \subsection{Event Durchbruchspannung und Spannungsdifferenz}
+In \figref{fig:box-gap-event-voltage-stab} und \figref{fig:box-gap-event-voltage-plate} sind die Verteilungen der Durchbruchspannung \(U_B\) gegen den Spaltabstand aufgetragen. Wie zu erwarten ist ein Trend von kleineren Durchbruchspannung von \SI{1}{\kilo\volt} bis über \SI{10}{\kilo\volt} zu erkennen, mit der Ausnahme der Spaltabstände \SI{6}{\kilo\volt}, \SI{10}{\milli\meter} und \SI{11}{\milli\meter} für die Stabelektrode. Auch für diese Größe ist ein Plato erreicht, hier ab ca. \SI{7}{\milli\meter}. Für die Plattenektrode ist ab \SI{6}{\milli\meter} ein solche Plato erreicht, ab dem die Mittelwerte um die die \SI{10}{\kilo\volt} schwanken. Neben der Durchbruchspannung sind in \figref{fig:box-gap-event-voltage-diff-stab} und \ref{fig:box-gap-event-voltage-diff-plate} die Verteilung der Differenz zwischen der Endspannung und der Startspannung (Durchbruchspannung) aufgetragen. Die Mittelwerte der Spannungsdifferenzen liegen zwischen \SIrange{1}{10}{\kilo\volt} für sowohl die Stabelektrode also auch für die Plattenektrode. Wie auch für die Durchbruchspannung steigt die Spannungsdiffernz für die ersten beiden Spaltabstände und erreicht danach ein Plato. Ebenfalls analog für die Spaltabstände \SI{6}{\milli\meter}, \SI{10}{\milli\meter} und \SI{11}{\milli\meter} sind diese Ausreißer näher and den \SI{1}{\kilo\volt} als an den \SI{10}{\kilo\volt}. Dies ist wenig verwunderlich, da kleinere Durchbruchspannung und somit kleinere Startspannungen auch nur niedrigere Endspannung zulassen und somit kleinere Spannungsdifferenzen.
 
 \begin{figure}[H]
   \centering
@@ -70,6 +72,7 @@
 
 
 \subsection{Event Länge}
+Für die Stabelektrode liegen die Mittelwerte der Eventlängen zwischen \SIrange{2}{10}{\micro\second}, wobei \SI{10}{\milli\meter} erneut ein Ausreißer mit einem Mittelwert von \SI{20}{\micro\second} ist. Die Betrachtung der Plattenektrode \figref{fig:box-gap-event-duration-plate} zeigt, dass hier die Mittelwerte der Eventlänge im Interval \SIrange{10}{20}{\micro\second} liegen, wobei die \SI{3}{\milli\meter} hier auch erneut ein Ausreißer sind, mit \SI{300}{\micro\second} liegt dieser Mittelwert deutlich über den anderen, das liegt daran, dass eine niedrige zeitliche Auflösung für einen großen Anteil dieser Spaltabständen gewählt wurde und so dieser Wert der Makrostruktur dieses Events entspricht. In \tabref{tab:timelen-plate-3} sind die Zeitlängen und die Anzahl für die Plattenelektrode für den Spaltabstand \SI{3}{\milli\meter} eingetragen. Es ist zu erkennen, das wie vermutet, der größte Anteil an Entladungen im \SIrange{2}{200}{\milli\second} Bereich liegen.
 
 \begin{figure}[H]
   \centering
@@ -88,6 +91,25 @@
   \caption{Verteilung der Eventlänge}
   \label{fig:box-gap-event-duration}
 \end{figure}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Zeitlänge} & \textbf{Anzahl} \\
+\hline
+0.0099999   & 138 \\
+0.00199998  & 73  \\
+9.9999e-05  & 34  \\
+0.000799992 & 27  \\
+0.199998    & 18  \\
+\hline
+\end{tabular}
+\caption{Anzahl der Zeitlängen der Entladungen für die Plattenelektrode für den Spaltabstand \SI{3}{\milli\meter}}
+\label{tab:timelen-plate-3}
+\end{table}
+
 
 
 

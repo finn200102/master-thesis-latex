@@ -1,0 +1,90 @@
+\section{Eventanstieg}
+Der Anstieg des Entladestroms lässt sich durch ein exponentielles Modell beschreiben:
+\begin{equation}
+    A e^{\frac{t}{\tau}} + C
+\end{equation}
+Somit lässt sich aus einem solchen fit die Zeitkonstante \(\tau\) bestimmen und untersuchen wie sich diese unter verschiedenen Bedingungen verändert. In \figref{fig:taus_rise_histo} ist die Verteilung der \(\tau\) dargestellt, es handelt sich um eine Normalverteilung in einem Interval von \SIrange{1e-10}{1e-7}{\second}, wobei kleine Werte von \(\tau\) einer schnelleren Änderung, also einem schnelleren Wachstum des Stroms entsprechen und größere einem langsameren. Neben der Verteilung liegen auf beiden Seiten einmal bei \SI{1e-11}{\second} und bei \SI{1e-3}{\second}. Die \SI{1e-3}{\second} liegen um 5 Größenordnungen außerhalb der Verteilung, so dass diese als Ausreißer behandelt werden, zu solchen Ausreißern kommt es bei besonders schlechten fits, also wenn die Daten z.B alle flach sind, da nur Störsignale vorliegen und so nur ein Wachstum auf eine Größenordnungen von \SI{1}{\milli\second} vorliegt. Die \SI{1e-11}{\second} liegen, jedoch nur um eine Größenordnungen entfernt, so dass hier noch ein Zusammenhand vermutet werden kann, jedoch ligen diese in einer Größenordnungen von \SI{10}{\pico\second} und diese Änderungen sind so schnell, dass mit der Vorhandenen Technik keine klare Aussage über diese mehr getroffen werden kann. Die Normalverteilung erstreckt sich über 3 Größenordnungen von \SI{0,1}{\nano\second} bis \SI{0,1}{\micro\second}. Somit sind die zeitlichen Anstiege des Entladestroms über einen weiten Bereich verteilt. In \figref{fig:taus_rise_box} ist die Verteilung der \(\tau\) für die verschiedenen Spaltabstände dargestellt. In den Boxplots sind auch die deutlichen Ausreißer im \SI{1}{\milli\second} Bereich als solche erkannt worden, wobei die im \SI{10}{\pico\second} Bereich nicht so gekennzeichnet wurde. Die Mittelwerte der \(\tau\) liegen alle zwischen \SIrange{1e-9}{1e-8}{\second}, wobei ein steigender Trend, der aber ein Plato ereicht, vorliegt. Neben dem \(\tau\) sind auch die \(A\) und \(C\) von intresse. Die Verteilung der \(A\) ist in \figref{fig:a_rise_histo} dargestellt, sie folgen ebenfalls eine Normalverteilung die, jedoch nach rechts verschoben ist, die \(A\) liegen in einem Interval von \SIrange{1e-7}{1e-3}{\ampere}. Dieser Wert ist die Amplitude und gibt an, wie groß die Veränderung ist.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/taus_rise_box.pdf}
+        \caption{Taus vs Spaltabstand}
+        \label{fig:taus_rise_box}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/taus_rise_histo.pdf}
+        \caption{Verteilung der Taus}
+        \label{fig:taus_rise_histo}
+    \end{minipage}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/a_rise_histo.pdf}
+        \caption{Verteilung a}
+        \label{fig:a_rise_histo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/c_rise_histo.pdf}
+        \caption{Verteilung der c}
+        \label{fig:c_rise_histo}
+    \end{minipage}
+\end{figure}
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/score_rise_histo.pdf}
+        \caption{Histogram des scores des fits}
+        \label{fig:score_rise_histo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.44\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/score_rise_histo_zoom.pdf}
+        \caption{Histogram des scores des fit zoom}
+        \label{fig:score_rise_histo_zoom}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_rise_time_0p8.pdf}
+        \caption{Fit des Eventstarts mit einem score von \(\text{score}=0.8\)}
+        \label{fig:discharge_rise_time_0p8}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_rise_time_0p9.pdf}
+        \caption{Fit des Eventstarts mit einem score von \(\text{score}=0.9\)}
+        \label{fig:discharge_rise_time_0p9}
+    \end{minipage}
+    \hfill
+ \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_rise_time.pdf}
+
+        \caption{Fit des Eventstarts mit einem score von \(\text{score}=0.99\)}
+        \label{fig:discharge_rise_time}
+    \end{minipage}
+
+\end{figure}
+
+

@@ -1,172 +1,18 @@
 \chapter{Eventstart}
 \label{chap:eventstart}
 
-\section{Eventabstände}
-
-Der in \secref{sec:event_distance} definierte Abstand ist für die Entladungen nach \figref{fig:highres-discharge} in \figref{fig:histogram-eventdistance} für die automatische Definition der Eventgrenzen und in \figref{fig:histogram-eventdistance-hand} für die händisch gesetzten Grenzen dargestellt. In \ref{fig:histogram-eventdistance} sind vier Bereiche ersichtlich, zwei die an den Grenzen liegen, bei \SI{1e-9}{\second} und bei \SI{1e-5}{\second}. Diese beiden Regionen entsprechen für den kleinen Eventabstände garnicht bzw. kaum vorhandenen Vorevents, also dem Fall, dass Eventstart gleich Vorläuferstart ist und den großen Eventabständen bei denen die automatische Bestimmung der Vorläuferstartes zu sensitiv auf frühe Schwankungen ist. Die beiden mittleren Intervalle von \SIrange{2e-9}{3e-8}{\second} und von \SIrange{3e-8}{1e-5}{\second}. Das erste Intervall entspricht kurzen Vorläuferphänomenen, bei denen die meißten direkt am Eventstart hängen und entsprechen für die kürzesten Oszillationen, die direkt auf dem exponentiellen Anstieg des Events liegen und für die etwas längeren Oszillationen, die noch kurz vor dem exponentiellen Eventstart liegen. Im zweiten Intervall liegen sowohl weitere flache Oszillationen die wie im ersten Intervall direkt vor dem Event liegen aber auch Oszillationen mit einem stärkeren Peak nach dem ein konstanter kleiner Strom fließt, dieser hat Streamercharakter. Der Vergleich der automatisch gesetzten Grenzen mit den händischen in \figref{fig:histogram-eventdistance-hand} zeigt zum einen, dass weniger Entladungen händisch annotiert wurden, aber auch dass nur eine Verteilung vorliegt, die einen normalverteilten Charakter aufweist, mit einen Schweif nach rechts. Diese Verteilung entspricht dem dritten Bereich der automatisch gesetzen Grenzen, da für die händische Annotation nur die längeren besonders Interessanten Vorevents gewählt wurden. In den Abbildungen \ref{fig:box-eventdistance-electrode} bis \ref{fig:box-eventdistance-plate-hand} sind die Eventabstände für die beiden Elektrodengeometrien und für die aautomatische und händische Version aufgetragen gegen den Spaltabstand. Es ist zubeachten, dass die y-Axis der Plots also der Eventabstand logarithmisch skalliert ist. Somit entspricht der klare lineare Trend einem exponentiellen Trend von kleinen Spaltabständen hin zu großen Spaltabständen für den Eventabstand. Aufgrund der geringeren Datenmenge und der selektiven Auswahl dieser ist dieser Trend weniger gut erkennbar und schwächer ausgeprägt für die händisch gesetzten Grenzen, jedoch in \figref{fig:box-eventdistance-plate-hand} trotzdem erkennbar.
-
-
-
+\input{chapters/event_start/event_distance.tex}
+\input{chapters/event_start/event_start_dynamic.tex}
+\input{chapters/event_start/event_rise.tex}
+\input{chapters/event_start/event_multiple.tex}
 
 
 
 
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance.pdf}
-      \caption{Verteilung der Eventabstände}
-      \label{fig:histogram-eventdistance}
-    \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_hand.pdf}
-      \caption{Verteilung der Eventabstände (händisch)}
-      \label{fig:histogram-eventdistance-hand}
-  \end{minipage}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_box_electrodes.pdf}
-      \caption{Spaltabstand d gegen Eventabstände (Elektrode)}
-      \label{fig:box-eventdistance-electrode}
-   \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_box_plates.pdf}
-      \caption{Spaltabstand d gegen Eventabstände (Platte)}
-      \label{fig:box-eventdistance-plate}
-  \end{minipage}
-\begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_manual_box_electrodes.pdf}
-      \caption{Spaltabstand d gegen Eventabstände (Elektrode, händisch)}
-      \label{fig:box-eventdistance-electrode-hand}
-   \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/event_distance_manual_box_plates.pdf}
-      \caption{Spaltabstand d gegen Eventabstände (Platte, händisch)}
-      \label{fig:box-eventdistance-plate-hand}
-  \end{minipage}
-
-\end{figure}
-
-\subsection{Vorläuferabstände}
-\label{sec:precursor_distance_target}
-Die Betrachtung von \figref{fig:histogram-precdistance} und der Vergleich mit \figref{fig:histogram-eventdistance} zeigt, dass sowohl die beiden Grenzbereiche nicht mehr vorliegen. Der linke fällt weg, da kein Vorläuferende für solch kurze Phänomene auftritt und das rechte fällt weg, da diese großen Abstände Fehlern in dem Grenzsetzung entsprechen. Ebenfall ist erkenntlich, dass nur einem deutlich kleinerer Teil der Entladungen eine Ende zugeordnet werden konnte. Und dass diese Reduktion der Daten für die beiden Intervalle unterschiedlich stark erfolgte und somit das Verhältnis dieser beiden Bereich ausgetauscht hat.
-
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance.pdf}
-      \caption{Verteilung der Vorläuferabstände}
-      \label{fig:histogram-precdistance}
-   \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_hand.pdf}
-      \caption{Verteilung der Vorläuferabstände (händisch)}
-      \label{fig:histogram-precdistance-hand}
-  \end{minipage}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_box_electrodes.pdf}
-      \caption{Spaltabstand d gegen Vorläuferabstände (Elektrode)}
-      \label{fig:box-precdistance-electrode}
-   \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_box_plates.pdf}
-      \caption{Spaltabstand d gegen Vorläuferabstände (Platte)}
-      \label{fig:box-precdistance-plate}
-  \end{minipage}
-\begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_manual_box_electrodes.pdf}
-      \caption{Spaltabstand d gegen Vorläuferabstände (Elektrode, händisch)}
-      \label{fig:box-precdistance-electrode-hand}
-   \end{minipage}
- \begin{minipage}[t]{0.47\textwidth}
-      \centering
-      \includegraphics[width=\linewidth]{../figures/event_start/precursor_distance_manual_box_plates.pdf}
-      \caption{Spaltabstand d gegen Vorläuferabstände (Platte, händisch)}
-      \label{fig:box-precdistance-plate-hand}
-  \end{minipage}
-
-\end{figure}
-
-
-\section{Eventstartdynamik}
-
-
-Die Struktur der vorliegenen Vorläuferphenomene ist im weiteren interessant. In \figref{fig:discharge-vor-klein-1} und in \figref{fig:discharge-vor-klein-2} sind zwei erkannte Vorläuferphenomene für den Bereich \(\SIrange{10}{100}{\nano\second}\) dargestellt, hierbei ist zu erkennen, dass einige (signifikanter Anteil) der erkannten Vorläufer im wesentlichen nur dem exponentiellen Anstieg zu Beginn des Events entsprechen, diese Klasse ist aber trotzdem im Hinblick auf den Eventstart interessant, da hier größere Anstiegszeiten auftreten, da die sonstigen apprupten Anstiege die schneller als \(\SI{10}{\nano\second}\) sind von vorhinein für die Betrachtung von Vorläufern herausgefiltert wurden. In \figref{fig:discharge-vor-klein-2} sind jedoch im Anstieg kleine Oszillationen zuerkennen, also Phänomene die charakteristisch für das Event sein sollten. In den Abbildungen \ref{fig:discharge-vor-mittel-1} bis \ref{fig:discharge-vor-mittel-2} sind zwei Entladungen exemplarisch für den mittleren Bereich von \(\SIrange{0,1}{1}{\micro\second}\) dargestellt. In diesem Bereich treten längere Vorläuferprozesse auf, die analog wie auch in \figref{fig:discharge-vor-klein-2} direkt vor dem Event stattfinden, entweder wie in \figref{fig:discharge-vor-mittel-2} den exponentiellen Anstieg begleiten oder wie in \figref{fig:discharge-vor-mittel-2} wo die Oszillationen eine höhere zweitliche Ausdehnung, höhere Amplituden und schon vor dem exponentiellen Anstiegt stattfinden, also nicht mehr nur begleitend auftreten. In \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} sind zwei Entladungen aus dem letzten Interval für \(s > \SI{1}{\micro\second}\) dargestellt. Neben der in Entladung in \figref{fig:discharge-vor-lang-2} die ähnliche wie \figref{fig:discharge-vor-mittel-1} vor dem Event stattfindet, aber trotzdem direkt im exponentiellen Anstieg des Events endet, ist in \figref{fig:discharge-vor-lang-2} ein weitere Typ and Vorläufer zu erkennen, zumeinem ist der Start diese Vorläufers noch weiter vom Start des Event entfernt, aber der oszillierende Anteil regt sich wieder ab und es bleibt zwischen Vorläufer und Event ein konstanter kleiner Strom stehen, bis es zum Event kommt. Dieser Prozess lässt sich als streamerartig identifizieren, wobei der anfängliche oszillierende Teil sich als die Lawine und die Bildung der Streamerkanäle interpretieren lässt, kann der konstante fließende Strom als der Übergang zwischen Streamer hin zum Leader und der Sparkentladung interpretieren, also der Thermalisierung diese anfänglich nur schwach leitenden Kanals.
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_short_1.pdf}
-        \caption{Entladung für kleine Vorläuferabstände}
-        \label{fig:discharge-vor-klein-1}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_short_2.pdf}
-        \caption{Entladungen für kleine Vorläuferabstände}
-        \label{fig:discharge-vor-klein-2}
-    \end{minipage}
-\end{figure}
 
 
 
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_middle_1.pdf}
-        \caption{Entladung für mittlere Vorläuferabstände}
-        \label{fig:discharge-vor-mittel-1}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_middle_2.pdf}
-        \caption{Entladungen für mittlere Vorläuferabstände}
-        \label{fig:discharge-vor-mittel-2}
-    \end{minipage}
-\end{figure}
 
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_long_1.pdf}
-        \caption{Entladung für längere Vorläuferabstände}
-        \label{fig:discharge-vor-lang-1}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.44\textwidth}
-        \centering
-        \includegraphics[width=\textwidth, height=0.25\textheight]{../figures/event_start/discharge_long_2.pdf}
-        \caption{Entladungen für längere Vorläuferabstände}
-        \label{fig:discharge-vor-lang-2}
-    \end{minipage}
-\end{figure}
-
-
-\section{Eventanstieg}
 \begin{comment}
   
 Der Anstieg des Entladestroms lässt sich durch ein exponentielles Modell beschreiben:

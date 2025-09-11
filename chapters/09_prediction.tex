@@ -4,8 +4,8 @@
 Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des Stroms vor dem Start des Events lassen sich verschiedene Gruppen indentifizieren. Die in \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} dargestellten Vorströme eigenen sich, aufgrund ihrem höheren zeitlichen Abstand zum Eventstart, zur Vorhersage bis zum Start des Events. Also das Intervall zwischen Vorläuferstart und Vorläuferende und die daraus zu gewinnenden features lassen sich verwenden um die Zielvariable Vorläuferabstand vorherzusagen. Gerade die automatisch definierte Grenze des Vorläuferendes könnte mit einem laufenden Fenster über den Strom laufen und dann eine solche Strukture indentifizieren und dann den Abstand zum Event vorhersagen. Besonders große Vorläuferabstände treten für die in \figref{fig:discharge-vor-lang-1} dargestellten streamer-artigen Strukturen auf, dieser Teil der Entladungen eigenet sich somit besonders um den Eventabstand bzw. Vorläuferabstand vorherzusagen, da zum einem über eine solche Dauer von über \SI{1}{\micro\second} auch ein technischer Nutze möglich wird und zum anderen der konstant fließende Strom des thermaliserenden Streamerkanals ein System darstell dass nach abgeschlossener Thermalisierung direkt in die Entladung übergeht. Neben diesen Entladungen für die sich die 2 Zeitintervalle Vorläuferstart bis Vorläuferende, Vorläuferstart (händisch) bis Vorläuferende (händisch) ergeben. Für kürzere identifizierte Vorläufer kann kein Ende von diesem vor dem Start des Events mehr identifiziert werden somit, ergeben sich dann die Intervalle Vorläuferstart bis Eventstart und die händische Version. Neben diesen Entladungen wo ein Vorläuferstart identifiziert wurde wird ein weitere Datensatz verwendet bei dem das Interval \SIrange{-1e-6}{0}{\micro\second} verwendet wird. Diese Abschnitte eigenen sich Aussagen über das Event zu treffen wie dessen Energie oder Länge. Neben diesen jeweils definierten Abschnitten kann für die Daten für die keine Vorläufer identifiziert wurden mit einem Laufenden Fenster gearbeitet werden, also die Zeit vor dem Eventstart in gleich große Abschnitte unterteilen z.B. jeweils mit \SI{1e-6}{\micro\second} so, dass sich ein Datensatz aus Abschnit und Abstand zum Event bilden lässt. Dies lässt sich auch für die Entladungen mit hoher Auflösung im Strom verwenden \figref{fig:discharge-constend}. Die Betrachtung der Vorläuferabstände in \figref{fig:precursor_distance_target} zeigt, dass drei Bereiche von intresse sind, die als einzelner Datensatz verwendet werden können. Also der erste Peak, der zweite Peak und dessen Schweif, wobei dierser Schweif die streamer-artigen Vorläufer besitzt. 
 
 
-
-\section{Vorläuferabstände}
+\section{Vorläuferende vorhanden}
+\subsection{Vorläuferabstände}
 \label{sec:precursor}
 Der hier verwendete Datensatz setzt sich aus allen Entladungen zusamment, für die ein Eventstart, ein Vorläuferstart und ein Vorläuferende definiert sind und die Länge des Vorläufers mindestens \SI{1e-9}{\s} beträgt. In \figref{fig:precursor_current_sliece} sind drei Abschnitte des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen. Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}. 
 
@@ -16,7 +16,7 @@ Der hier verwendete Datensatz setzt sich aus allen Entladungen zusamment, für d
       \label{fig:precursor_current_sliece}
 \end{figure}
 
-\subsection{Eventabstand}
+\subsection{Vorläuferabstand}
 Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese soweit oben. Die deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
 
 \begin{figure}[htbp]
@@ -25,6 +25,8 @@ Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der
       \caption{Verteilung des Vorläuferabstandes}
       \label{fig:prec_ts_prec_distance_box}
 \end{figure}
+
+
 
 \subsection{Eventlänge}
 Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der das System durch diese gestört ist. In \figref{fig:prec_ts_event_duration_box} ist die Verteilung der Eventlängen dargestellt, sie liegen alle in einem Intervall von \SIrange{5}{20}{\micro\second} ohne dass ein linearer Trend ersichtlich ist.
@@ -35,6 +37,25 @@ Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der 
       \caption{Verteilung des Eventlänge}
       \label{fig:prec_ts_event_duration_box}
 \end{figure}
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Eventlänge}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
+\midrule
+Random Forest & Eventlänge & 0,11 & $1{,}43 \times 10^{-11}$ & $3{,}78 \times 10^{-6}$ & $3{,}05 \times 10^{-6}$ \\
+MLP & Eventlänge & 0,17 & $1{,}33 \times 10^{-11}$ &  \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
 
 \section{Streamer (händisch)}
 Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen vergleichbaren Verlauf, was zu erwarten war.
@@ -64,9 +85,10 @@ In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläufe
 \small
 \begin{tabular}{l c c c c c}
 \toprule
-\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ & $\mathbf{MAPE}$ \\
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
 \midrule
-Random Forest & Vorläuferabstand & 0,55 & $6{,}63 \times 10^{-12}$ & $2{,}57 \times 10^{-6}$ & $1{,}60 \times 10^{-6}$ & 1,42 \\
+Random Forest & Vorläuferabstand & 0,55 & $6{,}63 \times 10^{-12}$ & $2{,}57 \times 10^{-6}$ & $1{,}60 \times 10^{-6}$ \\
+SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 \bottomrule
 \end{tabular}%
 }

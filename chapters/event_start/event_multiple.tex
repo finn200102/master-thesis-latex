@@ -1,0 +1,69 @@
+\section{Eventabfall - mehrere Entladungen}
+Das Verhalten des Entladestroms lässt sich über ein einfaches exponentielles Modell beschreiben
+
+\begin{equation}
+    Ae^{\frac{-t}{\tau}} + C
+    \label{eq:discharge-e}
+\end{equation}
+Hierbei ist \(\tau\) die Zeitkonstante, die sich nach
+\begin{equation}
+    \tau = RC
+\end{equation} 
+in Verbindung mit dem Widerstand R und der Kapazität C bringen lässt. Somit lässt sich C bestimmen wenn R bekannt ist, R lässt sich ebenfalls aus dem Fit bestimmen, aus A. Es gilt \(R = \frac{U_{break}}{A}\). Die Kapazität lässt sich auf drei Wegen bestimmen. Einmal lässt sich R über die Ladung der Entladung bestimmen nach \(C = \frac{Q}{U_{break}}\), einmal nach \(C = \frac{\tau}{\frac{U_{break}}{A}}\) und einmal nach \(C = \frac{\tau}{R}\), wobei hier R dem verwendeten Widerstand gilt der verwendet wurde zum messen des Stroms. 
+Die Messungen mit mehreren Entladungen aus \figref{fig:discharge_multiple_fit} lassen sich verwenden um diese Werte zu bestimmen, da somit insbesondere der Mittelwert und die Varianz bestimmt werden kann und somit untersucht werden kann, ob und wie start diese Werte zwischen den Entladungen varieren. In dem dargestellten Plot sind für die einzelnen Entladungen, die fits der Entladeströme nach \eqref{eq:discharge-e} eingetragen. In dem Abbildungen \ref{fig:multiple_histo_tau} bis \ref{fig:multiple_histo_c3} sind die verschiedenen bestimmten Größen dargestellt. Es sind die jeweiligen Statistiken der jeweiligen Größe eingetragen und farblich sind die zeitliche Reihenfolgen der einzelnen Histogrambalken dargestellt, wobei die Gradient von Grün nach Rot geht, was auch der Richtung der Zeit entspricht.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/discharge_multiple.pdf}
+      \caption{Mehrere Entladungen mit fits}
+      \label{fig:discharge_multiple_fit}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-t.pdf}
+      \caption{Verteilung der \(\tau\)}
+      \label{fig:multiple_histo_tau}
+    \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-Q.pdf}
+      \caption{Verteilung der Ladungen}
+      \label{fig:multiple_histo_charge}
+  \end{minipage}
+  \hfill
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-R.pdf}
+      \caption{Verteilung der \(R\)}
+      \label{fig:multiple_histo_R}
+    \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-C1.pdf}
+      \caption{Verteilung der \(C_1\)}
+      \label{fig:multiple_histo_c1}
+  \end{minipage}
+  \hfill
+    \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-C2.pdf}
+      \caption{Verteilung der \(C_2\)}
+      \label{fig:multiple_histo_c2}
+    \end{minipage}
+ \begin{minipage}[t]{0.47\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/event_start/single/singledis-C3.pdf}
+      \caption{Verteilung der \(C_3\)}
+      \label{fig:multiple_histo_c3}
+  \end{minipage}
+\end{figure}
+
+
+
+
