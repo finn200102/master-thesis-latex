@@ -9,7 +9,7 @@ Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des S
 \label{sec:precursor}
 Der hier verwendete Datensatz setzt sich aus allen Entladungen zusamment, für die ein Eventstart, ein Vorläuferstart und ein Vorläuferende definiert sind und die Länge des Vorläufers mindestens \SI{1e-9}{\s} beträgt. In \figref{fig:precursor_current_sliece} sind drei Abschnitte des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen. Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}. 
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_prec_ts_df.pdf}
       \caption{Verlauf des Startes der Vorläufersignatur}
@@ -19,7 +19,7 @@ Der hier verwendete Datensatz setzt sich aus allen Entladungen zusamment, für d
 \subsection{Vorläuferabstand}
 Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese soweit oben. Die deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_prec_ts_precursor_distance_box.pdf}
       \caption{Verteilung des Vorläuferabstandes}
@@ -31,7 +31,7 @@ Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der
 \subsection{Eventlänge}
 Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der das System durch diese gestört ist. In \figref{fig:prec_ts_event_duration_box} ist die Verteilung der Eventlängen dargestellt, sie liegen alle in einem Intervall von \SIrange{5}{20}{\micro\second} ohne dass ein linearer Trend ersichtlich ist.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_prec_ts_event_duration_box.pdf}
       \caption{Verteilung des Eventlänge}
@@ -60,7 +60,7 @@ MLP & Eventlänge & 0,17 & $1{,}33 \times 10^{-11}$ &  \\
 \section{Streamer (händisch)}
 Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen vergleichbaren Verlauf, was zu erwarten war.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_df.pdf}
       \caption{Verlauf des Startes der Vorläufersignatur}
@@ -70,11 +70,11 @@ Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen a
 \subsection{Vorläuferaband}
 In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläuferabstände für die händische Setzung dargestellt. Die Verteilung ders Abstände unterscheidet sich zu den automatisch gesetzten Grenzen nicht sonderlich, es ist nur zuerkennen, das für einen kleineren Anteil die Grenzen gesetz wurden.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_precursor_distance_box.pdf}
-      \caption{Verteilung des Vorläuferabstandes}
-      \label{fig:streamer_hand_prec_distance_box}
+      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_event_duration_box.pdf}
+      \caption{Verteilung der Eventlänge}
+      \label{fig:streamer_hand_event_duration_box}
 \end{figure}
 
 
@@ -94,9 +94,41 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 }
 \end{table}
 
+\subsection{Eventlänge}
+
+\begin{figure}[H]
+    \centering
+      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_event_duration_box.pdf}
+      \caption{Verteilung des Vorläuferabstandes}
+      \label{fig:streamer_hand_prec_distance_box}
+\end{figure}
+
+
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Eventlänge}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
+\midrule
+SVR (k=50) & Eventlänge & 0,318 & $7{,}04 \times 10^{-12}$ & $2{,}65 \times 10^{-6}$ & $2{,}00 \times 10^{-6}$ \\
+Random Forest (k=100) & Eventlänge & 0,328 & $6{,}94 \times 10^{-12}$ & $2{,}63 \times 10^{-6}$ & $1{,}94 \times 10^{-6}$ \\
+Elastic Net (k=100) & Eventlänge & 0,337 & $6{,}84 \times 10^{-12}$ & $2{,}62 \times 10^{-6}$ & $1{,}98 \times 10^{-6}$ \\
+MLP Regressor (k=200) & Eventlänge & 0,351 & $6{,}70 \times 10^{-12}$ &  &  \\
+MLP Regressor (k=100) & Eventlänge & 0,352 & $6{,}69 \times 10^{-12}$ &  &  \\
+SVR (k=100) & Eventlänge & 0,365 & $6{,}56 \times 10^{-12}$ & $2{,}56 \times 10^{-6}$ & $1{,}95 \times 10^{-6}$ \\
+SVR (k=200) & Eventlänge & 0,372 & $6{,}48 \times 10^{-12}$ & $2{,}55 \times 10^{-6}$ & $2{,}01 \times 10^{-6}$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
 \section{Eventabstände im Interval \SIrange{2e-9}{3e-8}{\second}}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_left_peak_event_df.pdf}
       \caption{Verlauf des Startes der Vorläufersignatur}
@@ -105,12 +137,34 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \subsection{Eventlänge}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_left_peak_event_distance_ts_auto_event_duration_histo.pdf}
       \caption{Verteilung der Eventlänge}
       \label{fig:event_left_event_duration_box}
 \end{figure}
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Eventlänge}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & \textbf{MSE} & \textbf{RMSE} & \textbf{MAE} & \textbf{k} \\
+\midrule
+Random Forest & Eventlänge & 0,76 & $9{,}01 \times 10^{-12}$ & $3{,}00 \times 10^{-6}$ & $0{,}69 \times 10^{-6}$ & 100\\
+SVR & Eventlänge & 0,73 & $1{,}03 \times 10^{-11}$ &  $3{,}21 \times 10^{-6}$ & $2{,}23 \times 10^{-6}$ & 100\\
+GBR & Eventlänge & 0,72 & $1{,}06 \times 10^{-11}$ &  $3{,}26 \times 10^{-6}$ & $2{,}36 \times 10^{-6}$ & 100\\
+MLP & Eventlänge & 0,69 & $1{,}17 \times 10^{-11}$ & & 100\\
+ElasticNet & Eventlänge & 0,49 & $1{,}95 \times 10^{-11}$ &  $4{,}42 \times 10^{-6}$ & $3{,}83 \times 10^{-6}$ & 100 \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
 
 
 
@@ -119,7 +173,7 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \section{Eventabstände im Interval \SIrange{3e-8}{1e-5}{\second}}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_df.pdf}
       \caption{Verlauf des Startes der Vorläufersignatur}
@@ -128,7 +182,7 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \subsection{Eventlänge}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_distance_ts_auto_event_duration_histo.pdf}
       \caption{Verteilung der Eventlänge}
@@ -139,7 +193,7 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \section{Eventabstandvorhersage für Entladungen ohne erkannten Vorläuferstart}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_1mus_ts_df.pdf}
       \caption{Verlauf des Stromes \SI{1}{\micro\second} vor dem Eventstart}
@@ -148,7 +202,7 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \subsection{Eventlänge}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_distance_ts_auto_event_duration_histo.pdf}
       \caption{Verteilung der Eventlänge}
