@@ -1,23 +1,135 @@
-\chapter{Vorhersage}
+\chapter{Vorhersage von Entladungscharakteristika}
 \label{chap:prediction}
 
-Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des Stroms vor dem Start des Events lassen sich verschiedene Gruppen indentifizieren. Die in \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} dargestellten Vorströme eigenen sich, aufgrund ihrem höheren zeitlichen Abstand zum Eventstart, zur Vorhersage bis zum Start des Events. Also das Intervall zwischen Vorläuferstart und Vorläuferende und die daraus zu gewinnenden features lassen sich verwenden um die Zielvariable Vorläuferabstand vorherzusagen. Gerade die automatisch definierte Grenze des Vorläuferendes könnte mit einem laufenden Fenster über den Strom laufen und dann eine solche Strukture indentifizieren und dann den Abstand zum Event vorhersagen. Besonders große Vorläuferabstände treten für die in \figref{fig:discharge-vor-lang-1} dargestellten streamer-artigen Strukturen auf, dieser Teil der Entladungen eigenet sich somit besonders um den Eventabstand bzw. Vorläuferabstand vorherzusagen, da zum einem über eine solche Dauer von über \SI{1}{\micro\second} auch ein technischer Nutze möglich wird und zum anderen der konstant fließende Strom des thermaliserenden Streamerkanals ein System darstell dass nach abgeschlossener Thermalisierung direkt in die Entladung übergeht. Neben diesen Entladungen für die sich die 2 Zeitintervalle Vorläuferstart bis Vorläuferende, Vorläuferstart (händisch) bis Vorläuferende (händisch) ergeben. Für kürzere identifizierte Vorläufer kann kein Ende von diesem vor dem Start des Events mehr identifiziert werden somit, ergeben sich dann die Intervalle Vorläuferstart bis Eventstart und die händische Version. Neben diesen Entladungen wo ein Vorläuferstart identifiziert wurde wird ein weitere Datensatz verwendet bei dem das Interval \SIrange{-1e-6}{0}{\micro\second} verwendet wird. Diese Abschnitte eigenen sich Aussagen über das Event zu treffen wie dessen Energie oder Länge. Neben diesen jeweils definierten Abschnitten kann für die Daten für die keine Vorläufer identifiziert wurden mit einem Laufenden Fenster gearbeitet werden, also die Zeit vor dem Eventstart in gleich große Abschnitte unterteilen z.B. jeweils mit \SI{1e-6}{\micro\second} so, dass sich ein Datensatz aus Abschnit und Abstand zum Event bilden lässt. Dies lässt sich auch für die Entladungen mit hoher Auflösung im Strom verwenden \figref{fig:discharge-constend}. Die Betrachtung der Vorläuferabstände in \figref{fig:precursor_distance_target} zeigt, dass drei Bereiche von intresse sind, die als einzelner Datensatz verwendet werden können. Also der erste Peak, der zweite Peak und dessen Schweif, wobei dierser Schweif die streamer-artigen Vorläufer besitzt. 
+
+Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des Stroms vor dem Start des Events lassen sich verschiedene Gruppen indentifizieren. Die in \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} dargestellten Vorströme eigenen sich, aufgrund ihrem höheren zeitlichen Abstand zum Eventstart, zur Vorhersage bis zum Start des Events. Also das Intervall zwischen Vorläuferstart und Vorläuferende und die daraus zu gewinnenden features lassen sich verwenden um die Zielvariable Vorläuferabstand vorherzusagen. Gerade die automatisch definierte Grenze des Vorläuferendes könnte mit einem laufenden Fenster über den Strom laufen und dann eine solche Strukture indentifizieren und dann den Abstand zum Event vorhersagen. Besonders große Vorläuferabstände treten für die in \figref{fig:discharge-vor-lang-1} dargestellten streamer-artigen Strukturen auf, dieser Teil der Entladungen eigenet sich somit besonders um den Eventabstand bzw. Vorläuferabstand vorherzusagen, da zum einem über eine solche Dauer von über \SI{1}{\micro\second} auch ein technischer Nutze möglich wird und zum anderen der konstant fließende Strom des thermaliserenden Streamerkanals ein System darstell dass nach abgeschlossener Thermalisierung direkt in die Entladung übergeht. Neben diesen Entladungen für die sich die 2 Zeitintervalle Vorläuferstart bis Vorläuferende, Vorläuferstart (händisch) bis Vorläuferende (händisch) ergeben. Für kürzere identifizierte Vorläufer kann kein Ende von diesem vor dem Start des Events mehr identifiziert werden somit, ergeben sich dann die Intervalle Vorläuferstart bis Eventstart und die händische Version. Neben diesen Entladungen wo ein Vorläuferstart identifiziert wurde wird ein weitere Datensatz verwendet bei dem das Interval \SIrange{-1e-6}{0}{\micro\second} verwendet wird. Diese Abschnitte eigenen sich Aussagen über das Event zu treffen wie dessen Energie oder Länge. Neben diesen jeweils definierten Abschnitten kann für die Daten für die keine Vorläufer identifiziert wurden mit einem Laufenden Fenster gearbeitet werden, also die Zeit vor dem Eventstart in gleich große Abschnitte unterteilen z.B. jeweils mit \SI{1e-6}{\micro\second} so, dass sich ein Datensatz aus Abschnit und Abstand zum Event bilden lässt. Dies lässt sich auch für die Entladungen mit hoher Auflösung im Strom verwenden \figref{fig:discharge-constend}. Die Betrachtung der Vorläuferabstände in \figref{fig:precursor_distance_target} zeigt, dass drei Bereiche von intresse sind, die als einzelner Datensatz verwendet werden können. Also der erste Peak, der zweite Peak und dessen Schweif, wobei dieser Schweif die streamer-artigen Vorläufer besitzt. 
+
+\section{Zielsetzung und Hypothesen}
+
+\subsection{Motivation und Problemstellung}
+Die frühzeitige Vorhersage von Entladungscharakteristika in Gasentladungen ist von fundamentaler Bedeutung für die Entwicklung von Schutzsystemen und das Verständis der zugrundeliegenden physikalischen Prozesse. Vorläufersignaturen die vor dem eigentlichen Entladungsevent auftreten, enthalten potentiell Infromationen über die nachfolgende Entladung. Entschieden wurde sich für eine automatische Extraktion relevanter Merkmale aus den hochdimensionalen Zeitreihendaten der Vorläuferströme und der nachfolgenden Identifikation von relevanten Featuren. Dieser Ansatz hat den Vorteil gegenüber einer manuellen Definition von Featuren, dass die Gefahr relevante Muster zu übersehen reduziert wird.
+\subsection{Zielsetzung}
+Die Ziele für diese Untersuchung sind die Vorhersage kritischer Entladungsparameter, dem Vorläuferabstand \(t_{prec}\) und der Eventlänge \(t_{event}\). Dies soll zur Identifikation physikalisch interpretierbarer Prädikatoren führen, also den wichtigsten Featuren für die verwendeten Zielvariablen und der Vergleich von verschiedenen ML-Algorithmen zur Identifikation des optimalen Modells.
+\subsection{Forschungshypothesen}
+Die folgenden Hypothesen wurden basierend auf der physikalischen Theorie von Gasentladungen aufgestellt:
+
+\textbf{H1: Prädiktivität der Vorläufersignaturen}\newline
+Die Charakteristika der Vorläufersignatur korrelieren signifikant mit dem zeitlichen Abstand zum Hauptevent.\newline
+Die Vorläuferphase repräsentiert die Entlwicklung eine leitfähigen Kanals. Die Dynamik dieser Charakteristika sollte messbar sein.\newline
+
+\textbf{H2: Frequenzabhängigkeit}\newline
+Hochfrequenze Oszillationen im Megahertzbereich im Vorläuferstrom sind die stärksten Prädiktoren für den Vorläuferabstand.\newline
+Auftretende Resonanzphänomene im sich entwickelnden Plasmakanal, die Dynamik diesr sollte mit dem Zustand dieses Kanal korrelieren.\newline
+
+\textbf{H3: Nichtlinearität der Zusammenhänge}\newline
+Nichtlienare Modelle (Random Forest, SVR) zeigen signifikant bessere Vorhersageperformance als lineare Modelle.\newline
+Die Plasmaphysik von Gasentladungen wird durch nicht lineare Prozesse dominiert (Avalanche-Effekte, Raumladungseffekte).\newline
+
+\textbf{H4: Feature-Redundanz}\newline
+Aus der großen Anzahl an initial extrahierten Featuren genügen die Top-n informativsten Features für eine optimale Vorhersageperformance.\newline
+Die initial extrahierten Feature sind hochgradig korreliert, eine Reduktion sollte Overfitting vermeiden ohne Infromationsverlust.
+
+\textbf{H5: Einfluss des Spaltabstands}\newline
+Größere Spaltabstände führen zu längeren und besser vorhersagbaren Vorläuferabständen.\newline
+Größere Spaltabstände erfondern längere Lawinenprozesse und die Bildung von Streamer-Prozessen ist höher, dies führt zu besseren Vorläufersignaturen.
+
+\subsection{Methodischer Ansatz}
+Diese Hypothesen werden mit den folgenden systematischen Ansätzen verfolgt. Die automatische Feature-Extraktion erfolgt über die ts-fresh python Bibliothek, hierbei werden \(> 1000\) standardisierte Zeitreihenfeatures extrahiert, somit sind Zeit und Frequenzfeatures gegeben. Die Selektion der Features erfolgt Datengetrieben auf einer univarianten Selektion basierend auf F-Statistik. Es werden systemsatisch lineare und nichtlineare Regressoren verglichen. Es erfolgt eine Hyperparameter-Optimierung via Grid Search. Es folgt eine physikalische Interpretation der Feature-Importance.
+
+\section{Datengrundlage und Vorverarbeitung}
+\subsection{Übersicht der Datensätze}
+Aus den aufgezeichneten Gasentladungen wurden verschiedene Datensätze gebildet, dabei bei waren die beiden Metriken Vorläuferstart und Vorläuferende relevant.
+
+\begin{table}[h!]
+\centering
+\caption{Übersicht der verwendeten Datensätze}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c c}
+\toprule
+\textbf{Datensatz} & \textbf{Segmentierung} & \textbf{Zeitintervall} & \textbf{n} & \textbf{n} & \textbf{Vorläuferabstand} & \textbf{Eventlänge} \\
+\midrule
+DS1 & automatisch & Vorläuferstart-Ende & \~150 & x & x \\ 
+DS2 & manuell & Vorläuferstart-Ende & \~250 & x & x \\
+DS3 & automatisch & \SIrange{2e-9}{3e-8}{\second} & & & x \\ 
+DS4 & automatisch & \SIrange{3e-8}{1e-5}{\second} & & & x \\
+DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Datensatz-Spezifikationen}
+
+\textbf{DS1: Automatische segmentierte Vorläufer mit Vorläuferende}
+
+\textbf{DS2: Manuell segmentierte Streamer}
+
+\textbf{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
+
+\textbf{DS4: Automatische segmentierte Vorläufer im Interval \SIrange{3e-8}{1e-5}{\second}}
+
+\textbf{DS5: Automatische segmentierte Features \SI{1}{\micro\second} vor dem Eventstart}
 
 
-\section{Vorläuferende vorhanden}
-\subsection{Vorläuferabstände}
-\label{sec:precursor}
-Der hier verwendete Datensatz setzt sich aus allen Entladungen zusamment, für die ein Eventstart, ein Vorläuferstart und ein Vorläuferende definiert sind und die Länge des Vorläufers mindestens \SI{1e-9}{\s} beträgt. In \figref{fig:precursor_current_sliece} sind drei Abschnitte des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen. Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}. 
+\subsection{Feature-Extraktion mittels tsfresh}
+
+% Feature Kategorien Zeitbereich, Frequenz, nicht linear
+
+\subsection{Datenvorverarbeitung}
+
+\textbf{Behandlung fehlender Werte}\newline
+Nach der Extraktion der Features für einen Datensatz werden diese auf NaN-Werte untersucht, es wenn ein Feature mit NaN gefunden wurden, wird dieses Feature für alle Entladungen entfernt.
+
+\textbf{Normalisierung}\newline
+Es werden alle Feature auf \(\mu = 0, \sigma = 1\) standardisiert.
+% Python code ?
+
+\subsection{Feature-Selektrion}
+
+Die initiale Menge an Features von \(> 1000\) wurde systematisch reduziert, durch die Verwendung der univariaten Selektion. % Python code?
+
+\subsection{Train-Test-Aufteilung}
+Für die Modellvaliderung wurden verschiedene Strategien implementiert, die Verwendung von 20\% der Daten im Test-Datensatz, wobei jedoch viele Daten in den kleinen Datensätzen verlohren gehen. Die Verwedung der Kreuzvalidierung.
+
+
+
+\section{Ergebnisse der Vorläuferabstand-Vorhersage}
+
+\subsection{Charakterisierung der Vorläufersignaturen}
+In \figref{fig:comparison_precursor_streamer} sind für DS1 und DS2, also die beiden Datensätze die sich zur Vorhersage des Vorläuferabstandes eignen, die Ströme aus denen die Features extrahiert wurden dargestellt. In \figref{fig:precursor_current_sliece} sind drei Abschnitte des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen. Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}. Die Anzahl an Entladungen in diesem Datensatz beträgt 192.
+
+Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen ähnlichen Verlauf, was zu erwarten war, da die gleiche Strategie verfolgt wurde. Die einzelnen Amplituden unterscheiden sich in dieser Stichprobe untereinander, jedoch ist dies nur eine kleine Stichprobe. Die Periode der einzelnen Ströme liegt ebenfalls im \SI{100}{\mega\hertz} Bereich, wobei neben dieser feinen Struktur noch gröbere auftreten von ca. \SI{10}{\mega\hertz}. Die Anzahl an Entladungen in diesem Datensatz beträgt 245 Werte. 
+
+
+
+
+
 
 \begin{figure}[H]
     \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_prec_ts_df.pdf}
-      \caption{Verlauf des Startes der Vorläufersignatur}
-      \label{fig:precursor_current_sliece}
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/maschinelearning/features_prec_ts_df.pdf}
+        \caption{Verlauf des Startes der Vorläufersignatur}
+        \label{fig:precursor_current_sliece}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_df.pdf}
+        \caption{Verlauf des Startes der Vorläufersignatur}
+        \label{fig:streamer_current_sliece}
+    \end{subfigure}
+    \caption{Vergleich der Verläufe der Vorläufersignatur}
+    \label{fig:comparison_precursor_streamer}
 \end{figure}
 
-\subsection{Vorläuferabstand}
-Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese soweit oben. Die deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
+\subsection{Datensatz DS1: Automatische Segmentierung}
+
+\subsubsection{Verteilung der Zielvariable}
+Aufgrund des großen Abstandes dieser Vorläufer, eignet sich dieser zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese soweit oben. Die deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
+
 
 \begin{figure}[H]
     \centering
@@ -26,9 +138,85 @@ Aufgrund des großen Abstandes dieser Vorläufer, eignet sich diese zum Test der
       \label{fig:prec_ts_prec_distance_box}
 \end{figure}
 
+\subsubsection{Modellperformance}
+
+\subsubsection{Analyse}
+
+\subsection{Datensatz DS2: Manuelle Streamer-Segmentierung}
+
+\subsubsection{Verteilung der Zielvariable}
+
+In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläuferabstände für die händische Setzung dargestellt. Die Verteilung der Abstände unterscheidet sich zu den automatisch gesetzten Grenzen nicht sonderlich, es ist nur zuerkennen, das für einen kleineren Anteil die Grenzen gesetz wurden. Die Werte liegen ebenfalls im Interval \SIrange{0}{8}{\micro\second}. In \tabref{tab:streamer_prec_distance} sind die verschiedenen gefitteten Modelle dargestellt. Das am besten performente Model mit einem \(r^2 = 0.55\) ist der Random Forest, die genau Wahl an Parametern wurde mit einem Gridsearch optimiert. Es ist an diesem Wert direkt erkenntlich, dass das Model Teile des Systems wiederspiegelt, jedoch nur etwa 55\% der Varianz der Zielvariable. Das Modell hat einen MAE von \SI{1,6}{\micro\second}, somit lässt sich aus der oberen Angabe des Intervalls des Vorläuferabstandes schließen, dass Zielvariable nur begrenzt gut aus den Featuren des Stroms \figref{fig:streamer_current_sliece} bestimmt werden kann. Insbensondere ist zu beachten, dass mehrheitlich kleinere Vorläuferabstände vorliegen, \figref{fig:histogram-precdistance} zeigt diesen linear fallenden Trend. Der MSE mit einem Wert von \SI{2,57}{\micro\second} ist etwas größer da diese Metrik Ausreißer stärker bestraft, der Blick auf \figref{fig:streamer_hand_prec_distance_box} zeigt, dass für einen Spaltabstand von \SI{2}{\centi\meter} der Mittelwert dieser Messungen deutlich über den anderen liegt, zudem sind die Vorläuferabstände für die anderen Spaltabstände um den Mittelwert über ein größeres Intervall verteilt, somit ziehen diese Ausreißer diese Fehlermetrik etwas größer.
+.
+
+\begin{figure}[H]
+    \centering
+      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_precursor_distance_box.pdf}
+      \caption{Verteilung des Vorläuferabstandes}
+      \label{fig:streamer_hand_prec_distance_box}
+\end{figure}
+
+\subsubsection{Modellperformance}
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Vorläuferabstände}
+\label{tab:streamer_prec_distance}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
+\midrule
+Random Forest & Vorläuferabstand & 0,55 & $6{,}63 \times 10^{-12}$ & $2{,}57 \times 10^{-6}$ & $1{,}60 \times 10^{-6}$ \\
+SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsubsection{Analyse}
+
+\subsection{Vergleichende Analyse}
+
+\subsection{Feature-Importance und physikalische Interpretation}
+
+\section{Ergebnisse der Eventlängen-Vorhersage}
+
+\subsection{Charakterisierung der Vorläufersignaturen}
+In \figref{fig:all-event-slices} sind die Vorläufersignaturen der Ströme für die noch nicht betrachteten Datensätze DS3, DS4 und DS5 aufgetragen.
+Neben den Entladungen für die ein Ende der Vorläufersignatur bestimmt werden kann, liegen die meißten Signaturen so nahe am Start des Events, dass somit sich diese nicht für eine Vorhersage des Events bzw. des Abstandes eignen. Dieses Interval vor dem Eventstart eignet sich um zu untersuchen ob der Verlauf vor dem Start des Events sich eignet um Eigenschaften von diesem insbesondere die Eventlänge zu bestimmen. Es wird das Interval \SIrange{2e-9}{3e-8}{\second} aus \figref{fig:histogram-eventdistance} betrachtet. In \figref{fig:event_left_current_sliece} ist der Verlauf des Stroms in diesem Intervall dargestellt. Die Signaturen in diesem Intervall zeigen eine Frequenz von \SI{14}{\mega\hertz} in ihren Schingungen. Die verschiedenen Ströme in der dargestellten Stichprobe folgen alle einer solchen Oszillation vor dem Eventstart. Für einige der Ströme sind noch Subschwingungen zuerkennen, die eine Frequenz von ca. \SI{100}{\mega\hertz} besitzen.  
+
+Neben der linken Region mit den kurzen Eventabständen aus \figref{fig:histogram-eventdistance} wird nun die recht mit den längeren Eventabständen in dem Intervall \SIrange{3e-8}{1e-5}{\second} betrachtet. In \figref{fig:event-right-current_sliece} ist eine Stichprobe der Ströme in diesem Intervall vor dem Event dargestellt. Es sind num mehr Verläufe erkennbar, für die der Strom nicht mehr vollständig aufgelöst werden kann, beim Start des Events. Vor dem Eventstart, wenn Oszillationen auftreten liegen diese wieder bei einer Frequenz von \SI{100}{\mega\hertz}.
 
 
-\subsection{Eventlänge}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../figures/maschinelearning/features_left_peak_event_df.pdf}
+        \caption{Verlauf des Startes der Vorläufersignatur}
+        \label{fig:event_left_current_sliece}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_df.pdf}
+        \caption{Verlauf des Startes der Vorläufersignatur}
+        \label{fig:event-right-current_sliece}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\linewidth}
+        \includegraphics[width=\linewidth]{../figures/maschinelearning/features_1mus_ts_df.pdf}
+        \caption{Verlauf des Stromes \SI{1}{\micro\second} vor dem Eventstart}
+        \label{fig:1mus-current-sliece}
+    \end{subfigure}
+    \caption{Gegenüberstellung der relevanten Signaturverläufe}
+    \label{fig:all-event-slices}
+\end{figure}
+
+\subsection{Datensatz DS1 und DS2}
+
+\subsubsection{DS1: Automatische Segmentierung}
 Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der das System durch diese gestört ist. In \figref{fig:prec_ts_event_duration_box} ist die Verteilung der Eventlängen dargestellt, sie liegen alle in einem Intervall von \SIrange{5}{20}{\micro\second} ohne dass ein linearer Trend ersichtlich ist.
 
 \begin{figure}[H]
@@ -56,51 +244,15 @@ MLP & Eventlänge & 0,17 & $1{,}33 \times 10^{-11}$ &  \\
 
 
 
+\subsubsection{DS2: Manuelle Streamer-Segmentierung}
 
-\section{Streamer (händisch)}
-Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen vergleichbaren Verlauf, was zu erwarten war.
-
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_df.pdf}
-      \caption{Verlauf des Startes der Vorläufersignatur}
-      \label{fig:streamer_current_sliece}
-\end{figure}
-
-\subsection{Vorläuferaband}
-In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläuferabstände für die händische Setzung dargestellt. Die Verteilung ders Abstände unterscheidet sich zu den automatisch gesetzten Grenzen nicht sonderlich, es ist nur zuerkennen, das für einen kleineren Anteil die Grenzen gesetz wurden.
+Die Eventlänge verteilt sich über ein Intervall von \SIrange{5}{22}{\micro\second} für diese Teilmenge der Entladungen. Es ist kein offensichlicher Trend in den Daten zuerkennen, somit ist auch hier von intresse wie gut diese Daten durch statistische Modelle beschrieben werden können. In \tabref{tab:streamer_event_duration} sind die Ergebnisse von verschiedenen Modellen dargestellt. Das beste Modell für diese Zielvariable ist das SVR bei einer Wahl von den top \(200\) Featuren. Ein \(R^2 = 0,372\) zeigt, dass das beste Modell nur 37\% der Varianz der Eventlänge wiedergeben kann. Ein MAE von \SI{2,01}{\micro\second} zeigt jedoch, dass der mittlere Fehler im Vergleich zum Interval der Zielvariable eher klein ist. Die Mittelwerte der Eventlänge liegen in einem Intervall von \SI{7}{\micro\second}, so dass das Verwendete Modell, zumindest die Eventlänge eingrenzen kann. Ein weiterer Blick auf die Modelle zeigt, dass der MAE für den Random Forest Regressor der kleinste ist mit einem Werte von \SI{1,94}{\micro\second}, somit zeigt diese dass der \(R^2\) nicht die einzige Metrik ist die zu beachten ist.
 
 \begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_event_duration_box.pdf}
-      \caption{Verteilung der Eventlänge}
+      \caption{Verteilung des Eventlänge}
       \label{fig:streamer_hand_event_duration_box}
-\end{figure}
-
-
-\begin{table}[h!]
-\centering
-\caption{Model Performance für die Vorhersage der Vorläuferabstände}
-\resizebox{\textwidth}{!}{%
-\small
-\begin{tabular}{l c c c c c}
-\toprule
-\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
-\midrule
-Random Forest & Vorläuferabstand & 0,55 & $6{,}63 \times 10^{-12}$ & $2{,}57 \times 10^{-6}$ & $1{,}60 \times 10^{-6}$ \\
-SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
-
-\subsection{Eventlänge}
-
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_event_duration_box.pdf}
-      \caption{Verteilung des Vorläuferabstandes}
-      \label{fig:streamer_hand_prec_distance_box}
 \end{figure}
 
 
@@ -108,6 +260,7 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 \begin{table}[h!]
 \centering
 \caption{Model Performance für die Vorhersage der Eventlänge}
+\label{tab:streamer_event_duration}
 \resizebox{\textwidth}{!}{%
 \small
 \begin{tabular}{l c c c c c}
@@ -126,16 +279,9 @@ SVR (k=200) & Eventlänge & 0,372 & $6{,}48 \times 10^{-12}$ & $2{,}55 \times 10
 }
 \end{table}
 
-\section{Eventabstände im Interval \SIrange{2e-9}{3e-8}{\second}}
+\subsection{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
 
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_left_peak_event_df.pdf}
-      \caption{Verlauf des Startes der Vorläufersignatur}
-      \label{fig:event_left_current_sliece}
-\end{figure}
-
-\subsection{Eventlänge}
+In \figref{fig:event_left_event_duration_box} ist die Verteilung der Eventlängen für den Datensatz dargestellt. Sie liegen in einem Intervall von \SIrange{3}{30}{\micro\second}, wobei die Mittelwerte für die einzenlen Spaltabstände in einem Interval von \SIrange{7}{20}{\micro\second} liegen. Der Vergleich mit \figref{fig:streamer_hand_event_duration_box} zeigt, dass die maximale Länge die ein Event annehmen kann, für diesen Datensatz etwa \SI{10}{\micro\second} größer ist. Diese längeren Events treten für die Spaltabstände \SIrange{6}{7}{\milli\meter} auf, wobei die \SI{6}{\milli\meter} in dem Streamer Datensatz nicht vorhanden war. Somit deutet das darauf hin, dass längere Vorläufersignaturen nicht auch einem längeren Event entsprechen. In \tabref{tab:short_event_duration} sind verschiedene Modelle mit deren Metriken für diese Zielvariable dargestellt. Das mit Abstand am besten perfromente Modell ist der Random Forest mit den top 100 Featuren. Mit einem \(R^2 = 0,72\) und insbesondere einem MAE von \SI{0,69}{\micro\second} ist es das beste Modell. Insbesondere dieser kleine MAE für ein solch Großes Interval der Zielvariable ist beeindruckend gut. Dies deutlich bessere Performance als für den Streamer Datensatz ist jedoch auffällig. Eine Erklärung ist, dass diese Features direkt vom Start des Events stammen und somit Features der Form des Eventstart beinhalten und somit Auskunft geben über die Form und den Typen dieses Events. Somit zeigt dies insbesondere das die verschiedenen Längen eines solchen Entladungsevents auch zu verschiedenen Formen gehöhren.
 
 \begin{figure}[H]
     \centering
@@ -147,6 +293,7 @@ SVR (k=200) & Eventlänge & 0,372 & $6{,}48 \times 10^{-12}$ & $2{,}55 \times 10
 \begin{table}[h!]
 \centering
 \caption{Model Performance für die Vorhersage der Eventlänge}
+\label{tab:short_event_duration}
 \resizebox{\textwidth}{!}{%
 \small
 \begin{tabular}{l c c c c c c}
@@ -167,20 +314,9 @@ ElasticNet & Eventlänge & 0,49 & $1{,}95 \times 10^{-11}$ &  $4{,}42 \times 10^
 
 
 
+\subsection{DS4: Automatische segmentierte Vorläufer im Interval \SIrange{3e-8}{1e-5}{\second}}
 
-
-
-
-\section{Eventabstände im Interval \SIrange{3e-8}{1e-5}{\second}}
-
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_df.pdf}
-      \caption{Verlauf des Startes der Vorläufersignatur}
-      \label{fig:event-right-current_sliece}
-\end{figure}
-
-\subsection{Eventlänge}
+In \figref{fig:event_right_event_duration_box} ist die Verteilung der Eventlängen gegen die Spaltabstände aufgetragen. Die Eventlängen liegen in einem Interval von \SIrange{7}{50}{\micro\second} der Vergleich mit den \figref{fig:event_left_event_duration_box} und mit \figref{fig:streamer_hand_event_duration_box} zeigen, dass somit für diesen Datensatz die Größten Eventlängen vorliegen. In dem Boxplot ist jedoch zu erkennen, dass diese Werte über \SI{30}{\micro\second} als Ausreißer makiert wurden. Somit sind nur einzelne Entladungen so viel länger. Die Mittelwerte der Eventlängen in einem Interval von \SIrange{7}{22}{\micro\second} liegen und somit in einem Bereich wie für die anderen Datensätze. In \tabref{tab:long_event_duration} sind die Ergebnisse verschiedener statistischer Modelle für die Eventlänge dargestellt. Der Random Forest ist wie auch schon für \secref{sec:short_event_duration} das am bestem performende Modell. Auch der \(R^2 = 0,73\) stimmt mit dem \(R^2 = 0,72\) des Datensatzes mit den kurzen Eventabständen überein. Nur der MAE ist mit \SI{2,53}{\micro\second} deutlich größer. Jedoch unterscheiden sich auch der RMSE mit \SI{3,56}{\micro\second} und der RMSE des anderen Datensatzes mit \SI{3}{\micro\second} nicht sonderlich von einander. Diese ähnliche Performance des Modells für diese beiden verschiedenen Datensätze, die keinen Überlapp haben, deutet darauf hin, wie auch schon in \secref{sec:short_event_duration}, dass für die Vorhersage von Eventeigenschaften, nicht die vorlaufenden Ströme relevant sind, sonder der mit im Datensatz vorhandene Start des Events. Zum dem folgt daraus, dass die beiden Datensätze in der Form der Evente ähnlich sind. Dies war auch mit der statistischen Natur dieser Event zu erwarten.
 
 \begin{figure}[H]
     \centering
@@ -190,17 +326,34 @@ ElasticNet & Eventlänge & 0,49 & $1{,}95 \times 10^{-11}$ &  $4{,}42 \times 10^
 \end{figure}
 
 
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Eventlänge}
+\label{tab:long_event_duration}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & \textbf{MSE} & \textbf{RMSE} & \textbf{MAE} \\
+\midrule
+Random Forest & Eventlänge & 0.73 & $1.27 \times 10^{-11}$ & $3.56 \times 10^{-6}$ & $2.53 \times 10^{-6}$ \\
+Gradient Boosting & Eventlänge & 0.71 & $1.36 \times 10^{-11}$ & $3.68 \times 10^{-6}$ & $2.62 \times 10^{-6}$ \\
+MLP & Eventlänge & 0.59 & $1.89 \times 10^{-11}$ &  &  \\
+SVR & Eventlänge & 0.32 & $3.16 \times 10^{-11}$ & $5.62 \times 10^{-6}$ & $4.18 \times 10^{-6}$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
-\section{Eventabstandvorhersage für Entladungen ohne erkannten Vorläuferstart}
 
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_1mus_ts_df.pdf}
-      \caption{Verlauf des Stromes \SI{1}{\micro\second} vor dem Eventstart}
-      \label{fig:1mus-current-sliece}
-\end{figure}
 
-\subsection{Eventlänge}
+
+\subsection{DS5: Automatische segmentierte Features \SI{1}{\micro\second} vor dem Eventstart}
+
+
+
+
+
 
 \begin{figure}[H]
     \centering
@@ -214,5 +367,4 @@ ElasticNet & Eventlänge & 0,49 & $1{,}95 \times 10^{-11}$ &  $4{,}42 \times 10^
 
 
 
-\section{Eventabstandvorhersage für Entladungen mit hoher Auflösung im Strom}
 
