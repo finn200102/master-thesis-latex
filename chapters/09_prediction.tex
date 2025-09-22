@@ -1,9 +1,6 @@
 \chapter{Vorhersage von Entladungscharakteristika}
 \label{chap:prediction}
 
-
-Aus den verschiedenen in \chapref{chap:eventstart} verschiedenen Verläufe des Stroms vor dem Start des Events lassen sich verschiedene Gruppen indentifizieren. Die in \figref{fig:discharge-vor-lang-1} und \figref{fig:discharge-vor-lang-2} dargestellten Vorströme eigenen sich, aufgrund ihrem höheren zeitlichen Abstand zum Eventstart, zur Vorhersage bis zum Start des Events. Also das Intervall zwischen Vorläuferstart und Vorläuferende und die daraus zu gewinnenden features lassen sich verwenden um die Zielvariable Vorläuferabstand vorherzusagen. Gerade die automatisch definierte Grenze des Vorläuferendes könnte mit einem laufenden Fenster über den Strom laufen und dann eine solche Strukture indentifizieren und dann den Abstand zum Event vorhersagen. Besonders große Vorläuferabstände treten für die in \figref{fig:discharge-vor-lang-1} dargestellten streamer-artigen Strukturen auf, dieser Teil der Entladungen eigenet sich somit besonders um den Eventabstand bzw. Vorläuferabstand vorherzusagen, da zum einem über eine solche Dauer von über \SI{1}{\micro\second} auch ein technischer Nutze möglich wird und zum anderen der konstant fließende Strom des thermaliserenden Streamerkanals ein System darstell dass nach abgeschlossener Thermalisierung direkt in die Entladung übergeht. Neben diesen Entladungen für die sich die 2 Zeitintervalle Vorläuferstart bis Vorläuferende, Vorläuferstart (händisch) bis Vorläuferende (händisch) ergeben. Für kürzere identifizierte Vorläufer kann kein Ende von diesem vor dem Start des Events mehr identifiziert werden somit, ergeben sich dann die Intervalle Vorläuferstart bis Eventstart und die händische Version. Neben diesen Entladungen wo ein Vorläuferstart identifiziert wurde wird ein weitere Datensatz verwendet bei dem das Interval \SIrange{-1e-6}{0}{\micro\second} verwendet wird. Diese Abschnitte eigenen sich Aussagen über das Event zu treffen wie dessen Energie oder Länge. Neben diesen jeweils definierten Abschnitten kann für die Daten für die keine Vorläufer identifiziert wurden mit einem Laufenden Fenster gearbeitet werden, also die Zeit vor dem Eventstart in gleich große Abschnitte unterteilen z.B. jeweils mit \SI{1e-6}{\micro\second} so, dass sich ein Datensatz aus Abschnit und Abstand zum Event bilden lässt. Dies lässt sich auch für die Entladungen mit hoher Auflösung im Strom verwenden \figref{fig:discharge-constend}. Die Betrachtung der Vorläuferabstände in \figref{fig:precursor_distance_target} zeigt, dass drei Bereiche von intresse sind, die als einzelner Datensatz verwendet werden können. Also der erste Peak, der zweite Peak und dessen Schweif, wobei dieser Schweif die streamer-artigen Vorläufer besitzt. 
-
 \section{Zielsetzung und Hypothesen}
 
 \subsection{Motivation und Problemstellung}
@@ -61,9 +58,11 @@ DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
 
 \subsection{Datensatz-Spezifikationen}
 
-\textbf{DS1: Automatische segmentierte Vorläufer mit Vorläuferende}
+\textbf{DS1: Automatische segmentierte Vorläufer mit Vorläuferende}\newline
+Für diesen Datensatz wurden alle Entladungen selektiert, für die die automatisch gesetzten Vorläuferstart und Vorläuferendewerte eine Differenz größer als \SI{100}{\nano\second} beträgt. Also die Länge der Vorläufersignatur länger als \SI{100}{\nano\second} ist. Es wurden so 192 Entladungen selektiert.
 
-\textbf{DS2: Manuell segmentierte Streamer}
+\textbf{DS2: Manuell segmentierte Streamer}\newline
+Für diesen Datensatz wurden die Entladungen händisch selektiert, für die ein klares Vorläuferende vorliegen und die eine Streamer ähnlichen Verlauf aufweisen. Es wurden so 250 Werte selektiert.
 
 \textbf{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
 
@@ -73,8 +72,8 @@ DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
 
 
 \subsection{Feature-Extraktion mittels tsfresh}
+Die Python-Bibliothek tsfresh (Time Series Feature extraction based on Scalable Hypothesis Tests) berechnet automatisch Hunderte von Merkmalen (Features) aus Zeitreihen. Es werden einfache Kennzahlen wie der Mittelwert, Varianz oder Schiefe, aber auch komplexere Maße wie Autokorrelation und Fourier-Koeffizienten berechnet. Die Bibliothek bietet auch Verfahren zur Auswahl relevanter Merkmale mittels statischer Hypothesentests an. Diese Bibliothek eignet sich für große Datensätze.
 
-% Feature Kategorien Zeitbereich, Frequenz, nicht linear
 
 \subsection{Datenvorverarbeitung}
 
@@ -82,29 +81,23 @@ DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
 Nach der Extraktion der Features für einen Datensatz werden diese auf NaN-Werte untersucht, es wenn ein Feature mit NaN gefunden wurden, wird dieses Feature für alle Entladungen entfernt.
 
 \textbf{Normalisierung}\newline
-Es werden alle Feature auf \(\mu = 0, \sigma = 1\) standardisiert.
+Es werden alle Features auf \(\mu = 0, \sigma = 1\) standardisiert. Dies führt zu einer gleichen Skala für alle Features, viele Algorithmen sind sensitiv gegenüber den Größenordnungen der Eingabevariablen. Dies ermöglicht ebenfalls ein höhere numerische stabilität.
 % Python code ?
 
 \subsection{Feature-Selektrion}
 
-Die initiale Menge an Features von \(> 1000\) wurde systematisch reduziert, durch die Verwendung der univariaten Selektion. % Python code?
+Die initiale Menge an Features von \(> 1000\) wurde systematisch reduziert, durch die Verwendung der univariaten Selektion. Es wurde die scikit-learn Python-Bibliothek verwendet um dessen SelectKBest Funktion zu verwenden. Es werden verschiedene Training-Runs durchgeführt für verschiedene k.% Python code?
 
 \subsection{Train-Test-Aufteilung}
-Für die Modellvaliderung wurden verschiedene Strategien implementiert, die Verwendung von 20\% der Daten im Test-Datensatz, wobei jedoch viele Daten in den kleinen Datensätzen verlohren gehen. Die Verwedung der Kreuzvalidierung.
-
+Die Modellvaliderung erfolgt über ein Test-Train Split von 20\% Test-Daten und 80\% Train-Daten. Für kleine Datenmengen gehen so jedoch viele nützliche Trainings-Daten verloheren, die Kreuzvalidierung ermöglicht dies zu kompensieren.
 
 
 \section{Ergebnisse der Vorläuferabstand-Vorhersage}
 
 \subsection{Charakterisierung der Vorläufersignaturen}
-In \figref{fig:comparison_precursor_streamer} sind für DS1 und DS2, also die beiden Datensätze die sich zur Vorhersage des Vorläuferabstandes eignen, die Ströme aus denen die Features extrahiert wurden dargestellt. In \figref{fig:precursor_current_sliece} sind drei Abschnitte des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen. Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}. Die Anzahl an Entladungen in diesem Datensatz beträgt 192.
+In \figref{fig:comparison_precursor_streamer} sind für DS1 und DS2, also die beiden Datensätze die sich zur Vorhersage des Vorläuferabstandes eignen, die Ströme aus denen die Features extrahiert wurden dargestellt. In \figref{fig:precursor_current_sliece} sind drei Beispiele des Vorläuferstroms zwischen Vorläuferstart und Vorläuferende dargestellt. Es ist zu erkennen, dass alle Vorläufer unter diesen Bedingungen einen ähnlichen periodischen gedämpften Verlauf besitzen die ist ähnlich zu einem wie in \secref{sec:critpoint} erwarten Warnsignal vor einem Übergang des Systems.  Es lässt sich eine Periode von ca. \SI{10}{\nano\second} erkennen und damit eine Frequenz von \SI{100}{\mega\hertz}.
 
-Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen ähnlichen Verlauf, was zu erwarten war, da die gleiche Strategie verfolgt wurde. Die einzelnen Amplituden unterscheiden sich in dieser Stichprobe untereinander, jedoch ist dies nur eine kleine Stichprobe. Die Periode der einzelnen Ströme liegt ebenfalls im \SI{100}{\mega\hertz} Bereich, wobei neben dieser feinen Struktur noch gröbere auftreten von ca. \SI{10}{\mega\hertz}. Die Anzahl an Entladungen in diesem Datensatz beträgt 245 Werte. 
-
-
-
-
-
+Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen auch händische Grenzen für den Vorläuferstart und das Vorläuferende gesetzt. In \figref{fig:streamer_current_sliece} sind die Vorläufersignaturen die händisch makiert wurden dargestellt. Ein Vergleich mit \figref{fig:precursor_current_sliece} zeigt einen ähnlichen Verlauf, was zu erwarten war, da die gleiche Strategie verfolgt wurde. Die einzelnen Amplituden unterscheiden sich in dieser Stichprobe untereinander, jedoch ist dies nur eine kleine Stichprobe. Die Periode der einzelnen Ströme liegt ebenfalls im \SI{100}{\mega\hertz} Bereich, wobei neben dieser feinen Struktur noch gröbere auftreten von ca. \SI{10}{\mega\hertz}.
 
 \begin{figure}[H]
     \centering
@@ -128,7 +121,7 @@ Neben den automatisch bestimmten Grenzen wurden für die längeren Entladungen a
 \subsection{Datensatz DS1: Automatische Segmentierung}
 
 \subsubsection{Verteilung der Zielvariable}
-Aufgrund des großen Abstandes dieser Vorläufer, eignet sich dieser zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese soweit oben. Die deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
+Aufgrund des großen Abstandes dieser Vorläufer, eignet sich dieser zum Test der These, dass der Strom vor der Entladung mit dem Start der Entladung korreliert und ob sich eine solche Vorläufersignatur eignet um den Abstand zum Event vorherzusagen. In \figref{fig:prec_ts_prec_distance_box} stellt die Verteilung der Vorläuferabstände über die Spaltabstände dar. Die Mittelwerte der Vorläuferabstände für all bis auf die \SI{20}{\milli\meter} liegen verteilt um die \SI{1}{\micro\second} mit einigen Ausreißern für die \SI{10}{\milli\meter} und die \SI{11}{\milli\meter}. Für die \SI{20}{\milli\meter} liegen die meißten längeren Vorläuferabstände vor und zugleich liegt auch der Mittelwert für diese weit oben. Dies deutet darauf hin, dass es ab dem Wert die Wahrscheinlichkeit für die Bildung solch langer Vorläuferabstände signifikant ansteigt.
 
 
 \begin{figure}[H]
@@ -140,15 +133,33 @@ Aufgrund des großen Abstandes dieser Vorläufer, eignet sich dieser zum Test de
 
 \subsubsection{Modellperformance}
 
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Vorläuferabstände}
+\label{tab:prec_distance}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
+\midrule
+LinearRegression & Vorläuferabstand & -0,06 & $1{,}75 \times 10^{-12}$ & $1{,}32 \times 10^{-6}$ & $1{,}04 \times 10^{-6}$ \\
+RandomForestRegressor & Vorläuferabstand & -0,17 & $1{,}94 \times 10^{-12}$ & $1{,}39 \times 10^{-6}$ & $0{,}35 \times 10^{-7}$ \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
 \subsubsection{Analyse}
+\label{sec:ds1ana}
+In \tabref{tab:prec_distance} sind die gefitteten Modelle für den DS1 Datensatz dargestellt. Das beste Modell ist die LinearRegression mit \(R^2 = -0,06\), jedoch bedeuten ein \(R^2 < 0\), dass das Modell schlechter performt als der Mittelwert des Datensatzes. Dies zeigt, dass sowohl das lineare also auch das nicht lineare Modell nicht den Datensatz wiedergeben können. Die Betrachtung des MAE als alternativen Qualitätsmaß zeigt für den RandomForestRegressor einen deutlich kleineren Wert als für die nach dem \(R^2\) Maß besserem linearen Modell. Hierbei ist zu beachten das der \(R^2\) auch wie der MSE sensitiv auf Ausreißer ist und somit der Anteil an Ausreißern in diesem Datensatz DS1, der kleiner als der DS2 Datensatz ist, groß ist. Die Betrachtung von \figref{fig:prec_ts_prec_distance_box} zeigt, dass das Plottingverfahren des Boxplots 18 Entladungen als Ausreißer makiert hat, dass sind 9,3\% des Datensatzes, somit könnten diese Verantwortlich für die schlechte Performance des Modells sein. Der Vergleich mit dem größeren Datensatz DS2 für diese Zielvariable ist nun von Intresse.
 
 \subsection{Datensatz DS2: Manuelle Streamer-Segmentierung}
 
 \subsubsection{Verteilung der Zielvariable}
 
-In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläuferabstände für die händische Setzung dargestellt. Die Verteilung der Abstände unterscheidet sich zu den automatisch gesetzten Grenzen nicht sonderlich, es ist nur zuerkennen, das für einen kleineren Anteil die Grenzen gesetz wurden. Die Werte liegen ebenfalls im Interval \SIrange{0}{8}{\micro\second}. In \tabref{tab:streamer_prec_distance} sind die verschiedenen gefitteten Modelle dargestellt. Das am besten performente Model mit einem \(r^2 = 0.55\) ist der Random Forest, die genau Wahl an Parametern wurde mit einem Gridsearch optimiert. Es ist an diesem Wert direkt erkenntlich, dass das Model Teile des Systems wiederspiegelt, jedoch nur etwa 55\% der Varianz der Zielvariable. Das Modell hat einen MAE von \SI{1,6}{\micro\second}, somit lässt sich aus der oberen Angabe des Intervalls des Vorläuferabstandes schließen, dass Zielvariable nur begrenzt gut aus den Featuren des Stroms \figref{fig:streamer_current_sliece} bestimmt werden kann. Insbensondere ist zu beachten, dass mehrheitlich kleinere Vorläuferabstände vorliegen, \figref{fig:histogram-precdistance} zeigt diesen linear fallenden Trend. Der MSE mit einem Wert von \SI{2,57}{\micro\second} ist etwas größer da diese Metrik Ausreißer stärker bestraft, der Blick auf \figref{fig:streamer_hand_prec_distance_box} zeigt, dass für einen Spaltabstand von \SI{2}{\centi\meter} der Mittelwert dieser Messungen deutlich über den anderen liegt, zudem sind die Vorläuferabstände für die anderen Spaltabstände um den Mittelwert über ein größeres Intervall verteilt, somit ziehen diese Ausreißer diese Fehlermetrik etwas größer.
-.
-
+In \figref{fig:streamer_hand_prec_distance_box} ist die Verteilung der Vorläuferabstände für die händische Setzung dargestellt. Die Verteilung der Abstände unterscheidet sich zu den automatisch gesetzten Grenzen nicht sonderlich, es ist nur zuerkennen, das für einen kleineren Anteil die Grenzen gesetz wurden. Die Werte liegen ebenfalls im Interval \SIrange{0}{8}{\micro\second}. 
 \begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_precursor_distance_box.pdf}
@@ -176,8 +187,11 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 \end{table}
 
 \subsubsection{Analyse}
+In \tabref{tab:streamer_prec_distance} sind die verschiedenen gefitteten Modelle dargestellt. Das am besten performente Model mit einem \(R^2 = 0.55\) ist der Random Forest, die genaue Wahl an Parametern wurde mit einem Gridsearch optimiert. Es ist an diesem Wert direkt erkenntlich, dass das Model Teile des Systems wiederspiegelt, jedoch nur etwa 55\% der Varianz der Zielvariable. Das Modell hat einen MAE von \SI{1,6}{\micro\second}, somit lässt sich aus der oberen Angabe des Intervalls des Vorläuferabstandes schließen, dass Zielvariable nur begrenzt gut aus den Featuren des Stroms \figref{fig:streamer_current_sliece} bestimmt werden kann. Insbensondere ist zu beachten, dass mehrheitlich kleinere Vorläuferabstände vorliegen, \figref{fig:histogram-precdistance} zeigt diesen linear fallenden Trend. Der MSE mit einem Wert von \SI{2,57}{\micro\second} ist etwas größer da diese Metrik Ausreißer stärker bestraft, der Blick auf \figref{fig:streamer_hand_prec_distance_box} zeigt, dass für einen Spaltabstand von \SI{2}{\centi\meter} der Mittelwert dieser Messungen deutlich über den anderen liegt, zudem sind die Vorläuferabstände für die anderen Spaltabstände um den Mittelwert über ein größeres Intervall verteilt, somit vergrößern diese Ausreißer diese Fehlermetrik etwas.
+.
 
 \subsection{Vergleichende Analyse}
+Der Vergleich der beiden Datensätze DS1 und DS2 für die Zielvariable des Vorläuferabstandes zeigt eine deutlich unterschiedliche Performance der Modelle. Für den DS1 Datensatz kann kein Modell nach dem \(R^2\) Wert die Zielvariable besser als die einfache Mittelwertbildung vorhersagen. Für den DS2 Datensatz, kann nach dieser Metrik jedoch für das beste Modell ca. 55\% der Varianz der Verteilung dieser Zielvariable erklären. Die Betrachtung anderer Metriken führt jedoch zu einem anderen Schluss, der MAE der nicht auf Ausreißer sensitiv ist für das nicht lineare Modell mit einem Wert von \(0{,}35 \times 10^{-7}\) kleiner als der kleinste MAE des DS2 Datensatzes mit \(1{,}60 \times 10^{-6}\). Dabei ist zu beachten, dass sich die Verteilung der Vorläuferabstände zwischen diesen beiden Datensätzen darin unterscheidet, dass für den DS1 Datensatz viele kurze Abstände auftreten und wenig lange, die für diesen dann oft als Ausreißer behandelt werden. Somit ist der kleinere MAE teilweise dem geschuldet, jedoch wie in \secref{sec:ds1ana} schon diskutiert, ist ein weiterer Aspekt das Verhältnis an Ausreißern die eine Größenordnungen größer als die anderen kleinern Vorläuferabstände sind. Die manuelle Wahl der Grenzen ermöglicht für den DS2, dass längere Vorläuferabstände, die durch die automatische Setzung der Grenzen nicht erkannt wurden, vermehrt auftreten und kleinere Abstände zusätzlich wegen der Fokussierung auf die Streamerform des Stroms nicht selektiert wurden.
 
 \subsection{Feature-Importance und physikalische Interpretation}
 
@@ -185,10 +199,11 @@ SVR & Vorläuferabstand & 0,40 & $8{,}91 \times 10^{-12}$ &  \\
 
 \subsection{Charakterisierung der Vorläufersignaturen}
 In \figref{fig:all-event-slices} sind die Vorläufersignaturen der Ströme für die noch nicht betrachteten Datensätze DS3, DS4 und DS5 aufgetragen.
-Neben den Entladungen für die ein Ende der Vorläufersignatur bestimmt werden kann, liegen die meißten Signaturen so nahe am Start des Events, dass somit sich diese nicht für eine Vorhersage des Events bzw. des Abstandes eignen. Dieses Interval vor dem Eventstart eignet sich um zu untersuchen ob der Verlauf vor dem Start des Events sich eignet um Eigenschaften von diesem insbesondere die Eventlänge zu bestimmen. Es wird das Interval \SIrange{2e-9}{3e-8}{\second} aus \figref{fig:histogram-eventdistance} betrachtet. In \figref{fig:event_left_current_sliece} ist der Verlauf des Stroms in diesem Intervall dargestellt. Die Signaturen in diesem Intervall zeigen eine Frequenz von \SI{14}{\mega\hertz} in ihren Schingungen. Die verschiedenen Ströme in der dargestellten Stichprobe folgen alle einer solchen Oszillation vor dem Eventstart. Für einige der Ströme sind noch Subschwingungen zuerkennen, die eine Frequenz von ca. \SI{100}{\mega\hertz} besitzen.  
+Neben den Entladungen für die ein Ende der Vorläufersignatur bestimmt werden kann, liegen die meißten Signaturen so nahe am Start des Events, dass somit sich diese nicht für eine Vorhersage des Events bzw. des Abstandes eignen. Dieses Interval vor dem Eventstart eignet sich um zu untersuchen ob der Verlauf vor dem Start des Events sich eignet um Eigenschaften von diesem insbesondere die Eventlänge zu bestimmen. Es wird das Interval \SIrange{2e-9}{3e-8}{\second} aus \figref{fig:histogram-eventdistance} betrachtet. In \figref{fig:event_left_current_sliece} ist der Verlauf des Stroms in diesem Intervall dargestellt. Die Signaturen in diesem Intervall zeigen eine Frequenz von \SI{10}{\mega\hertz} in ihren Schwingungen. Die verschiedenen Ströme in der dargestellten Stichprobe folgen alle einer solchen Oszillation vor dem Eventstart. Für einige der Ströme sind noch Subschwingungen zuerkennen, die eine Frequenz von ca. \SI{100}{\mega\hertz} besitzen.  
 
-Neben der linken Region mit den kurzen Eventabständen aus \figref{fig:histogram-eventdistance} wird nun die recht mit den längeren Eventabständen in dem Intervall \SIrange{3e-8}{1e-5}{\second} betrachtet. In \figref{fig:event-right-current_sliece} ist eine Stichprobe der Ströme in diesem Intervall vor dem Event dargestellt. Es sind num mehr Verläufe erkennbar, für die der Strom nicht mehr vollständig aufgelöst werden kann, beim Start des Events. Vor dem Eventstart, wenn Oszillationen auftreten liegen diese wieder bei einer Frequenz von \SI{100}{\mega\hertz}.
+Neben der linken Region mit den kurzen Eventabständen aus \figref{fig:histogram-eventdistance} wird nun die rechte mit den längeren Eventabständen in dem Intervall \SIrange{3e-8}{1e-5}{\second} betrachtet. In \figref{fig:event-right-current_sliece} ist eine Stichprobe der Ströme in diesem Intervall vor dem Event dargestellt. Es sind num mehr Verläufe erkennbar, für die der Strom nicht mehr vollständig aufgelöst werden kann, beim Start des Events. Vor dem Eventstart. Der Verlauf des Stroms vor dem Event zeigt nun eine größere Varianz an Signaturen auf. Es liegen sowohl Oszillationen von \SI{10}{\mega\hertz} als auch von \SI{100}{\mega\hertz} vor. 
 
+Neben den durch die Histogramme in \secref{sec:eventdistance} motivierten Datensätzen wurde für den DS5 das Interval \SI{1}{\micro\second} vor dem Event selektiert. In \figref{fig:1mus-current-sliece} ist der Verlauf der Ströme in diesem Interval dargestellt. Wie zu erwarten ergeben sich sowohl Oszillationen, wie in den DS1-4 aber auch flache Verläufe, für die keine Vorläufersignaturen erkannt wurden. 
 
 
 \begin{figure}[H]
