@@ -191,9 +191,126 @@ In \tabref{tab:streamer_prec_distance} sind die verschiedenen gefitteten Modelle
 .
 
 \subsection{Vergleichende Analyse}
-Der Vergleich der beiden Datensätze DS1 und DS2 für die Zielvariable des Vorläuferabstandes zeigt eine deutlich unterschiedliche Performance der Modelle. Für den DS1 Datensatz kann kein Modell nach dem \(R^2\) Wert die Zielvariable besser als die einfache Mittelwertbildung vorhersagen. Für den DS2 Datensatz, kann nach dieser Metrik jedoch für das beste Modell ca. 55\% der Varianz der Verteilung dieser Zielvariable erklären. Die Betrachtung anderer Metriken führt jedoch zu einem anderen Schluss, der MAE der nicht auf Ausreißer sensitiv ist für das nicht lineare Modell mit einem Wert von \(0{,}35 \times 10^{-7}\) kleiner als der kleinste MAE des DS2 Datensatzes mit \(1{,}60 \times 10^{-6}\). Dabei ist zu beachten, dass sich die Verteilung der Vorläuferabstände zwischen diesen beiden Datensätzen darin unterscheidet, dass für den DS1 Datensatz viele kurze Abstände auftreten und wenig lange, die für diesen dann oft als Ausreißer behandelt werden. Somit ist der kleinere MAE teilweise dem geschuldet, jedoch wie in \secref{sec:ds1ana} schon diskutiert, ist ein weiterer Aspekt das Verhältnis an Ausreißern die eine Größenordnungen größer als die anderen kleinern Vorläuferabstände sind. Die manuelle Wahl der Grenzen ermöglicht für den DS2, dass längere Vorläuferabstände, die durch die automatische Setzung der Grenzen nicht erkannt wurden, vermehrt auftreten und kleinere Abstände zusätzlich wegen der Fokussierung auf die Streamerform des Stroms nicht selektiert wurden.
+\label{sec:ds12ana}
+Der Vergleich der beiden Datensätze DS1 und DS2 für die Zielvariable des Vorläuferabstandes zeigt eine deutlich unterschiedliche Performance der Modelle. Für den DS1 Datensatz kann kein Modell nach dem \(R^2\) Wert die Zielvariable besser als die einfache Mittelwertbildung vorhersagen. Für den DS2 Datensatz, kann nach dieser Metrik jedoch für das beste Modell ca. 55\% der Varianz der Verteilung dieser Zielvariable erklären. Die Betrachtung anderer Metriken führt jedoch zu einem anderen Schluss, der MAE der nicht auf Ausreißer sensitiv ist für das nicht lineare Modell mit einem Wert von \(0{,}35 \times 10^{-7}\) kleiner als der kleinste MAE des DS2 Datensatzes mit \(1{,}60 \times 10^{-6}\). Dabei ist zu beachten, dass sich die Verteilung der Vorläuferabstände zwischen diesen beiden Datensätzen darin unterscheidet, dass für den DS1 Datensatz viele kurze Abstände auftreten und wenig lange, die für diesen dann oft als Ausreißer behandelt werden. Somit ist der kleinere MAE teilweise dem geschuldet, jedoch wie in \secref{sec:ds1ana} schon diskutiert, ist ein weiterer Aspekt das Verhältnis an Ausreißern die eine Größenordnungen größer als die anderen kleinern Vorläuferabstände sind. Die manuelle Wahl der Grenzen ermöglicht für den DS2, dass längere Vorläuferabstände, die durch die automatische Setzung der Grenzen nicht erkannt wurden, vermehrt auftreten und kleinere Abstände zusätzlich wegen der Fokussierung auf die Streamerform des Stroms nicht selektiert wurden. In \tabref{tab:prec_distance_filtered} wurden die Modelle trainiert auf einem modifizierten DS1 mit Vorläuferabstände größer als \SI{1}{\micro\second}. Für diesen Datensatz liegen 82 Entladungen vor. Die Modelle die auf diesen Teil von DS1 trainiert wurden zeigen eine deutlich bessere Performance, das beste Modell hier ist die lineare Regression mit 5 features mit einem \(R^2=0,23\), es können nun also ca. 23\% der Varianz des Vorläuferabstandes für diesen Datensatz erklärt werden. 
+In \tabref{tab:prec_distance_filtered_2} sind die Trainingsergebnisse für die alternative Modifikation von DS1 dargestellt, also für Vorläuferabstände kleiner als \SI{1}{\micro\second}. Es ergeben sich 106 Entladungen für diese Modifikation. Es ist wie für den vollständigen DS1 zu erkennen, das die Modelle die Zielvariable nicht wiedergeben können bzw. nicht besser als die Mittelwertbildung bzw. schlechter. Somit ist die so viel schlechtere Performance für die Vorhersage von dem Vorläuferabstand mit DS1 damit zu erklären, dass dieser Datensatz sehr viele Vorläufersiganturen enthält die direkt vor dem Event liegen und somit viele kurze Vorläuferabstände. Im DS2 Datensatz wurden explizit Vorläufersiganturen gewählt die eine Streamer ähnlichen Verlauf aufweisen. Somit folgt, dass sich der Verlauf des Strom im Intervall Vorläuferstart und Vorläuferende, wenn diese klar zu definieren sind, wenn der Abstand zum Event groß genug ist, dass diese klar von einander getrennt sind und nicht in einander übergehen, verwenden lässt um den Abstand hin zum Event, also im Falle von Streamern der sich noch zu thermalisierende Streamerkanal, vorherzusagen. Somit ist die \textbf{H1: Prädiktivität der Vorläufersignaturen} - Hypothese für die Vorläufersignaturen, die Streamer förmig sind bzw. einen Vorläuferabstand größer als \SI{1}{\micro\second} aufweisen bestätigt. Für Vorläuferabstände kleiner als \SI{1}{\micro\second}, also welche die direkter ins Event übergehen, ist die \textbf{H1} - Hypothese wiederlegt. Für den DS2 mit der besten Performance der Modelle beschreiben nicht lineare Modelle die Zielvariable am besten, die DS2 Datensätze zeigen jedoch lineare Modelle die beste Performance insbesondere die Top 5 features sind hier besonder Aussage kräftig. Somit lässt sich die \textbf{H3: Nichtlinearität der Zusammenhänge} - Hypothese nicht vollständig wiederlegen oder belegen. Jedoch ist der DS2 Datensatz größer und die Modelle performen am besten für diesen, somit lässt sich die \textbf{H3} für Streamerartige Verläufe bestätigen. Aus den über 1000 extrahierten Features mit tsfresh wurden die top n features mit Hilfe der F-Statistik extrahiert und für veschiedene n trainiert. Die am besten performenten Modelle, wenn es die nicht linearen sind, verweden wie für den DS2 ca. 100, für den DS2 insbesondere den modifizierten in \tabref{tab:prec_distance_filtered} performen die linearen Modelle mit den top 5 features am besten. Die bestätigt somit die \textbf{H4: Feature-Redundanz} - Hypothese im Bezug auf die Zielvariable des Vorläuferabstandes. 
+
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Vorläuferabstände für modifizierten DS1}
+\label{tab:prec_distance_filtered}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c c}
+\toprule                                                                                       \textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ & \textbf{k} \\
+\midrule
+MLPRegressor & Vorläuferabstand & 0,08 & $4{,}34 \times 10^{-12}$ & -- & -- & 100 \\
+RandomForestRegressor & Vorläuferabstand & 0,12 & $4{,}13 \times 10^{-12}$ & $2{,}03 \times 10^{-6}$ & $1{,}58 \times 10^{-6}$ & 100 \\
+RandomForestRegressor & Vorläuferabstand & 0,13 & $4{,}07 \times 10^{-12}$ & $2{,}02 \times 10^{-6}$ & $1{,}54 \times 10^{-6}$ & 5 \\
+LinearRegression & Vorläuferabstand & 0,23 & $3{,}61 \times 10^{-12}$ & $1{,}90 \times 10^{-6}$ & $1{,}40 \times 10^{-6}$ & 5 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Model Performance für die Vorhersage der Vorläuferabstände für modifizierten DS1}
+\label{tab:prec_distance_filtered_2}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ & \textbf{k} \\
+\midrule
+LinearRegression & Vorläuferabstand & 0,02 & $1{,}69 \times 10^{-14}$ & $1{,}30 \times 10^{-7}$ & $1{,}04 \times 10^{-7}$ & 5 \\
+ElasticNet & Vorläuferabstand & -0,00 & $1{,}72 \times 10^{-14}$ & $1{,}31 \times 10^{-7}$ & $1{,}06 \times 10^{-7}$ & 5 \\
+GradientBoostingRegressor & Vorläuferabstand & -0,04 & $1{,}80 \times 10^{-14}$ & $1{,}34 \times 10^{-7}$ & $1{,}06 \times 10^{-7}$ & 5 \\
+SVR & Vorläuferabstand & -0,16 & $1{,}99 \times 10^{-14}$ & $1{,}41 \times 10^{-7}$ & $1{,}12 \times 10^{-7}$ & 5 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
 
 \subsection{Feature-Importance und physikalische Interpretation}
+In \tabref{tab:ds1-features} sind die top 5 Features des am besten perfomenten Modells, der LinearRegression, dargestellt. Nur zwei der Features haben einen p-Wert größer 0, dies passt zu der Beobachtung der in \secref{sec:ds12ana} diskutierten Beobachtung, dass die Modelle für den DS1 Datensatz, diesen nicht gut wiedergeben können. Der beste Koeffizient mit einem p-Wert von 0,68 ist der imaginäre Teil des dritte Fourier-Koeffizienten. Der Imaginäreteil beschreibt die Phase und die Struktur der Vorläufersignatur. Über die folgende Formel lässt sich die Frequenz dieses Koeffizienten bestimmen:
+\begin{equation}
+ f_k = \frac{k f_s}{N}
+\end{equation}
+Hierbei ist \(f_s\) die Abtastrate, \(N\) die Anzahl an Punken im Segment und \(k\) der Index der fft. In \tabref{tab:ds1-sample} sind für die beiden auftretenden Zeitlängen und somit Abtastraten und den Vorläuferlängen die Frequenz des dritten Fourier-Koeffizienten eingetragen. Sie liegt für beide im niedrigen einstelligen MHz Bereich. Somit deutet dies auf eine Korrelation zwischen den niedrigeren Frequenzen der Vorläufer und dem Vorläuferabstand hin. Jedoch tritt diese Frequenz für den DS1 auf, für den die Modelle schlecht performt haben. 
+
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - LinearRegression - DS1}
+\label{tab:ds1-features}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_large\_standard\_deviation\_\_r\_0.35 & -0.06597 \\
+current\_\_partial\_autocorrelation\_\_lag\_7 & 0.02131 \\
+current\_\_change\_quantiles\_\_f\_agg\_``var''\_\_isabs\_True\_\_qh\_1.0\_\_ql\_0.8 & -0.73432 \\
+current\_\_fft\_coefficient\_\_attr\_``imag''\_\_coeff\_2 & 0.68050 \\
+current\_\_fft\_aggregated\_\_aggtype\_``variance'' & -0.03650 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Zeitlänge in s} & \textbf{Anzahl} & \textbf{Abtastrate} $f_s$ & \textbf{Durchschnitt} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Standardabw.}  & \(f_2\)\\
+\hline
+$9.9999 \times 10^{-5}$  & 162 & \SI{1}{\giga\hertz} & $5.87 \times 10^{-7}$ & $7.1 \times 10^{-8}$ & $9.283 \times 10^{-6}$ & $8.24 \times 10^{-7}$ & \SI{3,4}{\giga\hertz}\\
+$4.99995 \times 10^{-5}$ & 30  & \SI{2}{\giga\hertz} & $3.83 \times 10^{-7}$ & $8.5 \times 10^{-8}$ & $1.0195 \times 10^{-6}$ & $2.42 \times 10^{-7}$ & \SI{1,04}{\giga\hertz}\\
+\hline
+\end{tabular}
+\caption{Zeitlängenverteilung und Statistik für den DS1}
+\label{tab:ds1-sample}
+\end{table}
+
+In \tabref{tab:ds2-features} sind die top 5 features mit den höchsten p-Werten der RandomForestRegressors dargestellt. Es fällt direkt auf, dass 4 von diesen Fourier-Koeffizienten entsprechen also wieder gewissen Frequenzen entsprechen, jedoch sind diese nun deutlich höhere Koeffizienten und somit auch höhere Frequenzen. Die Welch-Dichte ist auch ein Frequenzmaß bzw. zeigt die Leistung in einem bestimmten Frequenzband auf. In \tabref{tab:ds2-sample} sind für die verschiedenen Abtastraten die Frequenzen der Fourier-Koeffizienten aufgetragen. Für den größeren Teil der Daten mit einer Abtastrate von \SI{1}{\giga\hertz} liegen die \(f_k\) Frequenzen im mittleren zweistelligen MHz Berreich mit in den niedrigen dreistelligen MHz Bereich. Für die höhere Abtastrate liegen höhere Frequenzen im dreistelligen MHz Bereich vor. Diese Größenordnungen der Frequenz mit einer hohen Korrelation zur Zielvariable passen mit denen in \figref{fig:streamer_current_sliece} beobachteten Frequenzen der Vorläufersignatur zusammen. Das für eine höhere Abtastrate auch höhere Frequenz eine Rolle spielen, deutet darauf hin, dass besonders hohe Frequenz mehr über den Abstand hin zum Ereignis und somit auch über den sich thermalisierende Streamerkanal aussagen als niedrigere. Dies ermöglicht auch die These, dass mit einer noch höheren Abtastrate von mehr als \SI{2}{\giga\hertz} auch noch höhere Frequenz relevant werden und somit sich auch die Genauigkeit der Vorhersage verbessen könnte, wenn mit eine noch höheren Abtastrate solch Entladungen untersucht werden. 
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - RandomForestRegressor - DS2}
+\label{tab:ds2-features}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_fft\_coefficient\_\_attr\_\_"real"\_\_coeff\_34 & 0.3008838 \\
+current\_\_fft\_coefficient\_\_attr\_\_"imag"\_\_coeff\_24 & 0.1530438 \\
+current\_\_spkt\_welch\_density\_\_coeff\_8 & 0.0671714 \\
+current\_\_fft\_coefficient\_\_attr\_\_"imag"\_\_coeff\_70 & 0.0615635 \\
+current\_\_fft\_coefficient\_\_attr\_\_"real"\_\_coeff\_70 & 0.0594062 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Zeitlänge in s} & \textbf{Anzahl} & \textbf{Abtastrate} $f_s$ & \textbf{Durchschnitt} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Standardabw.} & \(f_{34}\) & \(f_{24}\) & \(f_{70}\)\\
+\hline
+$4.99995 \times 10^{-5}$ & 56  & \SI{2}{\giga\hertz} & $3,25 \times 10^{-7}$ & $1.87 \times 10^{-7}$ & $5.67 \times 10^{-7}$ & $8.00 \times 10^{-8}$ & \SI{209,23}{\mega\hertz} & \SI{147,69}{\mega\hertz} & \SI{430,76}{\mega\hertz}\\
+$9.9999 \times 10^{-5}$  & 189 & \SI{1}{\giga\hertz} & $6,14 \times 10^{-7}$ & $1.81 \times 10^{-7}$ & $2.21 \times 10^{-6}$ & $3.97 \times 10^{-7}$ & \SI{55,37}{\mega\hertz} & \SI{39,08}{\mega\hertz} & \SI{114}{\mega\hertz}\\
+\hline
+\end{tabular}
+\caption{Zeitlängenverteilung und Statistik für den DS2}
+\label{tab:ds2-sample}
+\end{table}
+
+
+
 
 \section{Ergebnisse der Eventlängen-Vorhersage}
 
