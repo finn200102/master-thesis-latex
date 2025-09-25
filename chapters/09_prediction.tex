@@ -263,7 +263,7 @@ current\_\_fft\_aggregated\_\_aggtype\_``variance'' & -0.03650 \\
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
 \textbf{Zeitlänge in s} & \textbf{Anzahl} & \textbf{Abtastrate} $f_s$ & \textbf{Durchschnitt} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Standardabw.}  & \(f_2\)\\
 \hline
@@ -275,7 +275,7 @@ $4.99995 \times 10^{-5}$ & 30  & \SI{2}{\giga\hertz} & $3.83 \times 10^{-7}$ & $
 \label{tab:ds1-sample}
 \end{table}
 
-In \tabref{tab:ds2-features} sind die top 5 features mit den höchsten p-Werten der RandomForestRegressors dargestellt. Es fällt direkt auf, dass 4 von diesen Fourier-Koeffizienten entsprechen also wieder gewissen Frequenzen entsprechen, jedoch sind diese nun deutlich höhere Koeffizienten und somit auch höhere Frequenzen. Die Welch-Dichte ist auch ein Frequenzmaß bzw. zeigt die Leistung in einem bestimmten Frequenzband auf. In \tabref{tab:ds2-sample} sind für die verschiedenen Abtastraten die Frequenzen der Fourier-Koeffizienten aufgetragen. Für den größeren Teil der Daten mit einer Abtastrate von \SI{1}{\giga\hertz} liegen die \(f_k\) Frequenzen im mittleren zweistelligen MHz Berreich mit in den niedrigen dreistelligen MHz Bereich. Für die höhere Abtastrate liegen höhere Frequenzen im dreistelligen MHz Bereich vor. Diese Größenordnungen der Frequenz mit einer hohen Korrelation zur Zielvariable passen mit denen in \figref{fig:streamer_current_sliece} beobachteten Frequenzen der Vorläufersignatur zusammen. Das für eine höhere Abtastrate auch höhere Frequenz eine Rolle spielen, deutet darauf hin, dass besonders hohe Frequenz mehr über den Abstand hin zum Ereignis und somit auch über den sich thermalisierende Streamerkanal aussagen als niedrigere. Dies ermöglicht auch die These, dass mit einer noch höheren Abtastrate von mehr als \SI{2}{\giga\hertz} auch noch höhere Frequenz relevant werden und somit sich auch die Genauigkeit der Vorhersage verbessen könnte, wenn mit eine noch höheren Abtastrate solch Entladungen untersucht werden. 
+In \tabref{tab:ds2-features} sind die top 5 features mit den höchsten p-Werten des RandomForestRegressors dargestellt. Es fällt direkt auf, dass 4 von diesen Fourier-Koeffizienten entsprechen also wieder gewissen Frequenzen entsprechen, jedoch sind diese nun deutlich höhere Koeffizienten und somit auch höhere Frequenzen. Die Welch-Dichte ist auch ein Frequenzmaß bzw. zeigt die Leistung in einem bestimmten Frequenzband auf. In \tabref{tab:ds2-sample} sind für die verschiedenen Abtastraten die Frequenzen der Fourier-Koeffizienten aufgetragen. Für den größeren Teil der Daten mit einer Abtastrate von \SI{1}{\giga\hertz} liegen die \(f_k\) Frequenzen im mittleren zweistelligen MHz Berreich mit in den niedrigen dreistelligen MHz Bereich. Für die höhere Abtastrate liegen höhere Frequenzen im dreistelligen MHz Bereich vor. Diese Größenordnungen der Frequenz mit einer hohen Korrelation zur Zielvariable passen mit denen in \figref{fig:streamer_current_sliece} beobachteten Frequenzen der Vorläufersignatur zusammen. Das für eine höhere Abtastrate auch höhere Frequenz eine Rolle spielen, deutet darauf hin, dass besonders hohe Frequenz mehr über den Abstand hin zum Ereignis und somit auch über den sich thermalisierende Streamerkanal aussagen als niedrigere. Dies ermöglicht auch die These, dass mit einer noch höheren Abtastrate von mehr als \SI{2}{\giga\hertz} auch noch höhere Frequenzen relevant werden und somit sich auch die Genauigkeit der Vorhersage verbessen könnte, wenn mit einer noch höheren Abtastrate solche Entladungen untersucht würden. 
 
 \begin{table}[h!]
 \centering
@@ -318,9 +318,9 @@ $9.9999 \times 10^{-5}$  & 189 & \SI{1}{\giga\hertz} & $6,14 \times 10^{-7}$ & $
 In \figref{fig:all-event-slices} sind die Vorläufersignaturen der Ströme für die noch nicht betrachteten Datensätze DS3, DS4 und DS5 aufgetragen.
 Neben den Entladungen für die ein Ende der Vorläufersignatur bestimmt werden kann, liegen die meißten Signaturen so nahe am Start des Events, dass somit sich diese nicht für eine Vorhersage des Events bzw. des Abstandes eignen. Dieses Interval vor dem Eventstart eignet sich um zu untersuchen ob der Verlauf vor dem Start des Events sich eignet um Eigenschaften von diesem insbesondere die Eventlänge zu bestimmen. Es wird das Interval \SIrange{2e-9}{3e-8}{\second} aus \figref{fig:histogram-eventdistance} betrachtet. In \figref{fig:event_left_current_sliece} ist der Verlauf des Stroms in diesem Intervall dargestellt. Die Signaturen in diesem Intervall zeigen eine Frequenz von \SI{10}{\mega\hertz} in ihren Schwingungen. Die verschiedenen Ströme in der dargestellten Stichprobe folgen alle einer solchen Oszillation vor dem Eventstart. Für einige der Ströme sind noch Subschwingungen zuerkennen, die eine Frequenz von ca. \SI{100}{\mega\hertz} besitzen.  
 
-Neben der linken Region mit den kurzen Eventabständen aus \figref{fig:histogram-eventdistance} wird nun die rechte mit den längeren Eventabständen in dem Intervall \SIrange{3e-8}{1e-5}{\second} betrachtet. In \figref{fig:event-right-current_sliece} ist eine Stichprobe der Ströme in diesem Intervall vor dem Event dargestellt. Es sind num mehr Verläufe erkennbar, für die der Strom nicht mehr vollständig aufgelöst werden kann, beim Start des Events. Vor dem Eventstart. Der Verlauf des Stroms vor dem Event zeigt nun eine größere Varianz an Signaturen auf. Es liegen sowohl Oszillationen von \SI{10}{\mega\hertz} als auch von \SI{100}{\mega\hertz} vor. 
+Neben der linken Region mit den kurzen Eventabständen aus \figref{fig:histogram-eventdistance} wird nun die rechte mit den längeren Eventabständen in dem Intervall \SIrange{3e-8}{1e-5}{\second} betrachtet. In \figref{fig:event-right-current_sliece} ist eine Stichprobe der Ströme in diesem Intervall vor dem Event dargestellt. Es sind num mehr Verläufe erkennbar, für die der Strom nicht mehr vollständig aufgelöst werden kann, beim Start des Events. Der Verlauf des Stroms vor dem Event zeigt nun eine größere Varianz an Signaturen auf. Es liegen sowohl Oszillationen von \SI{10}{\mega\hertz} als auch von \SI{100}{\mega\hertz} vor. 
 
-Neben den durch die Histogramme in \secref{sec:eventdistance} motivierten Datensätzen wurde für den DS5 das Interval \SI{1}{\micro\second} vor dem Event selektiert. In \figref{fig:1mus-current-sliece} ist der Verlauf der Ströme in diesem Interval dargestellt. Wie zu erwarten ergeben sich sowohl Oszillationen, wie in den DS1-4 aber auch flache Verläufe, für die keine Vorläufersignaturen erkannt wurden. 
+Neben den durch die Histogramme in \secref{sec:eventdistance} motivierten Datensätzen wurde für den DS5 das Interval \SI{1}{\micro\second} vor dem Event selektiert. In \figref{fig:1mus-current-sliece} ist der Verlauf der Ströme in diesem Interval dargestellt. Wie zu erwarten liegen sowohl Oszillationen, wie in den DS1-4 aber auch flache Verläufe, für die keine Vorläufersignaturen erkannt wurden, vor. 
 
 
 \begin{figure}[H]
@@ -349,7 +349,9 @@ Neben den durch die Histogramme in \secref{sec:eventdistance} motivierten Datens
 \subsection{Datensatz DS1 und DS2}
 
 \subsubsection{DS1: Automatische Segmentierung}
-Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der das System durch diese gestört ist. In \figref{fig:prec_ts_event_duration_box} ist die Verteilung der Eventlängen dargestellt, sie liegen alle in einem Intervall von \SIrange{5}{20}{\micro\second} ohne dass ein linearer Trend ersichtlich ist.
+
+\subsubsection{Verteilung der Zielvariable}
+Die Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der das System durch diese gestört ist. In \figref{fig:prec_ts_event_duration_box} ist die Verteilung der Eventlängen dargestellt, sie liegen alle in einem Intervall von \SIrange{5}{20}{\micro\second} ohne dass ein linearer Trend ersichtlich ist. Somit scheint die Länge der auftretenden Entladungen unabhängig von dem vorliegenden Spaltabstand d. Der Vergleich mit der Verteilung der Vorläuferabstände zeigt, dass für die Eventlängen weniger Ausreißer vorliegen. Die Werte für die Spaltabstände \SI{8}{\milli\meter}, \SI{12}{\milli\meter} und \SI{13}{\milli\meter} liegen deutlich enger bei einander, haben also eine niedrigere Varianz. Dies liegt an der geringeren Anzahl an Entladungen die bei diesen Spaltabständen durchgeführt wurden und ist auch in den Verteilungen für die Vorläuferabstände zu erkennen. Anzumerken ist, dass für den Spaltabstand \SI{20}{\milli\meter} auch nur drei Entladungen vorliegen, die Verteilung der Eventlängen jedoch gut zu denen von \SI{7}{\milli\meter}, \SI{10}{\milli\meter} und \SI{11}{\milli\meter} passt.
 
 \begin{figure}[H]
     \centering
@@ -358,9 +360,13 @@ Der Länge einer Entladung ist von Intresse, da diese die Zeit bestimmt, in der 
       \label{fig:prec_ts_event_duration_box}
 \end{figure}
 
+
+\subsubsection{Modellperformance}
+
 \begin{table}[h!]
 \centering
 \caption{Model Performance für die Vorhersage der Eventlänge}
+\label{tab:event_duration_ds1}
 \resizebox{\textwidth}{!}{%
 \small
 \begin{tabular}{l c c c c c}
@@ -375,11 +381,36 @@ MLP & Eventlänge & 0,17 & $1{,}33 \times 10^{-11}$ &  \\
 \end{table}
 
 
+\begin{table}[h!]
+\centering
+\caption{Modell Performance für die Vorhersage der Eventlänge für den modifizierten DS1}
+\label{tab:event_duration_ds1_mod}
+\resizebox{\textwidth}{!}{%
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Modell} & \textbf{Zielgröße} & $\mathbf{R^2}$ & $\mathbf{MSE}$ & $\mathbf{RMSE}$ & $\mathbf{MAE}$ \\
+\midrule
+Random Forest & Eventlänge & 0,466 & $1{,}13 \times 10^{-11}$ & $3{,}37 \times 10^{-6}$ & $2{,}39 \times 10^{-6}$ \\
+SVR           & Eventlänge & 0,461 & $1{,}15 \times 10^{-11}$ & $3{,}38 \times 10^{-6}$ & $2{,}58 \times 10^{-6}$ \\
+Gradient Boosting & Eventlänge & 0,414 & $1{,}24 \times 10^{-11}$ & $3{,}53 \times 10^{-6}$ & $2{,}63 \times 10^{-6}$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+\subsubsection{Analyse}
+
+In \tabref{tab:event_duration_ds1} sind die Ergebnisse der Modelle für den DS1 Datensatz mit der Zielvariable der Eventlänge dargestellt. Das beste Modell ist hier, dass Multi Layer Perceptron (MLP), also ein kleines neuronales Netz, mit einem \(R^2 = 0,17\). Somit kann kann dieses etwa 17\% der Varianz der Zielverteilung der Eventlänge beschreiben. Interessant ist hier, dass der \(R^2\) Wert hier in der gleichen Größenordnung liegt, wie die des modifizierten DS1 Datensatzes aus \tabref{tab:prec_distance_filtered}. Die Betrachtung von \tabref{tab:event_duration_ds1_mod} zeigt jedoch, dass wenn wie in \ref{tab:prec_distance_filtered} der DS1 modifiziert wird und Modelle auf diesen für die Eventlänge trainiert werden, dass das Beste Modell nun der RandomForestRegressor mit einem \(R^2 = 0,466\) ist. Somit lässt sich die Eventlänge sowohl für den vollständigen DS1 besser als den Vorläuferabstand vorhersagen, diese Vorhersage wird aber noch deutlich besser für den modifizierten DS1, für den minimale Vorläuferabstände von \SI{1}{\micro\second} vorausgesetz werden. 
+
+
+
 
 \subsubsection{DS2: Manuelle Streamer-Segmentierung}
 
-Die Eventlänge verteilt sich über ein Intervall von \SIrange{5}{22}{\micro\second} für diese Teilmenge der Entladungen. Es ist kein offensichlicher Trend in den Daten zuerkennen, somit ist auch hier von intresse wie gut diese Daten durch statistische Modelle beschrieben werden können. In \tabref{tab:streamer_event_duration} sind die Ergebnisse von verschiedenen Modellen dargestellt. Das beste Modell für diese Zielvariable ist das SVR bei einer Wahl von den top \(200\) Featuren. Ein \(R^2 = 0,372\) zeigt, dass das beste Modell nur 37\% der Varianz der Eventlänge wiedergeben kann. Ein MAE von \SI{2,01}{\micro\second} zeigt jedoch, dass der mittlere Fehler im Vergleich zum Interval der Zielvariable eher klein ist. Die Mittelwerte der Eventlänge liegen in einem Intervall von \SI{7}{\micro\second}, so dass das Verwendete Modell, zumindest die Eventlänge eingrenzen kann. Ein weiterer Blick auf die Modelle zeigt, dass der MAE für den Random Forest Regressor der kleinste ist mit einem Werte von \SI{1,94}{\micro\second}, somit zeigt diese dass der \(R^2\) nicht die einzige Metrik ist die zu beachten ist.
-
+\subsubsection{Verteilung der Zielvariable}
+Die Eventlänge verteilt sich über ein Intervall von \SIrange{5}{22}{\micro\second} für diese Teilmenge der Entladungen. Es ist kein offensichlicher Trend in den Daten zuerkennen, somit ist auch hier von intresse wie gut diese Daten durch statistische Modelle beschrieben werden können. 
 \begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_streamer_hand_event_duration_box.pdf}
@@ -389,6 +420,7 @@ Die Eventlänge verteilt sich über ein Intervall von \SIrange{5}{22}{\micro\sec
 
 
 
+\subsubsection{Modellperformance}
 \begin{table}[h!]
 \centering
 \caption{Model Performance für die Vorhersage der Eventlänge}
@@ -411,16 +443,26 @@ SVR (k=200) & Eventlänge & 0,372 & $6{,}48 \times 10^{-12}$ & $2{,}55 \times 10
 }
 \end{table}
 
+
+\subsubsection{Analyse}
+In \tabref{tab:streamer_event_duration} sind die Ergebnisse von verschiedenen Modellen dargestellt. Das beste Modell für diese Zielvariable ist das SVR bei einer Selektion von den top \(200\) Featuren. Ein \(R^2 = 0,372\) zeigt, dass das beste Modell ca. 37\% der Varianz der Eventlänge wiedergeben kann. Ein MAE von \SI{2,01}{\micro\second} zeigt, dass der mittlere Fehler im Vergleich zum Interval der Zielvariable eher klein ist. Die Mittelwerte der Eventlänge liegen in einem Intervall von ca. \SI{7}{\micro\second}, so dass das verwendete Modell, die Eventlänge eingrenzen kann. Ein weiterer Blick auf die Modelle zeigt, dass der MAE für den Random Forest Regressor der kleinste ist mit einem Werte von \SI{1,94}{\micro\second}, somit zeigt diese dass der \(R^2\) nicht die einzige Metrik ist die zu beachten ist. Der Vergleich mit dem DS1 zeigt, dass für den DS2-Streamer-Datensatz sich die Eventlänge schlechter vorhersagen lässt. Dies was für den DS1 umgekehrt. Zu beachten ist, dass in dem Streamer Datensatz mehr Vorläufer vorliegen die einen höheren Vorläuferabstand besitzen als in DS1. Somit lässt sich diese andere Performance für eine Eventeigenschaft damit erklären, dass die Selektierten Feature soweit vor dem Eventliegen, dass diese weniger über diese Aussagen können und primär die Thermalisierung des Leitungskanals voraussagen können. Die umgekehrte Performance des DS1 lässt sich damit erklären, dass in diesem mehr dicht an dem Event liegene Signaturen vorliegen, die stärker mit dessen Eigenschaften korrelieren.
+
+
+
 \subsection{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
 
-In \figref{fig:event_left_event_duration_box} ist die Verteilung der Eventlängen für den Datensatz dargestellt. Sie liegen in einem Intervall von \SIrange{3}{30}{\micro\second}, wobei die Mittelwerte für die einzenlen Spaltabstände in einem Interval von \SIrange{7}{20}{\micro\second} liegen. Der Vergleich mit \figref{fig:streamer_hand_event_duration_box} zeigt, dass die maximale Länge die ein Event annehmen kann, für diesen Datensatz etwa \SI{10}{\micro\second} größer ist. Diese längeren Events treten für die Spaltabstände \SIrange{6}{7}{\milli\meter} auf, wobei die \SI{6}{\milli\meter} in dem Streamer Datensatz nicht vorhanden war. Somit deutet das darauf hin, dass längere Vorläufersignaturen nicht auch einem längeren Event entsprechen. In \tabref{tab:short_event_duration} sind verschiedene Modelle mit deren Metriken für diese Zielvariable dargestellt. Das mit Abstand am besten perfromente Modell ist der Random Forest mit den top 100 Featuren. Mit einem \(R^2 = 0,72\) und insbesondere einem MAE von \SI{0,69}{\micro\second} ist es das beste Modell. Insbesondere dieser kleine MAE für ein solch Großes Interval der Zielvariable ist beeindruckend gut. Dies deutlich bessere Performance als für den Streamer Datensatz ist jedoch auffällig. Eine Erklärung ist, dass diese Features direkt vom Start des Events stammen und somit Features der Form des Eventstart beinhalten und somit Auskunft geben über die Form und den Typen dieses Events. Somit zeigt dies insbesondere das die verschiedenen Längen eines solchen Entladungsevents auch zu verschiedenen Formen gehöhren.
+\subsubsection{Verteilung der Zielvariable}
 
+In \figref{fig:event_left_event_duration_box} ist die Verteilung der Eventlängen für den Datensatz dargestellt. Sie liegen in einem Intervall von \SIrange{3}{30}{\micro\second}, wobei die Mittelwerte für die einzenlen Spaltabstände in einem Interval von \SIrange{7}{20}{\micro\second} liegen. Der Vergleich mit \figref{fig:streamer_hand_event_duration_box} zeigt, dass die maximale Länge die ein Event annehmen kann, für diesen Datensatz etwa \SI{10}{\micro\second} größer ist. Diese längeren Events treten für die Spaltabstände \SIrange{6}{7}{\milli\meter} auf, wobei die \SI{6}{\milli\meter} in dem Streamer Datensatz nicht vorhanden war. Somit deutet das darauf hin, dass längere Vorläufersignaturen nicht auch einem längeren Event entsprechen. 
 \begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_left_peak_event_distance_ts_auto_event_duration_histo.pdf}
       \caption{Verteilung der Eventlänge}
       \label{fig:event_left_event_duration_box}
 \end{figure}
+
+
+\subsubsection{Modellperformance}
 
 \begin{table}[h!]
 \centering
@@ -444,12 +486,16 @@ ElasticNet & Eventlänge & 0,49 & $1{,}95 \times 10^{-11}$ &  $4{,}42 \times 10^
 \end{table}
 
 
+\subsubsection{Analyse}
+In \tabref{tab:short_event_duration} sind verschiedene Modelle mit deren Metriken für diese Zielvariable dargestellt. Das am besten perfromente Modell ist der Random Forest mit den top 100 Featuren. Mit einem \(R^2 = 0,72\) und insbesondere einem MAE von \SI{0,69}{\micro\second} ist es das beste Modell. Insbesondere dieser kleine MAE für ein solch Großes Interval der Zielvariable ist beeindruckend gut. Diese deutlich bessere Performance als für die DS1-2 ist interessant. Eine Erklärung ist, dass diese Features direkt vom Start des Events stammen und somit zum einem mit diesem stärker korrelieren und zum anderen Features der Form des Eventstart beinhalten und somit Auskunft geben über die Form und den Typen dieses Events. Somit zeigt dies insbesondere das die verschiedenen Längen eines solchen Entladungsevents auch zu verschiedenen Formen bzw. Startverläufen gehöhren.
+
 
 
 \subsection{DS4: Automatische segmentierte Vorläufer im Interval \SIrange{3e-8}{1e-5}{\second}}
 
-In \figref{fig:event_right_event_duration_box} ist die Verteilung der Eventlängen gegen die Spaltabstände aufgetragen. Die Eventlängen liegen in einem Interval von \SIrange{7}{50}{\micro\second} der Vergleich mit den \figref{fig:event_left_event_duration_box} und mit \figref{fig:streamer_hand_event_duration_box} zeigen, dass somit für diesen Datensatz die Größten Eventlängen vorliegen. In dem Boxplot ist jedoch zu erkennen, dass diese Werte über \SI{30}{\micro\second} als Ausreißer makiert wurden. Somit sind nur einzelne Entladungen so viel länger. Die Mittelwerte der Eventlängen in einem Interval von \SIrange{7}{22}{\micro\second} liegen und somit in einem Bereich wie für die anderen Datensätze. In \tabref{tab:long_event_duration} sind die Ergebnisse verschiedener statistischer Modelle für die Eventlänge dargestellt. Der Random Forest ist wie auch schon für \secref{sec:short_event_duration} das am bestem performende Modell. Auch der \(R^2 = 0,73\) stimmt mit dem \(R^2 = 0,72\) des Datensatzes mit den kurzen Eventabständen überein. Nur der MAE ist mit \SI{2,53}{\micro\second} deutlich größer. Jedoch unterscheiden sich auch der RMSE mit \SI{3,56}{\micro\second} und der RMSE des anderen Datensatzes mit \SI{3}{\micro\second} nicht sonderlich von einander. Diese ähnliche Performance des Modells für diese beiden verschiedenen Datensätze, die keinen Überlapp haben, deutet darauf hin, wie auch schon in \secref{sec:short_event_duration}, dass für die Vorhersage von Eventeigenschaften, nicht die vorlaufenden Ströme relevant sind, sonder der mit im Datensatz vorhandene Start des Events. Zum dem folgt daraus, dass die beiden Datensätze in der Form der Evente ähnlich sind. Dies war auch mit der statistischen Natur dieser Event zu erwarten.
+\subsubsection{Verteilung der Zielvariable}
 
+In \figref{fig:event_right_event_duration_box} ist die Verteilung der Eventlängen gegen die Spaltabstände aufgetragen. Die Eventlängen liegen in einem Interval von \SIrange{7}{50}{\micro\second} der Vergleich mit den \figref{fig:event_left_event_duration_box} und mit \figref{fig:streamer_hand_event_duration_box} zeigen, dass somit für diesen Datensatz die Größten Eventlängen vorliegen. In dem Boxplot ist jedoch zu erkennen, dass diese Werte über \SI{30}{\micro\second} als Ausreißer makiert wurden. Somit sind nur einzelne Entladungen so viel länger. Die Mittelwerte der Eventlängen liegen in einem Interval von \SIrange{7}{22}{\micro\second} und somit in einem Bereich wie für die anderen Datensätze. 
 \begin{figure}[H]
     \centering
       \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_distance_ts_auto_event_duration_histo.pdf}
@@ -457,6 +503,8 @@ In \figref{fig:event_right_event_duration_box} ist die Verteilung der Eventläng
       \label{fig:event_right_event_duration_box}
 \end{figure}
 
+
+\subsubsection{Modellperformance}
 
 \begin{table}[h!]
 \centering
@@ -476,6 +524,12 @@ SVR & Eventlänge & 0.32 & $3.16 \times 10^{-11}$ & $5.62 \times 10^{-6}$ & $4.1
 \end{tabular}%
 }
 \end{table}
+
+
+\subsubsection{Analyse}
+In \tabref{tab:long_event_duration} sind die Ergebnisse verschiedener statistischer Modelle für die Eventlänge dargestellt. Der Random Forest ist wie auch schon für \secref{sec:short_event_duration} das am bestem performende Modell. Auch der \(R^2 = 0,73\) stimmt mit dem \(R^2 = 0,72\) des Datensatzes mit den kurzen Eventabständen überein. Nur der MAE ist mit \SI{2,53}{\micro\second} deutlich größer. Jedoch unterscheiden sich auch der RMSE mit \SI{3,56}{\micro\second} und der RMSE des anderen Datensatzes mit \SI{3}{\micro\second} nicht sonderlich von einander. Diese ähnliche Performance des Modells für diese beiden verschiedenen Datensätze, die keinen Überlapp haben, deutet darauf hin, wie auch schon in \secref{sec:short_event_duration}, dass für die Vorhersage von Eventeigenschaften, nicht die vorlaufenden Ströme relevant sind, sonder der mit im Datensatz vorhandene Start des Events. Zu dem folgt daraus, dass die beiden Datensätze in der Form der Evente ähnlich sind. Dies war auch mit der statistischen Natur dieser Events zu erwarten.
+
+
 
 
 
