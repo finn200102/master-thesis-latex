@@ -1,17 +1,37 @@
 \section{Beobachtete Entladungstypen}
-Für die aufgenommenen Entladungen liegen jeweils der Druck \(p\) als auch der Spaltabstand \(d\) vor, somit lässt sich mit der Entladungspannung \(U_B\) das Paschengesetz plotten. In \figref{fig:paschencurvestab} ist die Paschenkurve für die Stabelektrode geplottet und in \figref{fig:paschencurveplate} ist dies für die Plattenelektrode geplottet. Es ist zu erkennen das sich nicht eine einzelnen Paschenkurve ergibt auf der alle Punkte liegen, sonder verschiedene horizontal verschobene Kurven. Die Einfärbung der Punkte zeigt, dass sich die einzelnen Teilkurven durch den bei der Messung verwendeten Spaltabstand unterscheiden. Dieser Unterschied zwischen den Kurven bei verschiedenen Spaltabständen ist nicht verwunderlicht, da wie in \secref{sec:paschenlaw} erläutered \eqref{eq:townsendbreak} vernachlässigt, dass das Feld nicht für alle Elektrodengeometrien gleichförmig ist sondern insbesondere eine Änderung am Spaltabstand \(d\) zu einer Änderung des Felder führt und so auch zu einer anderen Kurve. Ein Vergleich mit \figref{fig:paschencurve} zeigt, dass nur die linke Hälft der Paschenkurve wiedergegeben wurde, also die Werte von \(pd\) in den Messungen rechts neben dem Paschenminimum liegen. Ein Blick auf die Werte des Spaltabstandes \(\SI{1}{\milli\meter}\) zeigt zwei Kurven die jedoch als die linke und rechte Hälft der Paschenkurve interpretiert werden könnten. In \figref{fig:paschencurvestab1g} sind diese Werte alleine dargestellt mit einem Fit, der Paschen ähnlich ist.
+Für die aufgenommenen Entladungen liegen jeweils der Druck \(p\) als auch der Spaltabstand \(d\) vor, somit lässt sich mit der Entladungspannung \(U_B\) das Paschengesetz plotten. In \figref{fig:paschencurvestab} ist die Paschenkurve für die Stabelektrode geplottet und in \figref{fig:paschencurveplate} ist dies für die Plattenelektrode geplottet. Es ist zu erkennen das sich nicht eine einzelnen Paschenkurve ergibt auf der alle Punkte liegen, sonder verschiedene horizontal verschobene Kurven. Die Einfärbung der Punkte zeigt, dass sich die einzelnen Teilkurven durch den bei der Messung verwendeten Spaltabstand unterscheiden. Dieser Unterschied zwischen den Kurven bei verschiedenen Spaltabständen ist nicht verwunderlicht, da wie in \secref{sec:paschenlaw} erläutered \eqref{eq:townsendbreak} vernachlässigt, dass das Feld nicht für alle Elektrodengeometrien gleichförmig ist sondern insbesondere eine Änderung am Spaltabstand \(d\) zu einer Änderung des Felder führt und so auch zu einer anderen Kurve. Ein Vergleich mit \figref{fig:paschencurve} zeigt, dass nur die rechte Hälft der Paschenkurve wiedergegeben wurde, also die Werte von \(pd\) in den Messungen rechts neben dem Paschenminimum liegen. Ein Blick auf die Werte des Spaltabstandes \(\SI{1}{\milli\meter}\) zeigt zwei Kurven, diese könnten als die linke und rechte Hälfte der Paschenkurve interpretiert werden, jedoch würde diese nicht der Form der Paschenkurve aus \figref{fig:paschencurve} entsprechen, es könnten jedoch durch mehrere Messungen zwischen denen dieser Spaltabstandden geändert wurde, sich zwei verschiedene Geometrien ergeben. Neben den unskalierten Paschenkurve wurde die skalierte Version mit einem geometrischen Faktor skaliert. Dieser ist für die Plattenelektroden \(\frac{A_{elec}{d^2}}\) und für die Stabelektrode vereinfachend \(\frac{1}{d^2}\). Es zeigt sich, dass ein zu \(\frac{1}{d^2}\) proportionaler Skalierungsfaktor nicht zu einer einzelnen Paschenkurve führt. Die nicht linearität des elektrischen Feldes müsste also weiter untersucht werden um die entsprechende Skalierungs zufinden, die die einzelnen Kurven in einer kombinieren würde.
 
-  \begin{figure}[H]
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{../figures/classes/paschen_electrodes.pdf}
-    \caption{Paschenkurve für die Stabelektrode}
-    \label{fig:paschencurvestab}
-  \end{figure}
-
-  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{../figures/classes/paschen_electrodes.pdf}
+    \caption{Original}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
     \centering
-    \includegraphics[width=0.9\textwidth]{../figures/classes/paschen_plates.pdf}
-    \caption{Paschenkurve für die Plattenelektrode}
-    \label{fig:paschencurveplate}
-  \end{figure}
+    \includegraphics[width=\textwidth]{../figures/classes/paschen_electrodes_scaled.pdf}
+    \caption{Skaliert}
+  \end{subfigure}
+  \caption{Paschenkurve für die Stabelektrode}
+  \label{fig:paschencurvestab}
+\end{figure}
 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{../figures/classes/paschen_plates.pdf}
+    \caption{Original}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{../figures/classes/paschen_plates_scaled.pdf}
+    \caption{Skaliert}
+  \end{subfigure}
+  \caption{Paschenkurve für die Plattenelektrode}
+  \label{fig:paschencurveplate}
+\end{figure}

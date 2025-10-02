@@ -68,10 +68,10 @@ Wenn in dem Vektor der erklärenden Variablen X viele miteinander korrelierte We
 \text{RSS}_{\text{Ridge}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}\beta_j^2
 \label{eq:rss-ridge}
 \end{equation}
-Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge-Regression der Lineareregression. Größere Werte von \(\lambda \) reduzieren die Größe der Koeffizienten.
+Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge-Regression der Lineareregression. Größere Werte von \(\lambda \) reduzieren die Größe der Koeffizienten. \cite{Hastie2009}
 
 \subsubsection{Lasso Regression}
-Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting.
+Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting. \cite{Hastie2009}
 
 \begin{equation}
 \text{RSS}_{\text{Lasso}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}|\beta_j|
@@ -79,7 +79,7 @@ Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn
 \end{equation}
 
 \subsubsection{Elastic Net}
-Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch die Verwendung beider Regressionsterme.
+Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch die Verwendung beider Regressionsterme. \cite{Hastie2009}
 
 \begin{equation}
 \text{RSS}_{\text{Elastic Net}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda_1 \sum_{j=1}^{p}|\beta_j| + \lambda_2 \sum_{j=1}^{p}\beta_j^2
@@ -97,7 +97,7 @@ Wenn nicht lineare Zusammenhänge vorliegen, eignen sich lineare Modelle nicht m
 \label{eq:reg-tree}
 \end{equation}
 
-Die Optimierung erfolgt, durch die Minimierung der Summe der quadratischen Abweichungen in den Teilregionen bestimmt. Die gute Interpretierbarkeit muss mit der hohen Varianz und der Neigung zum Overfitting abgewogen werden.
+Die Optimierung erfolgt, durch die Minimierung der Summe der quadratischen Abweichungen in den Teilregionen bestimmt. Die gute Interpretierbarkeit muss mit der hohen Varianz und der Neigung zum Overfitting abgewogen werden. \cite{Hastie2009}
 
 \subsubsection{Random Forest}
 Um das Overfitting und die Varianz eines einzelnen Baumes zu verbessern, wird der Random Forest verwendent, dieser ist ein Ensemble-Verfahren, das die finale Vorhersage von mehren einzel Bäumen kombiniert \ref{eq:reg-random}. Es werden zwei Randomisierungsstrategien verwendet, zum einem eine bootstrap Aggregation (Bagging), also jeder Baum wird auf einer Bootstrap-Stickprobe der Trainingsdaten trainiert und zum anderen die Feature Randomisierung, es wird in jeder Aufteilung des Merkmalsraums nur eine Teilmenge von den Variablen betrachtet. 
@@ -107,7 +107,7 @@ Um das Overfitting und die Varianz eines einzelnen Baumes zu verbessern, wird de
   \label{eq:reg-random}
 \end{equation}
 
-Der Random Forest eignet sich als gute Wahl für viele Regressionsaufgaben, die nicht linear sind, jedoch ist dieser weniger Interpretierbar als, ein einzelner Entscheidungsbaum.
+Der Random Forest eignet sich als gute Wahl für viele Regressionsaufgaben, die nicht linear sind, jedoch ist dieser weniger Interpretierbar als, ein einzelner Entscheidungsbaum. \cite{Hastie2009}
 
 \subsection{Gradient Boosting}
 Neben dem Random Forest, also der Wahl von mehren tiefen Bäumen, lassen sich auch schwache Lerner, z.B. flache Entscheidungsbäume verwenden. Dabei baut das Gradient Boosting Model sequenziell solche schwachen Lerner auf, wobei neue weitere Bäume die Fehler der vorheringen Iteration korrigieren. Es wird iterativ eine Verlustfunktion minimiert:
@@ -116,7 +116,7 @@ Neben dem Random Forest, also der Wahl von mehren tiefen Bäumen, lassen sich au
   \label{eq:reg-grad}
 \end{equation}
 
-Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hzperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. 
+Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hzperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. \cite{Hastie2009}
 
 
 % Clustering Verfahren kmeans, hdbscan, pca

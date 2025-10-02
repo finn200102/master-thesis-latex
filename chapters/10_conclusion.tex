@@ -2,4 +2,87 @@
 \label{chap:conclusion}
 
 
+\section{Hauptergebnisse im Überblick}
 
+\subsection{Datensatz}
+Es wurden die Dynamiken von 12708 Entladungen unter verschiedenen Zeitauflösungen aufgezeichnet. Es wurden verschiedene Kombinationen der Parameter des Spaltabständes d, des Druckes p, somit auch der Durchbruchspannung \(U_B\) und der zwei Elektroden Geometrien untersucht. Es wurden drei Kategorien an Daten aufgenommen, Entladungen die mit einer sehr hohen zeitlichen und einer hochen Stromauflösung untersucht wurden, mehrere Entladungen die zusammen aufgezeichnet wurden und einzelne Entladungen, die für verschiede zeitliche Auflösungen untersucht werden, jedoch mit einer Stromauflösung, für die das Event noch aufgezeichnet werden konnte. Es konnten Eigenschaften der Entladungen wie dem Eventstart und Ende als auch bei auftretenden Vorläufersignaturen deren Start und Ende definiert werden. Diese Definition gelingt gut mit automatsch gesetzten Grenzen, die auf Abweichungen vom Mittelwert des Stroms basieren. 
+
+\subsection{Entladungsverteilung, Eventeigenschaften}
+Die Verhältnisse der Produktes des Druck p und des Spaltabstandes d \(pd\) und der Durchbruchspannung \(U_B\) wurde untersucht. Es ergaben sich die typischen Verläufe der Paschenkurve, hierbei lagen jedoch die Punkte der verschiedenen Spaltabstände auf unterschiedlichen entlang der \(pd\) getrennten Kurven. Diese Abweichung auf die Ungleichförmigkeit des elektrischen Feldes zwischen den zwei Elektroden zurückzuführen,da eine Änderung von d zu einer Änderung der Geometrie des Systems führt. \ref{sec:paschenlaw} 
+Die Betrachtung der Eventeigenschaften der Eventladung und der Eventenergie zeigt, dass entlang der Spaltabstände kein klarer Trend vorliegt, also sich die übertragende Energie als auch der Ladung weitestgehened unabhängig von dem Spaltabständen ist in dem untersuchten Interval \SIrange{1}{20}{\milli\meter}. Die Betrachtung der Durchbruchspannung entlang der Spaltabstände zeigt einen Trend von kleinen Durchbruchspannungen bei kleinen Spaltabständen hinzu großen Durchbruchspannung bei großen Spaltabständen, es tritt jedoch ab ca. \SI{10}{\kilo\volt} eine Sättigung auf. Auch die Differenz zwischen der anfänglichen und der Endspannung zeigt vergleichbaren Trend entlang der Spaltabstände auf. Die Eventlänge zeigen einen Trend von längeren Events hin zu kürzeren Events entlang der Spaltabstände auf, dies ist jedoch damit zu erklären, dass für die Messungen der kleinen Spaltabstände besonders viele Aufnahmen mit einer niedrigen zeitlichen Auflösung durchgeführt wurden. 
+
+
+\subsection{Entladungsformen}
+Für die verschiedenen einzel Entladungen ergeben sich verschiedene Formen, diese wurden in \secref{sec:dischargeforms} diskutiert. Es ergaben sich Entladungen mit klaren exponentiellen Charakter, also mit einer exponentiellen Dämpfung nach der Hauptentladung, aber auch Entladungen die um die Null oszillieren. 
+
+
+\subsection{Eventstart}
+
+\subsubsection{Eventabstände, Vorläuferabstände}
+Die Betrachtung der Eventabstände als auch der Vorläuferabstände, für die Entladungen für die diese Größen definiert werden konnten, zeigt die Verteilung dieser Größen auf. Für die Eventabstände ergeben sich zwei Verteilungen eine von \SIrange{2e-9}{3e-8}{\second} und eine von \SIrange{3e-8}{1e-5}{\second}. Es liegen also Vorläufersignaturen in einem Bereich von einigen \SI{100}{\nano\second} bis zu einigen \SI{1}{\micro\second} aber auch welche die nur einige \SI{10}{\nano\second} vom Eventstart entfernt sind vor. Die Entwicklung der Eventabstände entlang der Spaltabstände ist exponentielle, also für größere Spaltabstände liegen auch längere Eventabstände vor \ref{fig:histogram-eventdistance}. Die Vorläuferabstände, für die die Länge der Vorläufersignaturen größer als \SI{10}{\nano\second} sind, liegen in einem Interval von \SIrange{0,1}{10}{\micro\second} vor, also ähnlich wie die rechte Verteilung der Eventlänge. Auch für diese liegt ein exponentieller Trend entlang der Spaltabstände vor. 
+
+\subsubsection{event_startdynamik}
+Die Betrachtung des Eventstartes und des Stroms um bzw. vor diesem führt zu der Erkenntnis, dass es drei Kategorien an Eventstarts vorliegen. Es liegen Eventstarts vor für die es keine Vorläufersignaturen gibt und es zu einem exponentiellen Anstieg kurz vor der Hauptentladung kommt, es gibt Entladungen die eine kurze kleine Signatur vor dem Start des Events haben, die direkt in dieses übergeht und es gibt Entladungen für die diese Signatur bis zu einigen \SI{1}{\micro\second} vor dem Event liegt und von diesem klar getrennt ist. \secref{sec:event_startdynamik}
+
+\subsubsection{Eventanstieg, Eventabfall}
+Es wurde ein exponentielles Modell sowohl für den Anstieg der Entladung als auch den Abfall dieser verwendet. Der Abfall wurde für eine Aufnhame mit mehreren Entladungen untersucht um die zeitliche Evolution der Parameter zu untersuchen. Ein solches exponentielles Modell kann den Anstieg der Entladungen gut beschreiben und es ergaben sich somit drei fit Parameter, mit denen die stärke des Anstiegs als auch der Grundpegel vor der Entladung untersucht werden konnte. Es zeigt sich, dass insbesondere die Entladungen für die der Strom nicht mehr vollständig aufgezeichnet wurden konnte, besonders gut beschrieben werden konnten in diesem Regime. Die Untersuchung des Abfalls des Stroms zeigte, dass auch hier das exponentielle Modell diesen gut beschreiben kann, es jedoch qualitative Abweichungen von diesem gibt. Es ergibt sich eine  zeitliche Evolution der Fitparameter für Entladungen die direkt hinter einander durch geführt werden, so dass die Werte wie die Ladung Q, der Widerstand, also auch die Kapazität des Systems größer wird für jede folge Entladung.
+
+\subsection{Vorhersage}
+Aus den so betrachteten Verteilungen der Vorläuferabstände und der Eventabstände ergaben sich 4 Datensätze die definiert wurden. Für diese wurden die Vorläuferabstände und die Eventlänge als Regressionsziel gesetzt. Für die Untersuchung dieser wurden 5 Hypothesen aufgestellt. Es folgt, dass sich die Eventeigenschaften wie die Eventlänge mit Features direkt vor dem Eventstart gut vorhersagen lassen und dass sich der Vorläuferabstand für streamer artige Vorläufersignaturen ebenfalls mit Modellen modelieren lässt. Hierbei ergab sich dass nicht lineare Modelle insbesondere der Randomforest sich gut für diese Regressionsaufgaben eignen. 
+
+
+
+\section{Physikalische Bedeutung der Vorläufersignaturen}
+
+\subsection{Zeitskalen und Regime-Grenzen}
+% 1mus schwelle, thermaliseirung direkte, streamer entladung
+Die Regression der Vorläuferabstände für den DS1 und DS2 ergab, dass ein gewisser Abstand zwischen dem Eventstart und dem Ende des Vorläufers vorliegen muss, damit sich der Abstand hinzum Event sich modelieren lässt. Die Vorläufersignaturen die direkt in das Event übergehen eignen sich nicht zur Vorhersage dieses Abstandes. Im Kontext von DS2 mit den händisch ausgewählten Entladungen die streamer ähnlich sind, konnte mit den Features der Signatur etwa 55\% der Varianz der zeitliche Länge der folgenden Thermalisierung des Kanals beschreiben werden. Die besten Features für diese Regression waren fft-Koeffizienten die verschiedenen Frequenzen entsprechen, somit korrelieren die auftretenden Schwingungen mit diesen Frequenzen in dem Start der Vorläufersignatur mit der benötigten Länge der Thermalisierung des Kanals.
+
+\subsection{MHz-Oszillationen als Kanaldiagnostik}
+% Features aus Streamer start korreleation mit thermaliseirung
+Diese auftretenden Schwingungen eignen sich somit zur Diganostik des folgenden Kanals. Für die verwendete Untersuchung wurde der Start mit den klaren Schwingungen verwendet und der Rest des Abstandes und somit des Vorläufers als Regressionsziel verwendet. Eine weitere Untersuchung des Kanals selbt wäre interessant, also ob auch in diesem noch schwächere Schwingungen auftreten, die sich eignene könnten um die noch zu benötigende Zeit der Thermalisierung zu bestimmen. Es könnten auch weitere Messsysteme verwendet werden, die z.B. eine optische Untersuchung z.B. mit einem Hochgeschwindigkeitskamera und einem Spektroskop. 
+
+\section{Grenzen des Ansatzes}
+% Zeitaufl'sung 1 vs 2 gsa, nur in luft bei gewissen drücken durchgeführt, nur mache geometrien, datensatz nicht gut gewichtet, ausreißer, fits zeigen 1qualitative abweichugnen
+Die durchgeführt Untersuchung war durch die mögliche Auflösung des verwendeten Oszilloskops begrenzt. Es zeigte sich dass die relevanten Frequenzen für die Messungen mit einer höheren Abtastrate größer wurden, also höhere Frequenzen relevant wurden. Somit ist die Annahme, dass eine Untersuchung von > 2Gsa auch zu höheren relevanten Frequenzen führen würde und so auch zu einer potentiell besseren Modelierung des Systems. 
+Es wurden zudem nur ein kleinere Bereich der möglichen Parameter untersucht, insbesondere für den Druck konnte mit dem verwendeten Drucksensor nur ein kleiner Bereich abgefahren werden. Die systematisch Untersuchung von weiteren Spaltabständen, Drücken als auch so der größeren Statistik würden zu weitern Ergebnissen führen. 
+
+
+\section{Perspektiven für Forschung und Anwedung}
+
+\subsection{Auflösung höherer Zeitskalen}
+% Höhere Abtastraten (pico seconds), Charakterisirung der GHz kompontent nun, Verbesserung der fits
+Für die weitere Forschung könnte neben einer systematischen Studie des Parameterraums auch die Vorläufer nicht nur im \SI{1}{\nano\second} Bereich sonder auch im \SI{1}{\pico\second} Bereich untersucht werden. Die auftretenden Frequenzen könnten weiter charakterisiert werden, also wie sich diese über die Spaltabstände, Entladungtypen etc ändern untersucht werden. 
+
+\subsection{Systematische Parameterstudien}
+% Variationen des Gases (Edelgases gemische etc), druck, temp, feuchtigkeit
+% Geometische Konfiguratio;abweichugnen
+% Mehrfachentladugnen
+Wie schon erwähnt könnte eine ausführliche Parameterstudie zu einem besseren Verständis der auftretenden Phänomene führen. Neben den schon diskutierten Parametern könnten auch weiter wie die Umgebung, also insbesondere dem verwendeten Gas, aber auch der Temperatur von diesem oder auch der Feuchtigkeit von diesem weiter untersucht werden. Die verwendeten Geometrien könnten auch ausgeweitet werden um zum einem weitere Geometrien der Elektroden zu untersuchen aber auch eine höhere Variation innerhalb der Elektrodenklassen, wie verschiedene Krümmungsradien zu untersuchen. Eine solche große Studie könne mit einem Upgrade des Aufbaus erreicht werden. Durch die Verwendung eines automatischen Vetils und einer in einem weitern Druckbereich funktionierenden Druckmesskopf ermöglichen die automatische justierung des Drucks im System. Dazu kann ein digital ansteurbares Netzteil zum einenem den automatischen Betrie ermöglichen als auch insbesondere kleinere Spannungsschritte ermöglichen unter insbesondere die Übertritte der Paschenkurve von beiden Seiten untersuchen. Auch der Einbau von weiteren Sensoren, wie z.B. einer Hochgeschwindigkeitskamera würde eine weitere Untersuchung der Dynamik der z.B. Streamerbildung ermöglichen. 
+
+%\subsection{Erweitere Modellierungsansätze}
+% Physical Informed NN tau, R, C 
+% Kausalanalzse Zusammenhang zwischen Tau änderung und nachfolgendne Mehrfachentladugnen
+% Hybrid modelle Fit und ML für abweichugenn
+
+\subsection{Technische Implementierung}
+% Echtzeit vorhersage mit zeitfenseter 
+% Adaptive algorithmen für zeitreihen beidugnen mehrfachentladugnen 
+% Integration in Hochspannunschutzsysteme
+Dieser Arbeit hat gezeigt, dass sich ein Teil der Varianz des Vorläuferabstandes sich mit den Features der Vorläufersignaturen modelieren lässt. Eine weiter Untersuchung durch zum einen eine weitre Parameterstudie als auch die Verwendung von weiteren Diganostiksystemen kann verwendet werden um eien größeren Teil dieser Varianz zu erklären. Insbesondere die Verwendung eines laufenden Zeitfensters anstatt der Verwendung der Eventparameter könnte verwendet werden um neben den Abstand hin zum Event, wo ca. 55 \% der Varianz erklärt werden konnte, auch eine Wahrscheinlichkeit das eine Entladung in den kommenden n Mikrosekunden auftritt anzugeben. Ein solches System könnte durch die Implementierung auf spezialisierter Hardware verwendet werden um diese Vorhersage in Echtzeit vorherzusagen. Einsolches System könnte z.B. in Hochspannunschutzsysteme verwendet werden oder auch analog für andere Systeme wie z.B. Erdbeben verwendet werden. Dabei ist anzumerken, dass sich für elektrische Systeme im Labor große Mengen an Daten produzieren lassen, dies jedoch nicht sich auf alle Systeme so übertragen lässt, z.B. gibt es nur kleine Datensätze für Erdbeben.
+
+\section{Fazit}
+% Exp Entladungsdynamik
+% MHz Spektrum diagnostisches zeitfenseter
+% Zwei Phasen
+% Praktisch anwdnbarkeit
+% Hierachie der Zeitskale nur im ns bis mus aufgelöst
+Das Ziele Vorläufersignaturen zu identifizieren, zu analysieren und mit diesen den Vorläuferabstand zu modelieren ist gelungen. Somit wurde das Forschungsziel dieser Arbeit erreicht. Die Verwendung der automatisch extrahierten Features der Signaturen zeigt, dass sich diese eignen um Aussagen über den Abstand und das Event selbst zu tätigen. Somit ist der verfolgte Ansatz zur Modelierung dieser Zusammenhänge vielversprechend und weitere darauf aufbauende Arbeiten können diese Methodik weiter entwickeln. Vorschläge für weitere Upgrades des Setups wurden im letzten Abschnitt diskutiert. 
+
+Die systematische Untersuchung der ca. 12000 Entladungen hat drei wesentliche Erkenntnisse hervorgebracht. Erstens existiert eine klare Hierachie von Zeitskalen in der Entladungsdynamik, die von Nanosekunden bis zu Mikrosekunden reicht. Zweitens lassen sich anhand der MHz-Oszillationen in Vorläufersignaturen Rückschlüsse auf die nachfolgende Thermalisierungsdauer des Plasmakanals ziehen, wobei bis zu 55 \% der Varianz unter den verwendeten Bedingungen erklärt werden konnten. Drittens zeigt sich, dass nicht lineare Modelle, insbesondere Radom Forest Algorithmen, geeignet sind, um komplexe Zusammenhänge zwischen Vorläufercharakteristika und Eventparametern zu erfassen. 
+
+Die zwei Unterschiedlichen Kategorien an Vorläufersignaturen, die die direkt ins Event übergehen ca. \SI{100}{\nano\second} und denen mit einer klaren zeitlichen Separation \SI{1}{\micro\second} deuten auf unterschiedliche physikalische Mechanismen der Kanalbildung hin. Der kürzere Prozes entspricht einer unmittelbaren lawinenentwicklung und der längere einer mehrstufigen Ionisationsdynamik. 
+
+Die Anwendbarkeit der Ergebnisse wurde durch die Regression der Vorläuferabstände demonstriert. Diese ermöglicht in die Perspektive von Echtzeit Vorhersagesystemen in z.B. Hochspannungsanlagen. Das hier verwendete, sich gut im Labor kontrollierende, Modell der elektrischen Entladung lässt sich auf andere physikalische Systeme übertragen, wobei für diese geringere Datenmenge vorliegen und sich diese nicht notwendigerweise im Labor erzeugenlassen. Dabei ist zu beachten das das Training der DS1 und DS2 für die Vorläuferabstand Regression auch nur mit Datenmengen von ca. 100 Werte erfolgt ist. Eine solche Anzahl an Daten ist auch für Systeme wie seismische Aktivität vorhanden. Ebenfalls zeigt dies auf, dass bei weiteren Parameterstudien und weiteren Aufnahmen von elektrischen Entladungen mehr solcher Werte gesammelt werden können und somit in dem Regime wo diese Entladungsmechanismen auftreten auch eine bessere Modelierung als die 55 \% ermöglichen solten. 
+
+Diese Arbeit liefter nicht nur neue Einblicke in die Mikrodynamik elektrischer Entladungen, sondern auch einen methodischen Rahmen für die prädiktive Analyse von Entladungsphänomenen. Die Kombination aus hochaufgelöster experimenteller Diagnostik und mordernen Maschine Learning Verfahren erweist sich als leistungsfähiger Ansatz um die komplexen nichtlinearen Prozesse der Gasentladungsphysik zu erschließen. Die aufgezeichneten Grenzen der zeitlichen Auflösung, des Parameterraums und der verwendeten Diagnostik bieten klare Wegweiser für die Fortsetzung dieser Forschunglinie.

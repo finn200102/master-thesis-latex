@@ -46,11 +46,10 @@ Aus den aufgezeichneten Gasentladungen wurden verschiedene Datensätze gebildet,
 \toprule
 \textbf{Datensatz} & \textbf{Segmentierung} & \textbf{Zeitintervall} & \textbf{n} & \textbf{n} & \textbf{Vorläuferabstand} & \textbf{Eventlänge} \\
 \midrule
-DS1 & automatisch & Vorläuferstart-Ende & \~150 & x & x \\ 
-DS2 & manuell & Vorläuferstart-Ende & \~250 & x & x \\
+DS1 & automatisch & Vorläuferstart-Ende & \~193 & x & x \\ 
+DS2 & manuell & Vorläuferstart-Ende & \~142 & x & x \\
 DS3 & automatisch & \SIrange{2e-9}{3e-8}{\second} & & & x \\ 
 DS4 & automatisch & \SIrange{3e-8}{1e-5}{\second} & & & x \\
-DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
 \bottomrule
 \end{tabular}%
 }
@@ -59,17 +58,14 @@ DS5 & automatisch & \SI{1}{\micro\second} & & & x \\
 \subsection{Datensatz-Spezifikationen}
 
 \textbf{DS1: Automatische segmentierte Vorläufer mit Vorläuferende}\newline
-Für diesen Datensatz wurden alle Entladungen selektiert, für die die automatisch gesetzten Vorläuferstart und Vorläuferendewerte eine Differenz größer als \SI{100}{\nano\second} beträgt. Also die Länge der Vorläufersignatur länger als \SI{100}{\nano\second} ist. Es wurden so 192 Entladungen selektiert.
+Für diesen Datensatz wurden alle Entladungen selektiert, für die die automatisch gesetzten Vorläuferstart und Vorläuferendewerte eine Differenz größer als \SI{100}{\nano\second} beträgt. Also die Länge der Vorläufersignatur länger als \SI{100}{\nano\second} ist. Es wurden so 193 Entladungen selektiert.
 
 \textbf{DS2: Manuell segmentierte Streamer}\newline
-Für diesen Datensatz wurden die Entladungen händisch selektiert, für die ein klares Vorläuferende vorliegen und die eine Streamer ähnlichen Verlauf aufweisen. Es wurden so 250 Werte selektiert.
+Für diesen Datensatz wurden die Entladungen händisch selektiert, für die ein klares Vorläuferende vorliegen und die eine Streamer ähnlichen Verlauf aufweisen. Es wurden so 142 Werte selektiert.
 
 \textbf{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
 
 \textbf{DS4: Automatische segmentierte Vorläufer im Interval \SIrange{3e-8}{1e-5}{\second}}
-
-\textbf{DS5: Automatische segmentierte Features \SI{1}{\micro\second} vor dem Eventstart}
-
 
 \subsection{Feature-Extraktion mittels tsfresh}
 Die Python-Bibliothek tsfresh (Time Series Feature extraction based on Scalable Hypothesis Tests) berechnet automatisch Hunderte von Merkmalen (Features) aus Zeitreihen. Es werden einfache Kennzahlen wie der Mittelwert, Varianz oder Schiefe, aber auch komplexere Maße wie Autokorrelation und Fourier-Koeffizienten berechnet. Die Bibliothek bietet auch Verfahren zur Auswahl relevanter Merkmale mittels statischer Hypothesentests an. Diese Bibliothek eignet sich für große Datensätze.
@@ -193,7 +189,7 @@ In \tabref{tab:streamer_prec_distance} sind die verschiedenen gefitteten Modelle
 \subsection{Vergleichende Analyse}
 \label{sec:ds12ana}
 Der Vergleich der beiden Datensätze DS1 und DS2 für die Zielvariable des Vorläuferabstandes zeigt eine deutlich unterschiedliche Performance der Modelle. Für den DS1 Datensatz kann kein Modell nach dem \(R^2\) Wert die Zielvariable besser als die einfache Mittelwertbildung vorhersagen. Für den DS2 Datensatz, kann nach dieser Metrik jedoch für das beste Modell ca. 55\% der Varianz der Verteilung dieser Zielvariable erklären. Die Betrachtung anderer Metriken führt jedoch zu einem anderen Schluss, der MAE der nicht auf Ausreißer sensitiv ist für das nicht lineare Modell mit einem Wert von \(0{,}35 \times 10^{-7}\) kleiner als der kleinste MAE des DS2 Datensatzes mit \(1{,}60 \times 10^{-6}\). Dabei ist zu beachten, dass sich die Verteilung der Vorläuferabstände zwischen diesen beiden Datensätzen darin unterscheidet, dass für den DS1 Datensatz viele kurze Abstände auftreten und wenig lange, die für diesen dann oft als Ausreißer behandelt werden. Somit ist der kleinere MAE teilweise dem geschuldet, jedoch wie in \secref{sec:ds1ana} schon diskutiert, ist ein weiterer Aspekt das Verhältnis an Ausreißern die eine Größenordnungen größer als die anderen kleinern Vorläuferabstände sind. Die manuelle Wahl der Grenzen ermöglicht für den DS2, dass längere Vorläuferabstände, die durch die automatische Setzung der Grenzen nicht erkannt wurden, vermehrt auftreten und kleinere Abstände zusätzlich wegen der Fokussierung auf die Streamerform des Stroms nicht selektiert wurden. In \tabref{tab:prec_distance_filtered} wurden die Modelle trainiert auf einem modifizierten DS1 mit Vorläuferabstände größer als \SI{1}{\micro\second}. Für diesen Datensatz liegen 82 Entladungen vor. Die Modelle die auf diesen Teil von DS1 trainiert wurden zeigen eine deutlich bessere Performance, das beste Modell hier ist die lineare Regression mit 5 features mit einem \(R^2=0,23\), es können nun also ca. 23\% der Varianz des Vorläuferabstandes für diesen Datensatz erklärt werden. 
-In \tabref{tab:prec_distance_filtered_2} sind die Trainingsergebnisse für die alternative Modifikation von DS1 dargestellt, also für Vorläuferabstände kleiner als \SI{1}{\micro\second}. Es ergeben sich 106 Entladungen für diese Modifikation. Es ist wie für den vollständigen DS1 zu erkennen, das die Modelle die Zielvariable nicht wiedergeben können bzw. nicht besser als die Mittelwertbildung bzw. schlechter. Somit ist die so viel schlechtere Performance für die Vorhersage von dem Vorläuferabstand mit DS1 damit zu erklären, dass dieser Datensatz sehr viele Vorläufersiganturen enthält die direkt vor dem Event liegen und somit viele kurze Vorläuferabstände. Im DS2 Datensatz wurden explizit Vorläufersiganturen gewählt die eine Streamer ähnlichen Verlauf aufweisen. Somit folgt, dass sich der Verlauf des Strom im Intervall Vorläuferstart und Vorläuferende, wenn diese klar zu definieren sind, wenn der Abstand zum Event groß genug ist, dass diese klar von einander getrennt sind und nicht in einander übergehen, verwenden lässt um den Abstand hin zum Event, also im Falle von Streamern der sich noch zu thermalisierende Streamerkanal, vorherzusagen. Somit ist die \textbf{H1: Prädiktivität der Vorläufersignaturen} - Hypothese für die Vorläufersignaturen, die Streamer förmig sind bzw. einen Vorläuferabstand größer als \SI{1}{\micro\second} aufweisen bestätigt. Für Vorläuferabstände kleiner als \SI{1}{\micro\second}, also welche die direkter ins Event übergehen, ist die \textbf{H1} - Hypothese wiederlegt. Für den DS2 mit der besten Performance der Modelle beschreiben nicht lineare Modelle die Zielvariable am besten, die DS2 Datensätze zeigen jedoch lineare Modelle die beste Performance insbesondere die Top 5 features sind hier besonder Aussage kräftig. Somit lässt sich die \textbf{H3: Nichtlinearität der Zusammenhänge} - Hypothese nicht vollständig wiederlegen oder belegen. Jedoch ist der DS2 Datensatz größer und die Modelle performen am besten für diesen, somit lässt sich die \textbf{H3} für Streamerartige Verläufe bestätigen. Aus den über 1000 extrahierten Features mit tsfresh wurden die top n features mit Hilfe der F-Statistik extrahiert und für veschiedene n trainiert. Die am besten performenten Modelle, wenn es die nicht linearen sind, verweden wie für den DS2 ca. 100, für den DS2 insbesondere den modifizierten in \tabref{tab:prec_distance_filtered} performen die linearen Modelle mit den top 5 features am besten. Die bestätigt somit die \textbf{H4: Feature-Redundanz} - Hypothese im Bezug auf die Zielvariable des Vorläuferabstandes. 
+In \tabref{tab:prec_distance_filtered_2} sind die Trainingsergebnisse für die alternative Modifikation von DS1 dargestellt, also für Vorläuferabstände kleiner als \SI{1}{\micro\second}. Es ergeben sich 106 Entladungen für diese Modifikation. Es ist wie für den vollständigen DS1 zu erkennen, das die Modelle die Zielvariable nicht wiedergeben können bzw. nicht besser als die Mittelwertbildung bzw. schlechter. Somit ist die so viel schlechtere Performance für die Vorhersage von dem Vorläuferabstand mit DS1 damit zu erklären, dass dieser Datensatz sehr viele Vorläufersiganturen enthält die direkt vor dem Event liegen und somit viele kurze Vorläuferabstände. Im DS2 Datensatz wurden explizit Vorläufersiganturen gewählt die eine Streamer ähnlichen Verlauf aufweisen. Somit folgt, dass sich der Verlauf des Strom im Intervall Vorläuferstart und Vorläuferende, wenn diese klar zu definieren sind, wenn der Abstand zum Event groß genug ist, dass diese klar von einander getrennt sind und nicht in einander übergehen, verwenden lässt um den Abstand hin zum Event, also im Falle von Streamern der sich noch zu thermalisierende Streamerkanal, vorherzusagen. Somit ist die \textbf{H1: Prädiktivität der Vorläufersignaturen} - Hypothese für die Vorläufersignaturen, die Streamer förmig sind bzw. einen Vorläuferabstand größer als \SI{1}{\micro\second} aufweisen bestätigt. Für Vorläuferabstände kleiner als \SI{1}{\micro\second}, also welche die direkter ins Event übergehen, ist die \textbf{H1} - Hypothese wiederlegt. Für den DS2 mit der besten Performance der Modelle beschreiben nicht lineare Modelle die Zielvariable am besten, für den DS1 zeigen jedoch lineare Modelle die beste Performance insbesondere die Top 5 features sind hier besonder Aussage kräftig. Somit lässt sich die \textbf{H3: Nichtlinearität der Zusammenhänge} - Hypothese nicht vollständig wiederlegen oder belegen. Jedoch ist der DS2 Datensatz größer und die Modelle performen am besten für diesen, somit lässt sich die \textbf{H3} für Streamerartige Verläufe bestätigen. Aus den über 1000 extrahierten Features mit tsfresh wurden die top n features mit Hilfe der F-Statistik extrahiert und für veschiedene n trainiert. Die am besten performenten Modelle, wenn es die nicht linearen sind, verweden wie für den DS2 ca. 100, für den DS2 insbesondere den modifizierten in \tabref{tab:prec_distance_filtered} performen die linearen Modelle mit den top 5 features am besten. Die bestätigt somit die \textbf{H4: Feature-Redundanz} - Hypothese im Bezug auf die Zielvariable des Vorläuferabstandes. 
 
 
 \begin{table}[h!]
@@ -237,6 +233,7 @@ SVR & Vorläuferabstand & -0,16 & $1{,}99 \times 10^{-14}$ & $1{,}41 \times 10^{
 
 
 \subsection{Feature-Importance und physikalische Interpretation}
+\label{sec:featimp-distance}
 In \tabref{tab:ds1-features} sind die top 5 Features des am besten perfomenten Modells, der LinearRegression, dargestellt. Nur zwei der Features haben einen p-Wert größer 0, dies passt zu der Beobachtung der in \secref{sec:ds12ana} diskutierten Beobachtung, dass die Modelle für den DS1 Datensatz, diesen nicht gut wiedergeben können. Der beste Koeffizient mit einem p-Wert von 0,68 ist der imaginäre Teil des dritte Fourier-Koeffizienten. Der Imaginäreteil beschreibt die Phase und die Struktur der Vorläufersignatur. Über die folgende Formel lässt sich die Frequenz dieses Koeffizienten bestimmen:
 \begin{equation}
  f_k = \frac{k f_s}{N}
@@ -301,8 +298,8 @@ current\_\_fft\_coefficient\_\_attr\_\_"real"\_\_coeff\_70 & 0.0594062 \\
 \hline
 \textbf{Zeitlänge in s} & \textbf{Anzahl} & \textbf{Abtastrate} $f_s$ & \textbf{Durchschnitt} & \textbf{Minimum} & \textbf{Maximum} & \textbf{Standardabw.} & \(f_{34}\) & \(f_{24}\) & \(f_{70}\)\\
 \hline
-$4.99995 \times 10^{-5}$ & 56  & \SI{2}{\giga\hertz} & $3,25 \times 10^{-7}$ & $1.87 \times 10^{-7}$ & $5.67 \times 10^{-7}$ & $8.00 \times 10^{-8}$ & \SI{209,23}{\mega\hertz} & \SI{147,69}{\mega\hertz} & \SI{430,76}{\mega\hertz}\\
-$9.9999 \times 10^{-5}$  & 189 & \SI{1}{\giga\hertz} & $6,14 \times 10^{-7}$ & $1.81 \times 10^{-7}$ & $2.21 \times 10^{-6}$ & $3.97 \times 10^{-7}$ & \SI{55,37}{\mega\hertz} & \SI{39,08}{\mega\hertz} & \SI{114}{\mega\hertz}\\
+$4.99995 \times 10^{-5}$ & 29  & \SI{2}{\giga\hertz} & $3,25 \times 10^{-7}$ & $1.87 \times 10^{-7}$ & $5.67 \times 10^{-7}$ & $8.00 \times 10^{-8}$ & \SI{209,23}{\mega\hertz} & \SI{147,69}{\mega\hertz} & \SI{430,76}{\mega\hertz}\\
+$9.9999 \times 10^{-5}$  & 112 & \SI{1}{\giga\hertz} & $6,14 \times 10^{-7}$ & $1.81 \times 10^{-7}$ & $2.21 \times 10^{-6}$ & $3.97 \times 10^{-7}$ & \SI{55,37}{\mega\hertz} & \SI{39,08}{\mega\hertz} & \SI{114}{\mega\hertz}\\
 \hline
 \end{tabular}
 \caption{Zeitlängenverteilung und Statistik für den DS2}
@@ -450,6 +447,7 @@ In \tabref{tab:streamer_event_duration} sind die Ergebnisse von verschiedenen Mo
 
 
 \subsection{DS3: Automatische segmentierte Vorläufer im Interval \SIrange{2e-9}{3e-8}{\second}}
+\label{sec:short_event_duration}
 
 \subsubsection{Verteilung der Zielvariable}
 
@@ -531,26 +529,132 @@ In \tabref{tab:long_event_duration} sind die Ergebnisse verschiedener statistisc
 
 
 
+\subsection{Vergleichende Analyse}
+Die Betrachtung der DS1-4 für die Vorhersage der Eventlänge zeigt, dass sich die DS1-2 von den DS3-4 in der Modelierung der Eventlänge darin unterscheiden, dass die Qualität der Vorhersage für die DS3-4, deren Features vom Vorläuferstart bis zum Start des Events gehen, dieser erheblich besser modelieren können. Des weitern ist der Vergleich von DS1 und DS2 für die Modelierung der Eventlänge interressant. Der DS2-Streamer-Datensatz eignet sich deutlich besser zur Vorhersage der Eventlängen als der unmodifizierte DS2, dieser Unterschied lässt sich umdrehen, wenn für DS1 mindest Vorläuferabstände verwendet werden von \SI{1}{\micro\second}. Dies deutet darauf hin, dass zwar die beste Vorhersage der Eventlängen mit den DS3-4, die die Dynamik des Eventstarts mit in ihren Features besitzen, funktioniert, jedoch wenn keine Eventstartfeatures verwendet werden, sich die Features in den weiter entfernteren Vorläufern, die ein klar zu definierendes Ende besitzen, und streamer artig sind, besser eignen zur Vorhersage, als die Vorläufersignaturen die näher am Event liegen, jedoch nocht von dessen Start getrennt sind. Die bessere Eignung der D3-4 ist damit zu erklären, dass der Verlauf des Startes des Events noch zum Teil im Datensatz liegen und somit etwas über die Art der Entladung und damit auch der Länge schließen lässt. Der Unterschied zwischen DS1 und 2 und zwischen DS1 und DS1-modifiziert ist jedoch überraschend, denn es währe intuitiv zu erwarten, dass näher am Event liegen Features sich auch besser eignen um etwas über dieses Auszusagen. Ein Erklärungsansatz wäre, dass die Features des Startes des Ladungskanals einer streamer artigen Entladung einiges über die weitere Entwicklung von diesem aussagen und dass für diesen Entladungsprozess der Kanal stark mit der folgenden Dynamik des Events korrelieren. Und dass dieser Zusammenhang für nicht streamer artige Entladungen nicht vorliegt bzw. nicht so stark.
+
+
+\subsection{Feature-Importance und physikalische Interpretation}
+In den Tabellen \ref{tab:ds3-features} bis \ref{tab:ds1-features-ana} sind die top 5 Features der Datensätze DS1-4 für die Eventlänge eingetragen. Im letzen Abschnitt hat sich gezeigt, dass die Vorhersage der Eventlänge mit den DS3 und 4 ambesten funktioniert mit ca. \(R^2 \propto 0,7\) und den DS1 und 2 für die die Modelierung etwas schlechter funktionert. Der Vergleich der Tabellen \ref{tab:ds3-features} und \ref{tab:ds4-features} mit den Tabellen \ref{tab:ds1-features-ana} und \ref{tab:ds2-features-ana} zeigt, dass die p-Werte der top 5 Features für die DS3 und 4 kleiner sind als die der DS1 und DS2, obwohl die DS1 und DS2 schlechter moduliert werdend konnten. Dies deutet daraufhind, dass für die DS1 und DS2 es einige sehr gute Features in den Streamersignaturen gibt, jedoch die meißten Features schwächer sind. Wohingegen für die DS3 und 4 es viele signifikante Features gibt, jedoch weniger die besonders signifikant sind. Für den DS1 sind die top 5 Features alle Verhältnise an Punkten, die außerhalb eines Vielfachen der Standartabweichung liegen, es wird also wiedergeben wie oft das Signal stark vom Mittelwert abweicht. Somit wird der DS1 für die Vorhersage der Eventlänge, also einer Eventeigenschaft, durch seine Extremwerte charakterisiert. Für den DS2 sind die top 5 Features die Anzahl der Maxima in Segmenten einer gewissen Größe und Maße der Komplexität einer Zeitreihe. Die Form und der Zufall im Signal sind die stärksten Features. Die top Features des DS3 sind die Verteilung des Signals bei niedrigen Quantilen, Anteil der Punkte die 2 Standartabweichung vom Mittelwert entfernt sind und der Grundpegel des Signals. Für den DS4 sind die top Features verschiedene Maße die die Signalenergie, die Varibilität, die Komplexität und sich wiederholende Muster wiedergeben. Es sind also dynamische Eigenschaften relevant. Die DS1 und 2 sind Features die einen größeren Abstand zum Event besitzen, deshalb ist die Modelierung auch schieriger, da die implusartige, stark schwankede und durch viele lokale Maxima und Unregelmäßigkeiten charakterisierten Vorläufersignaturen auch Features entsprechen die Extremwerte bzw. Peaks und Komplexität modelieren. Die DS3 und DS4 beschreiben die Werte einschließlich denen direkt vor dem Start des Events, hier spiegel die Features die Basisverteilung(Quantile), den Grundpegel, die Energie und die Variabilität wieder. Diese eher kontinuierlichen Eigenschaften sind konsistenter und eignen sich deshalb besser für Vorhersagen der Eigenschaften des Events. Somit bilden die DS1 und DS2 also physikalische betrachtet die stochastischen, Unregelmäßige Vorphase eines Prozesses ab, während DS3 und 4 die deterministischen Startbedingungen repräsentieren. Somit sind viele Features der DS3 und DS4 gleichmäßig relevant für eine gute Modelierung, währen die DS1 und DS2 einzelne sehr starke, aber insgesamt weniger stablie Features haben. 
+
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - RandomForestRegressor - DS3}
+\label{tab:ds3-features}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_quantile\_\_q\_0.1 & 0.1006788 \\
+current\_\_quantile\_\_q\_0.3 & 0.0827991 \\
+current\_\_quantile\_\_q\_0.2 & 0.0607876 \\
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_2 & 0.0607503 \\
+current\_\_linear\_trend\_\_attr\_\_"intercept" & 0.0550868 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - RandomForestRegressor - DS4}
+\label{tab:ds4-features}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_abs\_energy & 0.0869079 \\
+current\_\_absolute\_sum\_of\_changes & 0.0650000 \\
+current\_\_sum\_of\_reoccurring\_values & 0.0622045 \\
+current\_\_cid\_ce\_\_normalize\_False & 0.0461230 \\
+current\_\_change\_quantiles\_\_f\_agg\_\_"var"\_\_isabs\_True\_\_qh\_0.8\_\_ql\_0.0 & 0.0418604 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - RandomForestRegressor - DS2}
+\label{tab:ds2-features-ana}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_mean\_n\_absolute\_max\_\_number\_of\_maxima\_7 & 0.3952694 \\
+current\_\_permutation\_entropy\_\_dimension\_4\_\_tau\_1 & 0.2085023 \\
+current\_\_mean\_n\_absolute\_max\_\_number\_of\_maxima\_7 & 0.1756566 \\
+current\_\_permutation\_entropy\_\_dimension\_7\_\_tau\_1 & 0.1480306 \\
+current\_\_permutation\_entropy\_\_dimension\_5\_\_tau\_1 & 0.1429784 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Top Extrahierte Features - LinearRegression - DS1}
+\label{tab:ds1-features-ana}
+\begin{tabular}{l r}
+\hline
+\textbf{Feature} & \textbf{Wert} \\
+\hline
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_7 & 0.2270601 \\
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_7 & 0.2270601 \\
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_3 & 0.1894779 \\
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_3 & 0.1894779 \\
+current\_\_ratio\_beyond\_r\_sigma\_\_r\_5 & 0.1402674 \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Gesamtdiskussion und Validierung der Hypothesen}
+
+\subsection{Hypothesenvaliderung}
+
+
+\textbf{H1: Prädiktivität der Vorläufersignaturen}\newline
+Wie in \secref{sec:ds12ana} diskutiert gilt diese Hypothese für die Vorläufersignaturen die größere Vorläuferabstände als \SI{1}{\micro\second} besitzen und insbesondere die die eine Streamer artige Form besitzen, die Hypothese ist widerlegt für kleinere Abstände.
+
+
+\textbf{H2: Frequenzabhängigkeit}\newline
+In \secref{sec:featimp-distance} wurden die relevanten Features für die Vorhersage des Vorläuferabstandes behandelt, dabei waren insbesondere für den DS2, aber auch für den DS1 FFT-Features relevant, denen eine Frequenz sich zuordnen lässt, dabei ergaben sich abhängig von den Abtastraten Frequenzen im mitteleren zweistelligen bis in den niedrigen dreistelligen MHz Bereich. Dies bestätigt die Hypothese H2 für die Vorhersage des Vorläuferabstandes, dass hochfrequente Oszillationen die stärksten Prädiktoren sind. Es ist zu erwähnen dass diese Arten an Features nicht mehr für die Vorhersage der Eventeigenschaft Eventlänge relevant sind, insbesondere für die DS3 und DS4, jedoch war in der Hypothesen explitit die Rede von dem Vorläuferabstand. 
+
+
+\textbf{H3: Nichtlinearität der Zusammenhänge}\newline
+Wie in \secref{sec:ds12ana} diskutiert lässt sich diese Hypothesen nur für den DS2 mit den streamer artigen Entladungen bestätigen, da die nicht linearen Modelle für diesen am besten performen, jedoch kann der DS1 so modifiziert werden, dass auch für diesen die nicht-linearen Modelle das beste Ergebnis liefern. Somit liegen zwischen den Vorläufersignaturen, die mehr als \SI{1}{\micro\second} entfernt sind und dessen Features ein nicht linearer Zusammenhang mit der Zielvariable des Vorläuferabstandes vor. In dieser Hypothese wurde jedoch nicht explizit über den Vorläuferabstand gesporchen sondern allgemein über nicht-lineare Zusammenhänge, somit ist die Betrachtung der Eventlängen Vorhersage auch relevant. Die am besten performenden Modelle für die Eventlängen Regression waren alles Modelle die entweder klar nicht linear sind oder auch nicht lineare Zusammenhänge modelieren können. Somit gilt die Hypothese auch für die Eventlängen Regression.
 
 
 
-\subsection{DS5: Automatische segmentierte Features \SI{1}{\micro\second} vor dem Eventstart}
+\textbf{H4: Feature-Redundanz}\newline
+Wie in \secref{sec:ds12ana} behandelt, reichen die top n Features für die Vorhersage der Zielvariablen, die Verwendung der vollen Anzahl der Features auch mit einer Technik die mit vielen Features umgehen kann, wie dem RandomForest führt zu einer sich nicht weiter verbessernden Performance oder sogar zu einer schlechteren. Somit lässt sich diese Hypothese somit vollständig bestätigen.
 
 
+\textbf{H5: Einfluss des Spaltabstands}\newline
+Die Hypothese, dass größere Spaltabstände zu besser sich vorhersagbaren Vorläuferabständen führt, lässt sich teilweise bestätigen. Wie in \figref{fig:prec_ts_prec_distance_box} und in \figref{fig:streamer_hand_prec_distance_box} liegt der Mittelwert der Vorläuferabstände f[r den Spaltabstand von \SI{20}{\milli\meter} deutlich höher als für die kleineren Spaltabstände. Dies deutet darauf hin, dass ab diesem Wert die Wahrscheinlichkeit für die Bildung langer Vorläuferabstände signifikant ansteigt. Jedoch ist zu beachten, dass jeweils nur eine kleine Anzahl an Entladungen in diesem Intervall liegt und dies somit noch keine klare statistische signifikant besitzt. Somit gibt es ein Indiz auf eine solch andere Performance, jedoch ist die Anzahl an Entladungen für diese größeren Abstände zu klein um eine klare Aussage zu treffen. Es lässt sich nur mit dem Vergleich von DS1 und DS2 zeigen, dass die etwas im Mittel längeren Vorläuferabstände sich besser vorhersagen lassen als die kürzeren.  
 
+\subsection{Physikalische Interpretation}
+Die Vorläuferabstände ließen sich insbesondere für die streamer artigen im DS2 mit einem \(R^2 = 0,55\) modelieren. Dies zeigt einen klaren Zusammenhang dieser Features in der Vorläufersignatur und dem Abstand zum Event bwz. der Länge der Thermalisierungsphase des Leitungskanals.
 
+Die streamer-artigen Vorläufer mit Abständen größer \SI{1}{\micro\second} entsprechen physikalisch der Phase der schrittweisen kanalbidlung durch aufeinanderfolgende Elektronenlawinen. Die beobachteten hochfrequenten Oszillationen im mittleren zweistelligen bis zum niedrigen dreistelligen MHz Bereich entsprechen charakteristischen Plasmaresonanzen, die durch die Wechselwirkung zwischen Raumladungen, dem sich entwickelden elektrischen Feld und den oszillierenden Elektronen im Kanal entstehen. Die bessere Vorhersagbarkeit für längere Vorläuferabstände lässt sich damit erklären, dass mehr Zeit für die Ausbildung von Resonanzstrukturen zur Verfügung steht. Diese Stromschwingungen wie in \figref{fig:streamer_current_sliece} mit einer dominanten Frequenz im dreistelligen MHz Bereich ca. \SI{100}{\mega\hertz} und einer niederfrequenten Modulation im zweistelligen MHz Bereich hier ca. \SI{10}{\mega\hertz} diese beiden Komponenten treffen beide Aussagen über die Länge der der Thermalisierungsphase des Kanals. Aus \tabref{tab:ds2-sample} lässt sich ablesen, dass die besonders wichtigen Frequenzen \(f_{34}\) & \(f_{24}\) für die meißten Werte einer niedrigen Frequen im mittleren zweistelligen MHz Bereich entsprechen, es ist anzumerken, dass mit der höheren Samplerate von \SI{2}{\giga\hertz} die zu Frequenzen im niedrigen dreistelligen Bereich werden. Somit könnte diese niederfrequente Modulation physikalisch besonders viel über die weitere Dynamik des Leitungskanals treffen. 
 
+\subsubsection{Unterscheidung zwischen Entladungsregimen}
+Der fundamentale Unterschied zwischen der Modelierbarkeit zwischen DS1 und DS2 bwz. zwischen Vorläufersignaturen, die weiter als \SI{1}{\micro\second}, und denen die weniger weit entfernt sind, deutet auf zwei phzsikalisch unterschiedlich Entladungsregime hin. 
 
-\begin{figure}[H]
-    \centering
-      \includegraphics[width=\linewidth]{../figures/maschinelearning/features_right_peak_event_distance_ts_auto_event_duration_histo.pdf}
-      \caption{Verteilung der Eventlänge}
-      \label{fig:1mus-event-duration-box}
-\end{figure}
+In dem ersten Regime liegt ein direkter Durchschlag vor. Der Übergang von der Vorläufersignatur zur Hauptentladung erfolgt nahezu kontinuierlich. Die Features können somit den Vorläuferabstand nicht vorhersagen \(R^2 < 0\), da keine klar separierte Thermalisierungsphase existiert. Dies tritt also für die Vorläuferabstände die kleiner als \SI{1}{\micro\second} auf. 
 
+In dem zweiten Regime bildet sich ein Streamerkanal mit moderater leitfähigkeit, der über einen messbaren Zeitraum existiert und charakteristische Oszillationen zeigt. Dieser Kanal muss vor der Hauptentladung thermalisiert werden. Die Vorhersagbarkeit von \(R^2 = 0,55\) für den DS2 zeigt, dass die Dynamik der Kanalthermalisierung in den Vorläufersignaturen kodiert ist.
 
+\subsubsection{Frequenzabhängigkeit und Plasmadiagnositk}
+Die Relevantz der Fourier-Koeffizienten die den Frequenzen im \SIrange{50}{430}{\mega\hertz} (vgl. \tabref{tab:ds2-features}, \tabref{tab:ds2-sample}) Bereich entsprechen unterstützt die H2 - Hypothese und bietet einen Einblick in die Plasmaparameter. Die Plasmafrequenz \(\omega_p = \sqrt{\frac{n_e e^2}{\epsilon_0 m_3}}\) mit Elektronendichten von ca.  \SIrange{1e19}{1e21}{\per\cubic\metre} entspricht Frequenzen von \SIrange{10}{300}{\giga\hertz}. Somit entsprechen die beobachteten relevanten Frequenzen nicht der Plasmafrequenz. Die beobachteten Frequenzen könnten auf geometrische Resonanzen des sich entwickelden Kanals entsprechen, sie könnten Raumladungsoszillationen aufgrund von Raumladungsinhomogenitäten ensprechen oder es könnten auch RC-Schwingkreis Effekten entsprechen. 
 
+Es wurde beobachtet, dass eine höhere Abtastrate auch zu höheren Frequenz führt, somit könnten bei einer genügenden Auflösung auch potentiell Frequenzen im GHz Bereich auftauchen die relevant sind. 
 
+\subsubsection{Eventlänge Vorhersage}
+Die erheblich bessere Modellierbarkeit der Eventlänge für die DS3 udn DS4 \(R^2 = 0,73-0,76\) im Vergleich zu den den DS1 und DS2 mit \(R^2 = 0,17-0,37\) ist physikalisch aufschlussreich.
+Die DS3 und 4 erhalten Features des unmittelbaren Eventstart die nur einige \SI{10}{\nano\second} vor dem Event liegen. In diesen Features ist die initiale Entladungsdynamik kodiert. Die Steigung des Stromanstieges, kann z.B. Aufschluss darüber geben, ob das Event länger oder kürzer dauert. Ein schneller Stromanstieg enspricht einer hohen initialen Amplitude des Stroms und führt so zu einer starken Dämpfung und somit zu einer schnelleren Energiedissipation und so zu einem kürzeren Event. Dahingen entspricht ein moderater Anstieg mit niedriger Amplitude einer langsameren Entladung die länger dauert. Die Relevanten Features der DS3 und 4 (vgl. \tabref{tab:ds3-features}, \tabref{tab:ds4-features}) sind direkte Maße der initialen Dynamik (Quantile, Grundpegel, Signalenergie etc.). Im Gegensatz kodieren die Featurs der Vorläufersignatur des DS1 und 2 den Zustand des Vorläuferkanals, dieser korreliert mit der nachfolgenden Hauptentladung. Es liegt jedoch kein deterministischer Zusammenhang zwischen dieser Signatur und den Eigenschaften des Events vor. Die verbleibende Varianz die nicht modeliert werden kann, lässt sich durch stochastiche Prozesse bei der Kanalentwicklung erklären. 
 
-
+Es liegen somit zwei Phasen der Entladung vor. Eine stochastische Vorläuferphase (DS1 und 2), die Stromsignatur zeichnet sich in dieser durch Unregelmäßige, impulsartige Verläufe aus. Die Relevanten Features bilden diese Eigenschaften ab. Es liegen konkurrierende Elektronenlawinen, zufällige Raumladungsverteilungen und stochastische Ionisationsprozesse vor, die Vorhersagbarkeit der Eventlänge ist somit begrenzt.
+Die zweite Phase ist eine deterministische Entladungsphase (DS3 und 4), diese Phase beginnt mit dem Eventstart und beinhält noch Regionen vor diesem, die direkt in diesen übergehen. Die Relevanten Features sind hier welche die die Basisverteilung, die Energie und die Variabilität beschreiben. Es dominieren deterministische elektrodznamische Prozesse, somit ist die Eventlänge hochgradig vorhersagbar. 
+Diese beiden Phasen müssen nicht zusammen auftreten, die erste Phase im Kontext der DS1 und 2 tritt nur für einen kleinen Teil der aufgenommen Entladungen auf. 
 
