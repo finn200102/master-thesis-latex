@@ -78,7 +78,7 @@ Der Wert $18 \approx \ln(10^8)$ entspricht einer kritischen Elektronenzahl von e
 \paragraph{Lawinenkopf}
 Das elektrische Feld am sphärischen Lawinenkopf lässt sich formulieren als:
 \begin{equation}
-    E_r = \frac{e N(x)}{4\pi \varepsilon_0 r^2} = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0 r^2}
+    E_r = \frac{e N(x)}{4\pi \varepsilon_0 r^2} = \frac{e e^{\overline{\alpha}x}}{4\pi \varepsilon_0 r^2} = c \cdot exp(\overline\alpha x)
     \label{eq:electronlawfield}
 \end{equation}
 
@@ -89,6 +89,7 @@ Die radiale Expansion durch Elektronendiffusion folgt $r = \sqrt{4Dt} = \sqrt{4D
 \end{equation}
 
 Das Raumladungsfeld wächst proportional zu $e^x/x$ und führt zur Abschirmung des äußeren Feldes im Lawinenkopf. Die kritische Bedingung $E_r \simeq E_0$ markiert den Übergang von exponentieller zu selbsterhaltender Propagation.
+Dieses Anwachsen des Raumladungsfelders erinnert an den raumladungsbegrenzten Stromfluss im Child-Langmuir-Gesetz, bei dem die Raumladung ebenfalls das äußere Feld abschirmt und so den weiteren Strom bestimmt. Analog dazu führt im Lawinenkopf die zunehmende Raumladung zur Feldreduktion und markiert den Übergang zur streamerartigen Ausbreitung.
 
 
 \paragraph{Propagation durch Photoionisation}
@@ -109,38 +110,47 @@ Die emittierten Photonen (typisch $h\nu = \SIrange{10}{20}{\electronvolt}$) ioni
 %wobei $\xi(\lambda)$ der Photoionisationskoeffizient, $I(\lambda)$ die Photonenflussdichte und $\sigma_{\text{ph}}(\lambda)$ der Photoionisationsquerschnitt ist.
 
 \paragraph{Streamertypen}
-Ein positiver Streamer propagiert in Richtung der Kathode mit einer Geschwindigkeit von etwa $10^{6}\text{–}10^{7}\,\mathrm{m/s}$. Die Entladung entwickelt dabei eine stark verzweigte, baumartige Struktur, wobei die Photoionisation vor dem Streamerkopf die Ausbreitung zusätzlich begünstigt. Im Gegensatz dazu bewegt sich ein negativer Streamer mit etwa $10^{5}\text{–}10^{6}\,\mathrm{m/s}$ langsamer in Richtung der Anode und bildet dünnere, weniger verzweigte Filamente. Er benötigt eine höhere lokale Feldstärke – typischerweise $E \gtrsim 100\,\mathrm{kV/cm}$ – und da die Photoionisation hauptsächlich hinter dem Kopf stattfindet, wird seine Ausbreitung entsprechend erschwert.
-%\paragraph{Kontinuitätsgleichungen}
-%Die Streamerdynamik wird durch gekoppelte Kontinuitätsgleichungen beschrieben:
-%\begin{align}
-%    \frac{\partial n_e}{\partial t} &= \nabla \cdot (D_e \nabla n_e) - \nabla \cdot (n_e \vec{v}_e) + S_{\text{ion}} + S_{\text{ph}} \\
-%    \frac{\partial n_+}{\partial t} &= \nabla \cdot (D_+ \nabla n_+) - \nabla \cdot (n_+ \vec{v}_+) + S_{\text{ion}} + S_{\text{ph}}
-%\end{align}
-Das selbstkonsistente elektrische Feld folgt aus der Poisson-Gleichung:
+Ein positiver Streamer propagiert in Richtung der Kathode, also entlang der elektrischen Feldrichtung, mit einer Geschwindigkeit von etwa $10^{6}\text{–}10^{7}\,\mathrm{m/s}$. Er entwickelt dabei eine stark verzweigte, baumartige Struktur, wobei die Photoionisation vor dem Streamerkopf die Ausbreitung zusätzlich begünstigt. Die Photoionisation vor dem Streamerkopf erzeugt freie Elektronen im Voraus und begünstigt dadurch die Ausbreitung auch in Bereichen geringerer lokaler Feldstärke.
+Im Gegensatz dazu bewegt sich ein negativer Streamer mit etwa $10^{5}\text{–}10^{6}\,\mathrm{m/s}$ langsamer in Richtung der Anode, also gegen die Feldrichtung und damit mit der Elektronendrift. Er bildet typischerweise dünnere, weniger verzweigte Filamente. Für seine Ausbreitung ist eine höhere lokale Feldstärke erforderlich, typischerweise $E \gtrsim 100\,\mathrm{kV/cm}$, da die Photoionisation überwiegend hinter dem Streamerkopf stattfindet und die Ionisation vor dem Kopft hauptsächlich durch Stoßprozesse erfolgen muss
+Die Beweglichkeit der Elektronen ist dabei um mehrere Größenordnungen größer als die der Ionen. Dadurch dominieren die Elektrodenen die Stromdichte und prägen die Dynamik an der Streamerspitze entscheidend.
+Das selbstkonsistente elektrische Potential \(\varphi\) ergibt sich aus der Poisson-Gleichung:
 \begin{equation}
     \nabla^2 \phi = -\frac{e}{\varepsilon_0}(n_+ - n_e)
 \end{equation}
+
+Ein mit Streamerentladungen verwantes, aber stationäres Phänomen ist das Elmsfeuer (St. Elmo's fire). Es entsteht bei starken elektrischen Feldern an spitzen Objekten und äußert sich als kontinuierliches Leuchten, ohne dass dabei nennenswerte Ströme oder thermische Effekte auftreten.
+
 \paragraph{Übergang zum Leader}
-Bei ausreichender Stromstärke ($I \gtrsim \SI{1}{\ampere}$) führt Joule-Erwärmung zur thermischen Instabilität. Die Kanaltemperatur steigt auf $T > \SI{2000}{\kelvin}$, die Gasdichte sinkt gemäß $\rho \propto T^{-1}$, und der Kanal wird thermisch leitfähig. Charakteristische Zeitskalen: 1) Streamerphase: $\SIrange{1}{100}{\nano\second}$, 2) Leader-Übergang: $\SIrange{1}{10}{\micro\second}$, 3) Leader-Propagation: $\SIrange{10}{100}{\micro\second}$
+Erreicht die Stromstärke im Streamerkanal Werte von etwa ($I \gtrsim \SI{1}{\ampere}$), führt die durch den Stromfluss verursachte Joule-Erwärmung zur einer thermischen Instabilität. Die Gastemperatur steigt auf $T > \SI{2000}{\kelvin}$, wodurch die Gasdichte gemäß $\rho \propto T^{-1}$ abnimmt. Infolgedessen steigt die elektrische Leitfähigkeit und der Kanal wird thermisch leitfähig, ein Leader entsteht. 
+Typische Zeitskalen sind: 
+\begin{enumerate}
+  \item Streamerphase: $\SIrange{1}{100}{\nano\second}$
+  \item Leader-Übergang: $\SIrange{1}{10}{\micro\second}$
+  \item Leader-Propagation: $\SIrange{10}{100}{\micro\second}$
+ 
+\end{enumerate}
 
 \subsubsection{Corona}
-Wenn das elektrische Feld lokal eine Feldstärke erreicht, die groß genug ist um die Durchbruchfeldstärke zu überschreiten, dann kommt es zu einer Corona-Entladung. Dieser Entladungstyp tritt nur lokal in einem Bereich hoher Feldstärken auf, wie an scharfen Kanten und nicht über die gesammte Spaltbreite, also ein elektrischer Ǔberschlag zwischen einem Punkt der Elektrode und einem anderen Punkt der Elektrode, also z.B. zwischen der Spitze und der Seite der Spitze.
+Wenn das elektrische Feld lokal eine Feldstärke erreicht, die groß genug ist, um die Durchbruchfeldstärke zu überschreiten, dann kommt es zu einer Corona-Entladung. Dieser Entladungstyp tritt nur lokal in einem Bereich hoher Feldstärken auf, wie an scharfen Kanten und nicht über die gesamte Spaltbreite. Es handelt sich also nicht um einen elektrischer Überschlag zwischen zwei Elektroden, sondern um eine lokale Entladung zwischen den Elektroden, z.B. zwischen der Spitze und der Seite der Spitze.
 \subsubsection{Glimmentladung}
 Eine Glimmentladung findet unter niedrigen Drücken und kleinen Entladungsströmen statt, das in Reihe schalten eine Widerstandes ermöglicht die Begrenzung des Stromes.
-Dieser Entladungsstyp zeichnet sich durch charakteristisch leuchtende Bereiche zwischen Kathode und Anode aus. Die an der Kathode emmitierten Elektronen werden beschleunigt in Richtung der Anode, in der Nähe der Kathode haben diese noch nicht genügend Energie aufgenommen um Atome weder zu ionisieren noch anzuregen, dies ist der Astom-Dunkelraum. Anschließend folgt die leuchtende Kathodenschicht, in dieser haben die Elektronen genügend Energie erreicht um Anregungsprozesse zu starten die zu einem leuchten führen. Nach dieser Schicht erreichen die Elektronen eine genügende Energie um Atome zu ionisieren, dies führt zu einer Vervielfältigung der Ladungen, diese müssen nun jedoch erst wieder beschleunigt werden um genügend Energie zu erreichen um weitere Atome zu ionisieren, somit bildet sich der Hirttorf-Dunkelraum, der nur ein geringes leuchten aufweist. Die in diesem Raum entstandenen postiv geladenen Ionen werden in Richtung der Kathode beschleunigt, die sich so langsam in Richtung der Kathode bewegenden Ionen führen zu einer positiven Raumladung in diesem Bereich, diese Schirm das Felder der Kathode ab. Es liegt nun nach der Vervielfältigung im letzten Bereich eine sehr viel höhere Elektronenanzahl vor jedoch ist das Feld nun so verringert, dass die Elektronen nur noch langsam beschleunigt werden und so in der der negativen Glühzone primär Anregungsprozesse auftretten diese jedoch mit einer erhöhten Häufigkeit aufgrund der erhöhten Anzahl an Elektronen. Das Feld nimmt weiter ab und es kommt zu keinen Anregungsprozessen mehr im Faraday-Dunkelraum. Die nun aber erhöhte Elektronendichte im Vergleich zu der Ionendichte am Ender der Glimmzone führt zu einen nun wieder steigenden Feld, also zu einer wieder steigenen Energie der Elektronen. In diesem Bereich bildet sich nun ein Gleichgewicht und es kommt zu einer kontinuierlich Entladung, jedoch erneut bei einem niedrigen Feld, da an der Anode sich wieder ein stärkers Feld bildet was zur Ionisierung führt und dieses Ionen zu einer erhöhten positiven Raumladung in der Glimmzone führen, die Ionisationen ergeben sich durch die statistische Verteilung der Geschwindigkeiten der Elektroden, das die mittlere Energie zu niedrig für Ionisationsprozesse ist. \cite{stroth2018}
+Dieser Entladungsstyp zeichnet sich durch charakteristisch leuchtende Bereiche zwischen Kathode und Anode aus. Die an der Kathode emitierten Elektronen werden beschleunigt in Richtung der Anode, in der Nähe der Kathode haben diese noch nicht genügend Energie aufgenommen um Atome weder zu ionisieren noch anzuregen, dies ist der Aston-Dunkelraum. Anschließend folgt die leuchtende Kathodenschicht, in dieser haben die Elektronen genügend Energie erreicht um Anregungsprozesse zu starten die zu einem leuchten führen. Nach dieser Schicht erreichen die Elektronen eine genügende Energie um Atome zu ionisieren, dies führt zu einer Vervielfältigung der Ladungen, diese müssen nun jedoch erst wieder beschleunigt werden um genügend Energie zu erreichen um weitere Atome zu ionisieren, somit bildet sich der Hittorf-Dunkelraum, der nur ein geringes leuchten aufweist. Die in diesem Raum entstandenen positiv geladenen Ionen werden in Richtung der Kathode beschleunigt, die sich so langsam in Richtung der Kathode bewegenden Ionen führen zu einer positiven Raumladung in diesem Bereich, diese Schirm das Felder der Kathode ab. Es liegt nun nach der Vervielfältigung im letzten Bereich eine sehr viel höhere Elektronenanzahl vor jedoch ist das Feld nun so verringert, dass die Elektronen nur noch langsam beschleunigt werden und so in der der negativen Glühzone primär Anregungsprozesse auftretten diese jedoch mit einer erhöhten Häufigkeit aufgrund der erhöhten Anzahl an Elektronen. Das Feld nimmt weiter ab und es kommt zu keinen Anregungsprozessen mehr im Faraday-Dunkelraum. Die nun aber erhöhte Elektronendichte im Vergleich zu der Ionendichte am Ender der Glimmzone führt zu einen nun wieder steigenden Feld, also zu einer wieder steigenen Energie der Elektronen. In diesem Bereich bildet sich nun ein Gleichgewicht und es kommt zu einer kontinuierlich Entladung, jedoch erneut bei einem niedrigen Feld, da an der Anode sich wieder ein stärkers Feld bildet was zur Ionisierung führt und dieses Ionen zu einer erhöhten positiven Raumladung in der Glimmzone führen, die Ionisationen ergeben sich durch die statistische Verteilung der Geschwindigkeiten der Elektronen, das die mittlere Energie zu niedrig für Ionisationsprozesse ist. \cite{stroth2018}
 
-\subsubsection{Funkenentladunge (Spark)}
-Eine Funkenentladung ist eine transiente, hochstromige Gasentladung, die durch einen vollständigen elektrischen Durchschlag zwischen zwei Elektroden charakterisiert ist. Sie entsteht, wenn die angelegte Spannung die Durchschlagsspannung überschreitet und entwickelt sich typischerweise innerhalb von Mikrosekunden bis Millisekunden. 
+\subsubsection{Funkenentladung (Spark)}
+Eine Funkenentladung ist eine transiente, hochstromige Gasentladung, die durch einen vollständigen elektrischen Durchschlag zwischen zwei Elektroden charakterisiert ist. Sie entsteht, wenn die angelegte Spannung die Durchschlagsspannung überschreitet und entwickelt sich typischerweise innerhalb von Mikrosekunden bis Millisekunden. \newline
 
 \paragraph{Entstehungsphasen}\newline
-Die Funkenentladung durchläuft mehrere charakteristische Phasen, sie startet mit einer Streamer und Anschließenden Leaderphase, die folgende Hauptentladung, die im Gegensatz zu den vorherigen Phasen auch eine Länge von \SIrange{10}{100}{\micro\second} hat und durch einen schlagartigen Stromanstieg auf \SIrange{10}{100}{\ampere} aufweist. Dieser hohe Strom führt zu einem weitern aufheizen des Leiterkanals. Es folgt eine exponentielle Abklinkphase gemäß der RC-Zeitkonstante des Entladungskreises.
+Die Funkenentladung durchläuft mehrere charakteristische Phasen, sie startet mit einer Streamer und anschließenden Leaderphase. Darauf folgt die Hauptentladung, die im Gegensatz zu den vorherigen Phasen auch eine Dauer von \SIrange{10}{100}{\micro\second} hat und durch einen schlagartigen Stromanstieg auf \SIrange{10}{100}{\ampere} gekennzeichnet ist. Dieser hohe Strom führt zu einem weitern Aufheizen des Leiterkanals. Es folgt eine exponentielle Abklinkphase gemäß der RC-Zeitkonstante des Entladungskreises.
 
+Ein Spark ist eine hochstromige Entladung die durch eine hohe Temperatur ausgezeichnet ist. Die Entstehung eines solchen Sparkes lässt sich in mehrere Phasen unterteilen. Die ersten Phasen entsprechen der Bildung eines Streamerkanals, da der Streamer nur eine geringe elektrische Leitfähigkeit besitzt, sind die Ströme anfangs klein. Wenn sich der Kanal jedoch genug erwärmt hat, steigt die Leitfähigkeit, so dass ein großer Strom fließen kann und so die Sparkentlung möglich wird.
 
-Ein Spark ist eine hochstromige Entladung die durch eine hohe Temperatur ausgezeichnet ist. Die Entstehung eines solchen Sparkes lässt sich in mehrere Phasen unterteilen. Die ersten Phasen entsprechen der Bildung eines Streamerkanals, da der Streamer nur eine geringe elektrische Leitfähigkeit besitzt sind die Ströme zuerst klein, wenn sich der Kanal jedoch genug erwärmt hat, steigt die Leitfähigkeit so dass ein großer Strom fließen kann und so die Sparkentlung möglich wird.
 Die Energie eines solchen Sparks lässt sich folgendermaßen quantifizieren:
 \begin{equation}
     W = \int_{0}^{t} U(t)I(t)dt = W_{therm} + W_{strahl} + W_{mech}
 \end{equation}
+
 \subsubsection{Bogenentladung (Ark)}
-Eine Bogenentladung ist eine selbsterhaltende, kontinuierliche Gasentladung mit hoher Stromstärke und niedriger Brennspannung. Im Gegensatz zur transienten Funkenentladung kann der Bogen über längere Zeiträume stabil brennen, solange die extene Energiezufuhr aufrechterhalten wird. Der Leiterkanal eines solchen Lichtbogens liegt in einem thermodynamischen Gleichgewicht vor. Die hohe kontinuierliche Temperatur führt zu einer hohen elektrischen Leitfähigkeit \(\sigma \propto T^{\frac{3}{2}}\), desshalb liegt trotzdem eine geringe Brfennspannung vor. 
+Eine Bogenentladung ist eine selbsterhaltende, kontinuierliche Gasentladung mit hoher Stromstärke und niedriger Brennspannung. Im Gegensatz zur transienten Funkenentladung kann der Bogen über längere Zeiträume stabil brennen, solange die extene Energiezufuhr aufrechterhalten wird. Der Leiterkanal eines solchen Lichtbogens liegt in einem thermodynamischen Gleichgewicht. Die hohe kontinuierliche Temperatur führt zu einer hohen elektrischen Leitfähigkeit \(\sigma \propto T^{\frac{3}{2}}\), weshalb trotzdem eine geringe Brfennspannung vorliegt. 
+
+Damit ein Spark in einen stabilen Bogen übergeht, müssen bestimmte Bedingungen erfüllt sein. Der Leiterkanal muss durch den Funkenstrom genübend aufgeheizt werden, sodass die Leitfähigkeit so hoch wird, dass die Brennspannung unterhalb der angelegten Versorgunsspannung liegt. Außerdem muss die Stromquelle in der Lage sein, den erforderlichen Strom über einen längeren Zeitraum aufrechtzuerhalten. Nur wenn der heiße Kanal nicht kollabiert, sonder durch die Energiezufuhr selbsterhaltend bleibt, entsteht aus einem transienten Spark eine dauerhafte Bogenentladung.
 

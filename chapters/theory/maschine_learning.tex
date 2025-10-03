@@ -2,7 +2,7 @@
 \section{Maschine Learning}
 \label{sec:maschinelearning}
 \subsection{Regression}
-Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model dieser Daten. Dieses Model wird durch Parameter spezifizierte, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'residuar sum of squares' (RSS) minimieren. Neben der RSS existieren weiter Fehlermaße die von Nutze sind, bei der Bewertung von Regressionsmodeelen.
+Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model, dass diese Daten beschreibt. Dieses Model wird durch Parameter spezifiziert, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'Residual Sum of Squares' (RSS) minimieren. Bei dem RSS handelt es sich um die Summe der quadrierten Residuen zwischen Beobachtungen und Modellvorhersagen. Neben der RSS existieren weiter Fehlermaße die von Nutze sind, bei der Bewertung von Regressionsmodellen.
 
 \subsubsection{Mean Squared Error (MSE)}
 Für die Optimierung von den meißten Regressionsmodellen ist eine Penalisierung von größeren Abweichungen gewünscht, um so schnell an das Optimum navigieren. Dies ermöglicht der Mean Squared Error (MSE), dieser entspricht der RSS dividiert durch die Anzahl der Beobachtungen und ist somit der durchschnittliche quadrierte Fehler:
@@ -40,7 +40,11 @@ Fehlermaße die eine Einheit tragen, lassen sich schlecht untereinander zwischen
 \end{equation}
 
 \subsubsection{\(R^2\)}
-%: R² = 1 - (SS_res / SS_tot)
+Das Bestimmtheitsmaß \(R^2\) beschreibt, welcher Anteil der Varianz der Zielvariable durch das Modell erklärt wird. Es ist definiert als
+\begin{equation}
+  R² = 1 - (SS_{res} / SS_{tot})
+\end{equation}
+wobei \(SS_{res}\) die Residuenquadratsumme und \(SS_{tot}\) die totale Quadratsumme ist. Ein Wert von \(R^2 = 1\) entspricht einer perfekten Anpassung.
 
 \subsection{Lineareregression}
 Die Lineareregression ist ein Modell aus der Statistik welches den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) herstellt. Das verwendete Modell ist ein lineares Modell es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\), diese zubestimmen ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
@@ -71,7 +75,7 @@ Wenn in dem Vektor der erklärenden Variablen X viele miteinander korrelierte We
 Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge-Regression der Lineareregression. Größere Werte von \(\lambda \) reduzieren die Größe der Koeffizienten. \cite{Hastie2009}
 
 \subsubsection{Lasso Regression}
-Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting. \cite{Hastie2009}
+Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting. Die Lasso Regression eliminiert Variablen vollständig (Feature Selection), Ridge dagegen schrumpft Koeffizienten nur. \cite{Hastie2009}
 
 \begin{equation}
 \text{RSS}_{\text{Lasso}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}|\beta_j|
@@ -116,7 +120,7 @@ Neben dem Random Forest, also der Wahl von mehren tiefen Bäumen, lassen sich au
   \label{eq:reg-grad}
 \end{equation}
 
-Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hzperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. \cite{Hastie2009}
+Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hyperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. \cite{Hastie2009}
 
 
 % Clustering Verfahren kmeans, hdbscan, pca
