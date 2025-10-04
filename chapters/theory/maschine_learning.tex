@@ -1,38 +1,38 @@
 
-\section{Maschine Learning}
+\section{Machine Learning}
 \label{sec:maschinelearning}
 \subsection{Regression}
-Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) bzw. mehreren ein Zusammenhang hergestellt mit einem Model, dass diese Daten beschreibt. Dieses Model wird durch Parameter spezifiziert, diese zu schätzen ist Aufgabe der Regression. Um den Fehler des Models festzustellen wird die Methode der kleinsten Quadrate verwendet, dabei werden die Parameter so gewählt, dass diese die 'Residual Sum of Squares' (RSS) minimieren. Bei dem RSS handelt es sich um die Summe der quadrierten Residuen zwischen Beobachtungen und Modellvorhersagen. Neben der RSS existieren weiter Fehlermaße die von Nutze sind, bei der Bewertung von Regressionsmodellen.
+Für Regressionsaufgaben wird zwischen einer Antwortvariable \(Y\) und einer erklärenden Variable \(X\) bzw. mehreren ein Zusammenhang mit einem Modell hergestellt, das diese Daten beschreibt. Dieses Modell wird durch Parameter spezifiziert; diese zu schätzen, ist Aufgabe der Regression. Um den Fehler des Modells festzustellen, wird die Methode der kleinsten Quadrate verwendet. Dabei werden die Parameter so gewählt, dass sie die 'Residual Sum of Squares' (RSS) minimieren. Bei der RSS handelt es sich um die Summe der quadrierten Residuen zwischen Beobachtungen und Modellvorhersagen. Neben der RSS existieren weitere Fehlermaße, die von Nutzen sind bei der Bewertung von Regressionsmodellen.
 
 \subsubsection{Mean Squared Error (MSE)}
-Für die Optimierung von den meißten Regressionsmodellen ist eine Penalisierung von größeren Abweichungen gewünscht, um so schnell an das Optimum navigieren. Dies ermöglicht der Mean Squared Error (MSE), dieser entspricht der RSS dividiert durch die Anzahl der Beobachtungen und ist somit der durchschnittliche quadrierte Fehler:
+Für die Optimierung der meisten Regressionsmodelle ist eine Penalisierung größerer Abweichungen gewünscht, um schnell an das Optimum zunavigieren. Dies ermöglicht der Mean Squared Error (MSE); dieser entspricht der RSS dividiert durch die Anzahl der Beobachtungen und ist somit der durchschnittliche quadrierte Fehler:
 \begin{equation}
   \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \frac{RSS}{n}
   \label{eq:mse}
 \end{equation}
-Hierbei \(y_i\) die beobachteten Werte, \(\hat{y}_i\) die vorhergesagten Werte und \(n\) die Anzahl der Beobachtungen darstellt.
+Hierbei sind \(y_i\) die beobachteten Werte, \(\hat{y}_i\) die vorhergesagten Werte und \(n\) die Anzahl der Beobachtungen.
 
 \subsubsection{Root Mean Squared Error (RMSE)}
-Der MSE lässt sich aufgrund der quadratischen Form nicht intuitiv interpretieren, dies lösst der Root Mean Squared Error (RMSE). Der RMSE ist die Quadratwurzel des MSE und kann so in der selben Einheit wie die Zielvariable interpretiert werden:
+Der MSE lässt sich aufgrund der quadratischen Form nicht intuitiv interpretieren; dies löst der Root Mean Squared Error (RMSE). Der RMSE ist die Quadratwurzel des MSE und kann so in der selben Einheit wie die Zielvariable interpretiert werden:
 
 \begin{equation}
   \text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
   \label{eq:rmse}
 \end{equation}
 
-Diese Eigenschaft macht den RMSE wertvoll für die praktische Interpretation der Modellgüte, da die durchschnittliche Abweichungen zwischen Vorhersage und den tatsächlichen Werten direkt angegeben wird. 
+Diese Eigenschaft macht den RMSE wertvoll für die praktische Interpretation der Modellgüte, da die durchschnittliche Abweichung zwischen Vorhersage und den tatsächlichen Werten direkt angegeben wird. 
 
 \subsubsection{Mean Absolute Error}
-Die Quadratisierung der Werte für zu einem besondren Fokuss auf die großen, stark abweichenden Werte, diese eigenet sich für die mathematische Optimierung und für Datensätze ohne extreme Werte. Für Datensätze mit solchen extremen Werten eignet sich der Mean Absolute Error (MAE). Dieser verwendet die absoluten Abweichungen und ist so weniger sensitiv auf Ausreißer:
+Die Quadratisierung der Werte führt zu einem besonderen Fokus auf große, stark abweichende Werte; diese eignet sich für die mathematische Optimierung und für Datensätze ohne extreme Werte. Für Datensätze mit solchen extremen Werten eignet sich der Mean Absolute Error (MAE). Dieser verwendet die absoluten Abweichungen und ist so weniger sensitiv gegenüber Ausreißern:
 
 \begin{equation}
   \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
   \label{eq:mae}
 \end{equation}
 
-\subsubsection{Mean Absolute Precentage Error (MAPE)}
+\subsubsection{Mean Absolute Percentage Error (MAPE)}
 
-Fehlermaße die eine Einheit tragen, lassen sich schlecht untereinander zwischen verschiedenen Datensätzen vergleichen, da die Zielvariablen im Allgemeinen in verschiedenen Größen vorliegen werden. Der Mean Absolute Precentage Error (MAPE) drückt den durchschnittliche absoluten Fehler als Prozentsatz aus und ermöglicht dadurch eine einheitenlose Bewertung der Modellgüte.
+Fehlermaße, die eine Einheit tragen, lassen sich schlecht zwischen verschiedenen Datensätzen vergleichen, da die Zielvariablen im Allgemeinen in unterschiedlichen Größen vorliegen. Der Mean Absolute Percentage Error (MAPE) drückt den durchschnittlichen absoluten Fehler als Prozentsatz aus und ermöglicht dadurch eine einheitenlose Bewertung der Modellgüte.
 
 \begin{equation}
 \text{MAPE} = \frac{1}{n} \sum_{i=1}^{n} \left|\frac{y_i - \hat{y}_i}{y_i}\right| \times 100\%
@@ -42,51 +42,51 @@ Fehlermaße die eine Einheit tragen, lassen sich schlecht untereinander zwischen
 \subsubsection{\(R^2\)}
 Das Bestimmtheitsmaß \(R^2\) beschreibt, welcher Anteil der Varianz der Zielvariable durch das Modell erklärt wird. Es ist definiert als
 \begin{equation}
-  R² = 1 - (SS_{res} / SS_{tot})
+  R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
 \end{equation}
 wobei \(SS_{res}\) die Residuenquadratsumme und \(SS_{tot}\) die totale Quadratsumme ist. Ein Wert von \(R^2 = 1\) entspricht einer perfekten Anpassung.
 
-\subsection{Lineareregression}
-Die Lineareregression ist ein Modell aus der Statistik welches den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Varaible \(X\) herstellt. Das verwendete Modell ist ein lineares Modell es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\), diese zubestimmen ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
+\subsection{Lineare Regression}
+Die lineare Regression ist ein Modell aus der Statistik, das den Zusammenhang zwischen einer Antwortvariable \(Y\) und einer erklärenden Variable \(X\) herstellt. Das verwendete Modell ist ein lineares Modell; es wird also die Annahme getroffen, dass zwischen \(Y\) und \(X\) ein linearer Zusammenhang vorliegt. Für eine einzelne erklärende Variable \(X\) ergeben sich zwei unbekannte Konstanten \(\beta_0\) und \(\beta_1\); diese zu bestimmen, ist das Ziel der linearen Regression. Das Modell lässt sich somit schreiben als:
 \begin{equation}
     Y \simeq \beta_0 + \beta_1 X
     \label{eq:linreg1}
 \end{equation}
-Es ist zu unterscheiden zwischen den Modell Koeffizienten \(\beta\) und den Schätzungen dieser Koeffizienten \(\hat{\beta}\), die sich aus den verwendeten Trainingsdaten ergeben. 
-Für das lineare Modell lässt sich ein direkter Ausdruck für die geschätzen Werte bilden, ausgedrückt über den Mittelwert von \(Y\) und \(X\):
+Es ist zu unterscheiden zwischen den Modellkoeffizienten \(\beta\) und den Schätzungen dieser Koeffizienten \(\hat{\beta}\), die sich aus den verwendeten Trainingsdaten ergeben. 
+Für das lineare Modell lässt sich ein direkter Ausdruck für die geschätzten Werte bilden, ausgedrückt über den Mittelwert von \(Y\) und \(X\):
 \begin{equation}
-    \hat{\beta_1} = \frac{\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2}
+    \hat{\beta}_1 = \frac{\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^{n}(x_i - \overline{x})^2}
 \end{equation}
 \begin{equation}
-    \hat{\beta_0} = \overline{y} - \hat{\beta_1}\overline{x}
+\hat{\beta}_0 = \overline{y} - \hat{\beta}_1\overline{x}
 \end{equation}
 
 \cite{james2013}
 
-\subsection{Refularisierte Lineareregression}
+\subsection{Regularisierte lineare Regression}
 
 \subsubsection{Ridge Regression (L2-Regularisierung)}
-Wenn in dem Vektor der erklärenden Variablen X viele miteinander korrelierte Werte vorliegen, dann kann die L2-Regularisierung verwendet werden, diese führt dazu dass korrelierte Variablen ähnliche Koeffizienten erhalten. Diese Methode ist Ridge Regression, also die Kombination aus Lineareregression und einem weiteren L2-Term. Die Kostenfuktion, hier der RSS, wird um einen weitren Strafterm erweitert.
+Wenn im Vektor der erklärenden Variablen \(X\) viele miteinander korrelierte Werte vorliegen, kann die L2-Regularisierung verwendet werden. Diese führt dazu, dass korrelierte Variablen ähnliche Koeffizienten erhalten. Diese Methode ist Ridge Regression, also die Kombination aus lineare Regression und einem weiteren L2-Term. Die Kostenfunktion, hier die RSS, wird um einen weiteren Strafterm erweitert.
 
 \begin{equation}
-\text{RSS}_{\text{Ridge}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}\beta_j^2
+\text{RSS}_{\text{Ridge}} = \sum_{i=1}^{n}\left(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij}\right)^2 + \lambda \sum_{j=1}^{p}\beta_j^2
 \label{eq:rss-ridge}
 \end{equation}
-Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge-Regression der Lineareregression. Größere Werte von \(\lambda \) reduzieren die Größe der Koeffizienten. \cite{Hastie2009}
+Der Hyperparameter \(\lambda \geq 0\) kontrolliert die Stärke der L2-Regularisierung. Bei \(\lambda = 0\) entspricht die Ridge Regression der lineare Regression. Größere Werte von \(\lambda\) reduzieren die Größe der Koeffizienten. \cite{Hastie2009}
 
 \subsubsection{Lasso Regression}
-Die Lineareregression eignet sich nicht für hoch dimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, dann kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der Lineareregression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1 als auch die L2 Norm, führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so overfitting. Die Lasso Regression eliminiert Variablen vollständig (Feature Selection), Ridge dagegen schrumpft Koeffizienten nur. \cite{Hastie2009}
+Die lineare Regression eignet sich nicht für hochdimensionale Datensätze. Wenn viele dieser weiteren Werte irrelevant für die Regression sind, kann eine L1-Regularisierung verwendet werden, da diese Koeffizienten auf null setzen kann. Diese Variante der lineare Regression ist die Lasso Regression (Least Absolute Shrinkage and Selection Operator). Sowohl die L1- als auch die L2-Norm führen neben diesen Eigenschaften zu einer Regularisierung und reduzieren beide so Overfitting. Die Lasso Regression eliminiert Variablen vollständig (Feature Selection), Ridge dagegen schrumpft Koeffizienten nur. \cite{Hastie2009}
 
 \begin{equation}
-\text{RSS}_{\text{Lasso}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p}|\beta_j|
+\text{RSS}_{\text{Lasso}} = \sum_{i=1}^{n}\left(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij}\right)^2 + \lambda \sum_{j=1}^{p}|\beta_j|
 \label{eq:reg-lasso}
 \end{equation}
 
 \subsubsection{Elastic Net}
-Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch die Verwendung beider Regressionsterme. \cite{Hastie2009}
+Die Vorteile der Ridge und der Lasso Regression lassen sich, durch die Verwendung beider Regressionsterme kombinieren. \cite{Hastie2009}
 
 \begin{equation}
-\text{RSS}_{\text{Elastic Net}} = \sum_{i=1}^{n}(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij})^2 + \lambda_1 \sum_{j=1}^{p}|\beta_j| + \lambda_2 \sum_{j=1}^{p}\beta_j^2
+\text{RSS}_{\text{Elastic Net}} = \sum_{i=1}^{n}\left(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij}\right)^2 + \lambda_1 \sum_{j=1}^{p}|\beta_j| + \lambda_2 \sum_{j=1}^{p}\beta_j^2
 \label{eq:reg-elastic}
 \end{equation}
 
@@ -94,36 +94,30 @@ Die Vorteile der Ridge und der Lasso Regression lassen sich kombinieren, durch d
 
 \subsubsection{Entscheidungsbäume}
 
-Wenn nicht lineare Zusammenhänge vorliegen, eignen sich lineare Modelle nicht mehr. Entscheidungsbäume sind ein Verfahren, dass für nicht lineare Zusammenhänge verwendet werden, kann und trozdem eine hervorangende Interpretierbarkeit beibehält. Ein Entscheidungsbäum teilt den Merkmalsraum rekursiv in rechteckige Regionen auf, jede dieser Regionen wird durch eine einfach Regel, die nur auf einem Merkmal basiert, charakterisiert. Die Antwortvariable wird durch die Mittelwertbildung der Endregion \(R_j\) bestimmt:
+Wenn nichtlineare Zusammenhänge vorliegen, eignen sich lineare Modelle nicht mehr. Entscheidungsbäume sind ein Verfahren, das für nichtlineare Zusammenhänge verwendet werden kann und trotzdem eine hervorragende Interpretierbarkeit beibehält. Ein Entscheidungsbaum teilt den Merkmalsraum rekursiv in rechteckige Regionen auf; jede dieser Regionen wird durch eine einfache Regel, die nur auf einem Merkmal basiert, charakterisiert. Die Antwortvariable wird durch die Mittelwertbildung der Endregion \(R_j\) bestimmt:
 
 \begin{equation}
 \hat{y}_{R_j} = \frac{1}{|R_j|} \sum_{x_i \in R_j} y_i
 \label{eq:reg-tree}
 \end{equation}
 
-Die Optimierung erfolgt, durch die Minimierung der Summe der quadratischen Abweichungen in den Teilregionen bestimmt. Die gute Interpretierbarkeit muss mit der hohen Varianz und der Neigung zum Overfitting abgewogen werden. \cite{Hastie2009}
+Die Optimierung erfolgt durch die Minimierung der Summe der quadratischen Abweichungen in den Teilregionen. Die gute Interpretierbarkeit muss mit der hohen Varianz und der Neigung zum Overfitting abgewogen werden. \cite{Hastie2009}
 
 \subsubsection{Random Forest}
-Um das Overfitting und die Varianz eines einzelnen Baumes zu verbessern, wird der Random Forest verwendent, dieser ist ein Ensemble-Verfahren, das die finale Vorhersage von mehren einzel Bäumen kombiniert \ref{eq:reg-random}. Es werden zwei Randomisierungsstrategien verwendet, zum einem eine bootstrap Aggregation (Bagging), also jeder Baum wird auf einer Bootstrap-Stickprobe der Trainingsdaten trainiert und zum anderen die Feature Randomisierung, es wird in jeder Aufteilung des Merkmalsraums nur eine Teilmenge von den Variablen betrachtet. 
+Um das Overfitting und die Varianz eines einzelnen Baums zu reduzieren, wird der Random Forest verwendet. Dieser ist ein Ensemble-Verfahren, das die finale Vorhersage von mehreren einzelnen Bäumen kombiniert \ref{eq:reg-random}. Es werden zwei Randomisierungsstrategien verwendet: zum einen eine Bootstrap-Aggregation (Bagging), also jeder Baum wird auf einer Bootstrap-Stichprobe der Trainingsdaten trainiert, und zum anderen die Feature-Randomisierung; in jeder Aufteilung des Merkmalsraums wird nur eine Teilmenge der Variablen betrachtet. 
 
 \begin{equation}
   \hat{y}_{\text{RF}} = \frac{1}{B} \sum_{b=1}^{B} \hat{y}_b
   \label{eq:reg-random}
 \end{equation}
 
-Der Random Forest eignet sich als gute Wahl für viele Regressionsaufgaben, die nicht linear sind, jedoch ist dieser weniger Interpretierbar als, ein einzelner Entscheidungsbaum. \cite{Hastie2009}
+Der Random Forest eignet sich als gute Wahl für viele Regressionsaufgaben, die nicht linear sind; jedoch ist er weniger interpretierbar als, ein einzelner Entscheidungsbaum. \cite{Hastie2009}
 
 \subsection{Gradient Boosting}
-Neben dem Random Forest, also der Wahl von mehren tiefen Bäumen, lassen sich auch schwache Lerner, z.B. flache Entscheidungsbäume verwenden. Dabei baut das Gradient Boosting Model sequenziell solche schwachen Lerner auf, wobei neue weitere Bäume die Fehler der vorheringen Iteration korrigieren. Es wird iterativ eine Verlustfunktion minimiert:
+Neben dem Random Forest, also der Wahl von mehreren tiefen Bäumen, lassen sich auch schwache Lerner, z. B. flache Entscheidungsbäume, verwenden. Dabei baut das Gradient-Boosting-Modell sequenziell solche schwachen Lerner auf, wobei neue Bäume die Fehler der vorherigen Iteration korrigieren. Es wird iterativ eine Verlustfunktion minimiert:
 \begin{equation}
   F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)
   \label{eq:reg-grad}
 \end{equation}
 
-Gradient Boosting führt häufig zu hervorragenden Modellen, jedoch muss auf eine sorgfältige Hyperparameter-Abstimmung geachtet werden, um Overfitting zu Vermeiden. \cite{Hastie2009}
-
-
-% Clustering Verfahren kmeans, hdbscan, pca
-% Features (statisticle, fft)
-% deeplearning (cnn, lstm, pinn)
-% Dimensionsreduktioin (PCA, UMAP, t-SNE)
+Gradient Boosting führt häufig zu hervorragenden Modellen; jedoch muss auf eine sorgfältige Hyperparameter-Abstimmung geachtet werden, um Overfitting zu vermeiden. \cite{Hastie2009}
