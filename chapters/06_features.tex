@@ -1,20 +1,20 @@
 \chapter{Datenaufbereitung}
 \label{chap:features}
 
-Für die Auswertung der Entladungen werden verschieden Parameter wie Eventstart, Pre-Eventstart, Entladungslänge und weitere benötigt, diese werden in diesem Kaptitel definiert.
+Für die Auswertung der Entladungen werden verschiedene Parameter wie Eventstart, Vorläuferstart, Entladungslänge und weitere benötigt; diese werden in diesem Kapitel definiert.
 
 \section{Eventstart}
 \label{sec:eventstart}
 
-Der Start des Events wurde in der Anfangszeit als der Punkt definiert, ab dem der Strom eine gewisse Schwelle überschritten hatte. Der Wert dieser Schwelle wurde bei der Aufnahme der Daten vor einer längeren Messreihe empirisch durch die Wahl der Triggerschwelle realisiert. Diese Wahl des Eventstartes führte jedoch zu Schwierigkeiten für Events bei denen vor dem Start des maximalen Entladungsstromes schon kleinere Ströme vorher fließen, also im Fall von Vorevents bzw. den Eventauslösern (Townsendlawinen). Die Schwierigkeit ist nun, dass der Trigger auch auf diese anfällig ist, dies ist bei der richting Wahl des Triggerlevels wenn die Entladungen alle die gleiche Strom Größenordung besitzen unproblematisch, wenn aber bei der Änderung des Drucks dies sich ändert, dann muss eine andere Definition gewählt werden. Als Eventstart wird das überschreiten von $65 \%$ des maximalen Stroms dieser Entladung gewählt, dieser empirische Wert hat sich als am genausten bewährt, da dieser noch nicht auf hohe Vorevents anspringt aber auch nicht innerhalb des Events liegt, für Events die die nicht direkt mit dem maximalen Strom starten. Dieser Wert ist in in \figref{fig:event_markers_auto} dargestellt. Da auch diese Definition nicht für alle Entladungen funktioniert, z.B. für kleinere schächere Entladungen die flacher sind ohne einen solchen klaren Anstiegspeak, wurde für einen Teil der Events händisch mittles einer python gui dieser Wert gesetzt, somit lassen sich diese beiden Werte in der späteren Auswertung miteinander vergleichen. Der händische Wert ist in \figref{fig:event_markers_hand} dargestellt.
+Der Start des Events wurde zunächst als der Zeitpunkt definiert, ab dem der Strom eine festgelegte Schwelle überscheritet. Der Wert dieser Schwelle wurde bei der Datenerfassung vor einer längeren Messreihe empirisch durch die Wahl der Triggerschwelle festgelegt. Diese Definition des Eventstarts führte jedoch zu Schwierigkeiten bei Events, bei denen vor dem Maximum des Entladungsstroms bereits kleinere Ströme fließen, also im Fall von Vorläufern bzw. Eventauslösern (Townsend-Lawinen). Das Problem besteht darin, dass der Trigger auch auf diese anspricht. Bei richtiger Wahl des Triggerlevels und gleicher Stromgrößenordnung der Entladungen ist dies unproblematisch; ändert sich jedoch die Stromgröße infolge einer Druckvariation, muss eine andere Definition gewählt werden. Als Eventstart wird daher das Überschreiten von \(65 \%\) des maximalen Stroms der jeweiligen Entladung festgelegt. Dieser empirische Wert hat sich als hinrechend genau erwiesen, da er nicht auf starke Vorläufer anspringt und zugleich bei Events, die nicht direkt mit dem maximalen Strom starten, nicht innerhalb des Events liegt. Dieser Wert ist in \figref{fig:event_markers_auto} dargestellt. Da auch diese Definition nicht für alle Entladungen funktioniert, z. B. bei kleineren, schwächeren und flacheren Entladungen ohne klaren Anstiegspeak, wurde für einen Teil der Events dieser Wert händisch mittels einer Python-GUI gesetzt. Somit lassen sich diese beiden Werte in der späteren Auswertung miteinander vergleichen. Der händische Wert ist in \figref{fig:event_markers_hand} dargestellt.
 
 \section{Eventende}
 \label{sec:eventende}
-Das Ende des Events ist definiert as der Punkt an dem nach dem maximalen Strom der Strom wieder auf \(10\%\) des ursprünglichen Events abgesunken ist. Da in dem Strom aufgrund der Oszillationen mehrere Punkte auftreten, wo kurzeitig ein solcher Strom erreicht ist, wird vor der Bestimmung dieses Wertes eine Einhüllende des Signals gebildet. Dieser Wert ist in \figref{fig:event_markers_auto} dargestellt, analog zu \secref{sec:eventstart} ist in \figref{fig:event_markers_hand} der händisch gewählte Wert dargestellt.
+Das Ende des Events ist als der Zeitpunkt definiert, an dem der Strom nach Erreichen des Maximums wieder auf \(10\%\) des ursprünglichen Eventwerts abgesunken ist. Da aufgrund von Oszillationen mehrere Zeitpunkte auftreten können, an denen kurzfristig ein solcher Strom erreicht wird, wird vor der Bestimmung dieses Werts eine Einhüllende des Signals gebildet. Dieser Wert ist in \figref{fig:event_markers_auto} dargestellt; analog zu \secref{sec:eventstart} ist in \figref{fig:event_markers_hand} der händisch gewählte Wert dargestellt.
 
 \section{Eventlänge}
 \label{sec:eventlen}
-Die Länge des Events wird aus der Differenz des Endes des Events \ref{sec:eventende} und dem Start des Events \ref{sec:eventstart} gebildet. Somit ergeben sich zwei Eventlängen einmal für die automatische Auswahl und einmal für die händisch gewählten Werte. 
+Die Länge des Events wird als Differenz zwischen dem Ende des Events (\ref{sec:eventende}) und dem Start des Events (\ref{sec:eventstart}) definiert. Somit ergeben sich zwei Eventlängen: eine für die automatische Auswahl und eine für die händisch gewählten Werte. 
 \begin{figure}[H]
   \centering
   \begin{subfigure}[t]{0.48\textwidth}
@@ -29,36 +29,39 @@ Die Länge des Events wird aus der Differenz des Endes des Events \ref{sec:event
     \caption{Händisch gesetzte Eventmarker}
     \label{fig:event_markers_hand}
   \end{subfigure}
-  \caption{Plazierung der Eventmarker}
+  \caption{Platzierung der Eventmarker}
   \label{fig:event_markers}
 \end{figure}
 
 
-\section{Vorläufer Eventstart}
+\section{Vorläuferstart}
 \label{sec:preeventstart}
-Der Start des Präevents, wenn ein solches vorhanden ist, wird über \equref{eq:preevent_start} bestimmt. Wenn der Strom mit einer Anzahl an \(p\) Punkten über eine Anzahl an \(n\) Punkten von dem Punkt \(i\) an größer als die Standartabweichung der ersten 1000 Punkte multipliziert mit einer Schranke von \(th\), dann entspricht \(i\) dem Start des Vorläufers. Für die Parameter werden zwei Fälle unterschieden, wenn der maximale Strom \(I_{max}\) des Events kleiner als \SI{5e-5}{\ampere} ist, dann werden die Werte \(th = 30\), \(p = 300\) und \(n = 2000\) verwendet, für größere Ströme \(th = 20\), \(p = 10\) und \(n=2000\). Neben dieser Definition werden ebenfalls händische Werte für einen Teil der Daten erhoben.
+Der Start des Vorläufers, sofern ein solcher vorhanden ist, wird über \equref{eq:preevent_start} bestimmt. Wenn ab einem Punkt \(i\) in einem Fenster von \(n\) nachfolgenden Punkten mindestens \(p\) Punkte einen Strom größer als die Standardabweichung \(\sigma\) der ersten 1000 Punkte, multipliziert mit einer Schranke \(th\), aufweisen, entspricht \(i\) dem Vorläuferstart. Für die Parameter werden zwei Fälle unterschieden: Ist der maximale Strom \(I_{\text{max}}\) des Events kleiner als \SI{5e-5}{\ampere}, werden \(th = 30\), \(p = 300\) und \(n = 2000\) verwendet; für größere Ströme \(th = 20\), \(p = 10\) und \(n = 2000\). Neben dieser Definition werden ebenfalls händische Werte für einen Teil der Daten erhoben.
 
 \begin{equation}
-  \sum_i^n (I_n > th \cdot \sum_{m=0}^{1000} I_m) > p 
+  \sum_{j=i}^{i+n} \mathbf{1}(I_j > th \cdot \sigma) > p 
+  \quad \text{mit} \quad
+  \sigma = \sqrt{\frac{1}{1000}\sum_{m=0}^{999} (I_m - \bar{I})^2}
   \label{eq:preevent_start} 
 \end{equation}
 
 \subsection{Eventabstand}
 \label{sec:event_distance}
-Die Differenz aus Eventstart und Vorläuferstart wird als der Eventabstand bezeichnet. Dieser gibt also an wie lange vor dem Event schon Vorläuferphänomene auftreten.
+Die Differenz aus Eventstart und Vorläuferstart wird als Eventabstand bezeichnet. Sie gibt an, wie lange vor dem Event bereits Vorläuferphänomene auftreten.
 
-\section{Vorläufer Eventende}
-\label{sec.preeventend}
-Das Ende eines solchen Präevents, wenn dieser Vorläufer ein Ende besitzt und nicht direkt im Start des Events endet, wird über \equref{eq:precursor_end} definiert. Hierbei ist \{i\} der Punkt des maximalen Stroms im Zeitfenster zwischen dem Start des Vorläufers und dem Start des Events \{s = 200\} und \{th = 0.25\}. Vor der Bestimmung dieses Endwertes wurde eine Einhüllende des Stroms mit einem Fenster von 5 Punkten erstellt.
+
+\section{Vorläuferende}
+\label{sec:preeventend}
+Das Ende eines Vorläufers, sofern dieser nicht direkt im Eventstart endet, wird über \equref{eq:precursor_end} definiert. Hierzu wird ab dem Punkt des maximalen Stroms im Zeitfenster zwischen Vorläuferstart und Eventstart das erste Intervall von \(s = 200\) aufeinanderfolgenden Punkten gesucht, für das der Variationskoeffizient kleiner als \(th = 0{,}25\) ist. Vor der Bestimmung dieses Endwerts wird eine Einhüllende des Stroms mit einem Fenster von fünf Punkten gebildet.
 
 \begin{equation}
-\max \Bigg\{
+i_{\text{end}} = \min \left\{ i \, \Bigg| \, 
 \begin{aligned}
-&  I_{\text{mean}} = (\frac{1}{s}\sum_i^{s} I_i) \\ 
-& I_{\text{std}} = \sum_i^s I_i - I_{\text{mean}} \\ 
-& \frac{I_{std}}{I_{mean}} < th
+&  I_{\text{mean}} = \frac{1}{s}\sum_{j=i}^{i+s} I_j \\ 
+&  I_{\text{std}} = \sqrt{\frac{1}{s}\sum_{j=i}^{i+s} (I_j - I_{\text{mean}})^2} \\ 
+&  \frac{I_{\text{std}}}{I_{\text{mean}}} < th
 \end{aligned}
-\Bigg\}
+\right\}
 \label{eq:precursor_end}
 \end{equation}
 
@@ -73,42 +76,62 @@ Das Ende eines solchen Präevents, wenn dieser Vorläufer ein Ende besitzt und n
   \begin{subfigure}[t]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figures/features/precursor_markers_hand.pdf}
-    \caption{Händisch gesetzte Eventmarker}
+    \caption{Händisch gesetzte Vorläufermarker}
     \label{fig:precursor_markers_hand}
   \end{subfigure}
-  \caption{Plazierung der Eventmarker}
+  \caption{Platzierung der Vorläufermarker}
   \label{fig:precursor_markers}
 \end{figure}
 
 \subsection{Vorläuferabstand}
 \label{sec:precursor_distance}
-Die Differenz aus Eventstart und Vorläuferende wird als der Vorläuferabstand bezeichnet. Diese Größe ist nicht zu verwechseln mit dem Eventabstand \ref{sec:event_distance}. Der Vorläuferabstand gibt zum einen an ob das Vorevent direkt im Eventstart endet oder ob zwischen denen es ein Intervall mit konstanten Strom gibt, der klein oder 0 ist. Dies entspricht somit auch den technisch nutzbaren zeitlichen Abstand zwischen Vorevent und Eventstart, in dem das Intervall Vorläuferstart bis Vorläuferende ausgewertet und verwendet werden kann.
+Die Differenz aus Eventstart und Vorläuferende wird als Vorläuferabstand bezeichnet. Diese Größe ist nicht mit dem Eventabstand (\ref{sec:event_distance}) zu verwechseln. Der Vorläuferabstand gibt an, ob der Vorläufer direkt im Eventstart endet oder ob dazwischen ein Intervall mit konstantem, kleinem oder verschwindendem Strom vorliegt. Er entspricht somit auch dem technisch nutzbaren zeitlichen Abstand zwischen Vorläufer und Eventstart, in dem das Intervall von Vorläuferstart bis Vorläuferende ausgewertet und verwendet werden kann.
 
 
 \section{Durchbruchspannung}
 \label{sec:breakdownvoltage}
-Die Durchbruchspannung \(U_B\) ist die Spannung direkt vor der Entladung, also die Spannung die zum Zusammenbruch des System geführt hat, dies ist die Spannung die in \equref{eq:townsendbreak} eingeführt wurde. Diese wird aus den ersten 1000 Spannungspunken die aufgezeichnet wurden durch Mittelwertbildung bestimmt. 
+Die Durchbruchspannung \(U_B\) ist die Spannung unmittelbar vor der Entladung, also die Spannung, die zum Zusammenbruch des Systems geführt hat. Sie entspricht der in \equref{eq:townsendbreak} eingeführten Größe. Sie wird aus den ersten 1000 aufgezeichneten Spannungspunkten durch Mittelwertbildung bestimmt. 
+
 
 \section{Spannungsdifferenz}
 \label{sec:voltage_drop}
+Die Spannungsdifferenz \(\Delta U\) beschreibt den Spannungsabfall während der Entladung. Sie wird als Differenz zwischen der Durchbruchspannung \(U_B\) (siehe \secref{sec:breakdownvoltage}) und der nachfolgenden Spannung des Events berechnet:
+\begin{equation}
+\Delta U = U_B - U_{\text{end}}
+\end{equation}
+Dieser Parameter gibt Aufschluss über die Energiedissipation während der Entladung und korreliert mit der Intensität des Durchschlags. 
 
 \section{Abgeschnittener Strom}
 \label{sec:cutoffcurrent}
+Dieser Wert gibt an, ob der maximale Strom mehrfach auftritt. Ist dies der Fall, ist der Strom vertikal abgeschnitten. In \figref{fig:event_voltage_current} ist dies erkennbar. 
 
 \section{Maximaler Strom}
 \label{sec:maxcurrent}
+Der maximale Strom \(I_{\text{max}}\) ist der Spitzenwert des Entladungsstroms während des gesamten Events. Dieser Parameter dient als Referenzgröße für die Bestimmung des Eventstarts (\(65\%\) von \(I_{\text{max}}\), siehe \secref{sec:eventstart}) und des Eventendes (\(10\%\) von \(I_{\text{max}}\), siehe \secref{sec:eventende}). Der maximale Strom wird direkt aus den aufgezeichneten Stromwerten bestimmt und ist ein Maß für die Intensität der Entladung. In \figref{fig:event_voltage_current} ist dieser als Peak im Stromverlauf erkennbar. Zu beachten ist, dass bei abgeschnittenem Strom der gemessene Maximalwert nicht dem tatsächlichen Maximum entspricht.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/features/event_voltage_current.pdf}
-  \caption{Visualisierung der Spannungs und Strom Werte}
+  \caption{Visualisierung der Spannungs- und Stromwerte}
   \label{fig:event_voltage_current}
 \end{figure}
 
+
 \section{Eventenergie und Ladung}
 \label{sec:eventenergy_charge}
+Die während eines Events übertragene Energie und Ladung werden durch Integration der entsprechenden Größen über die Eventlänge bestimmt.
 
+Die übertragene Ladung \(Q\) berechnet sich als Integral des Stroms über die Eventdauer:
+\begin{equation}
+Q = \int_{t_{\text{start}}}^{t_{\text{end}}} I(t) \, dt \approx \sum_{i=i_{\text{start}}}^{i_{\text{end}}} I_i \cdot \Delta t
+\end{equation}
 
+Die dissipierte Energie \(E\) ergibt sich aus dem Produkt von Strom und Spannung:
+\begin{equation}
+E = \int_{t_{\text{start}}}^{t_{\text{end}}} U(t) \cdot I(t) \, dt \approx \sum_{i=i_{\text{start}}}^{i_{\text{end}}} U_i \cdot I_i \cdot \Delta t
+\end{equation}
+
+Hierbei sind \(t_{\text{start}}\) und \(t_{\text{end}}\) der Event- bzw. Vorläuferstart und -ende aus den Abschnitten \ref{sec:eventstart} und \ref{sec:eventende}, und \(\Delta t\) das Abtastintervall der Messung. Diese Parameter ermöglichen eine quantitative Bewertung der Entladungsintensität und sind wichtig für die Klassifizierung verschiedener Entladungstypen.
 
 
 
