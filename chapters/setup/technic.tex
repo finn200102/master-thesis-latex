@@ -1,11 +1,11 @@
 \section{Technik}
 \label{sec:technic}
-Für die Aufnahme der Daten wurde ein Digital Oscilloscope mit \(\SI{800}{\mega\hertz}\) genutzt, dass DHO4804 von Rigol. Dieses besitzt vier Kanäle. Der erste Kanal wird für die Messung des abfließenden Stromes hin zur Erde von der Funkenstrecke verwendet, der zweite Kanal für die Aufnahme der Spannung an der Funkenstrecke, der dritte Kanal zur Aufnahme des Ladetroms zwischen dem Netzteil und der Funkenstrecke und der vierte Kanal zur Aufnahme der elektromagnetischen Strahlung in ca. \(\SI{50}{\centi\meter}\) Entfernung von der Funkenstrecke. Die Messung des abfließenden Stroms wird über die Messung einer Testbox, die zwischen die Erde und der Erdseite des Funkenstrecke angeschlossen ist mit vorgenommen. Diese wird über Koxialkabel direkt an Kanal 1 angeschlossen. Die Testboxen werden weiter in \secref{sec:messbox} behandelt. Die Messung der Hochspannung an der Funkenstrecke erfolgt über einen Spannungsteiler, dieser wird weiter in \secref{sec:voltage_divider} behandelt. Der Schaltplan des Aufbaus ist in \figref{fig:setup_circuit} dargestellt, dabei entspricht der Kondensator \(C\) der Funkenstrecke. 
+Für die Aufnahme der Daten wurde ein Digital-Oszilloskop mit \(\SI{800}{\mega\hertz}\) genutzt, das DHO4804 von Rigol. Dieses besitzt vier Kanäle. Der erste Kanal wird für die Messung des abfließenden Stroms zur Erde von der Funkenstrecke verwendet, der zweite Kanal für die Aufnahme der Spannung an der Funkenstrecke, der dritte Kanal zur Aufnahme des Ladestroms zwischen dem Netzteil und der Funkenstrecke, und der vierte Kanal zur Aufnahme der elektromagnetischen Strahlung in ca. \(\SI{50}{\centi\meter}\) Entfernung von der Funkenstrecke. Die Messung des abfließenden Stroms erfolgt über eine Testbox, die zwischen der Erde und der Erdseite der Funkenstrecke angeschlossen ist. Diese wird über Koaxialkabel direkt an Kanal 1 angeschlossen. Die Messboxen werden weiter in \secref{sec:messbox} behandelt. Die Messung der Hochspannung an der Funkenstrecke erfolgt über einen Spannungsteiler; dieser wird weiter in \secref{sec:voltage_divider} behandelt. Der Schaltplan des Aufbaus ist in \figref{fig:setup_circuit} dargestellt; dabei entspricht der Kondensator \(C\) der Funkenstrecke. 
 
 \begin{figure}[H]
     \centering
     \input{figures/setup/setup_circuit.tex}
-    \caption{Schaltplan des Versuchaufbaus}
+    \caption{Schaltplan des Versuchsaufbaus}
     \label{fig:setup_circuit}
 \end{figure}
 
@@ -13,48 +13,48 @@ Für die Aufnahme der Daten wurde ein Digital Oscilloscope mit \(\SI{800}{\mega\
 \subsection{Schwingkreis}
 
 \subsubsection{LC-Resonanz}
-Ein System aus einer Induktivität \(L\), einer Kapazität \(C\) und einem Widerstand \(R\) bilden einen gedämpften Schwingkreis. Die Eigenfrequenz \(f_0\) ist
+Ein System aus einer Induktivität \(L\), einer Kapazität \(C\) und einem Widerstand \(R\) bildet einen gedämpften Schwingkreis. Die Eigenfrequenz \(f_0\) ist
 
 \begin{equation}
 f_0 = \frac{1}{2\pi \sqrt{LC}}
 \end{equation}
 
 \subsubsection{Gedämpfter RLC-Schwingkreis}
-In realen Systemem wie den gemessenen Entladungen müssen sowohl die \(RLC\) Anteile der Komponenten wie die Funkenstrecke berücksichtigt werden also auch die parasitären Effekte der verwendeten Kabel. Ein solcher gedämpfter \(RLC\)-Kreis wird durch die folgende Differentialgleichung beschrieben:
+In realen Systemen wie den gemessenen Entladungen müssen sowohl die \(RLC\)- Anteile der Komponenten, wie der Funkenstrecke, berücksichtigt werden als auch die parasitären Effekte der verwendeten Kabel. Ein solcher gedämpfter \(RLC\)-Kreis wird durch die folgende Differentialgleichung beschrieben:
 
 \begin{equation}
 L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{q}{C} = 0
 \end{equation}
-Der Fall geringer Dämpfung, also mit längeren oszillatorischen Effekten, ist interessant für die Betrachtung von Entladungen, wie sie in der Hochspannungstechnik auftreten. Die Fälle von kritischer oder aperiodischer Dämpfung klingen ohne längere Osilationen ab.
+Der Fall geringer Dämpfung, also mit längeren oszillatorischen Effekten, ist für die Betrachtung von Entladungen interessant, wie sie in der Hochspannungstechnik auftreten. Die Fälle kritischer oder aperiodischer Dämpfung klingen ohne längere Oszillationen ab.
 \subsubsection{Qualitätsfaktor}
 Der Qualitätsfaktor \(Q\) gibt das Verhältnis aus gespeicherter und dissipierter Energie an:
 \begin{equation}
 Q = \frac{1}{R} \sqrt{\frac{L}{C}}
 \end{equation}
-Hohe Werte entsprechen niedrigen Verlusten des Schwingkreises und niedrige Werte entsprechen einer stärkeren Dämpfung und somit stärkeren Verslusten.
+Hohe Werte entsprechen niedrigen Verlusten des Schwingkreises, und niedrige Werte entsprechen einer stärkeren Dämpfung und somit höheren Verlusten.
 
 \subsubsection{Spannungsteiler}
 \label{sec:voltagedividertheo}
-Um hohe Spannungen zumessen muss deren Spannung auf ein niedrigers Level reduziert werden um die empfindlichen Komponenten der Messelektronik zu schützen. Diese Aufgabe übernimmt ein Spannungsteiler, dieser wird über die Kombination aus zwei Widerständen realisiert, die Ausgangsspannung wird folgenderweise bestimmt
+Um hohe Spannungen zu messen, muss deren Spannung auf ein niedrigeres Level reduziert werden, um die empfindlichen Komponenten der Messelektronik zu schützen. Diese Aufgabe übernimmt ein Spannungsteiler; dieser wird über die Kombination aus zwei Widerständen realisiert. Die Ausgangsspannung wird folgendermaßen bestimmt:
 \begin{equation}
     U_{out} = U_{in} \frac{R_2}{R_1 + R_2}
     \label{eq:voltagedivider}
 \end{equation}
-Hierbei ist \(R_2\) der kleinere Widerstand über den gemessen wird und \(R_1\) der größere Widerstand. Nicht nur das Verhältnis ist relevant, sonder auch der totale Widerstand in Reihe \(R = R_1 + R_2\) da bei niedrigen Widerständen ein großer Strom fließen würde, somit müssen genügend große gewählt werden. Unter Gleichspannung muss nichts weiter beachtet werden, jedoch für Wechselspannung wird das Verhalten wegen limitierender parasitären Effekte beinträchtigt. Für große Widerstände liegt jedoch auch eine hohe Impedanz für das Element vor. Die Ausgangsimpendanz lässt sich folgender weise berechenen:
+Hierbei ist \(R_2\) der kleinere Widerstand, über den gemessen wird, und \(R_1\) der größere Widerstand. Nicht nur das Verhältnis ist relevant, sondern auch der totale Widerstand in Reihe \(R = R_1 + R_2\), da bei niedrigen Widerständen ein großer Strom fließen würde; somit müssen genügend große gewählt werden. Unter Gleichspannung muss nichts weiter beachtet werden; jedoch wird bei Wechselspannung das Verhalten wegen limitierender parasitärer Effekte beeinträchtigt. Für große Widerstände liegt jedoch auch eine hohe Impedanz des Elements vor. Die Ausgangsimpedanz lässt sich folgenderweise berechnen:
 \begin{equation}
     Z_{out} = \frac{R_1 R_2}{R_1 + R_2}
     \label{eq:voltagedividerimp}
 \end{equation}
-Somit ergibt sich für große \(Z_out\) ein Tiefpassfilter. Neben der Ausgangsimpendanz des Spannungsteilers müssen ebenfalls die kapazitiven parasitären Effekte betrachtet werden, also die Kapazitivität des Intrumentes und der verbundenen Kabel.
+Somit ergibt sich für großes \(Z_{out}\) ein Tiefpassfilter. Neben der Ausgangsimpedanz des Spannungsteilers müssen ebenfalls die kapazitiven parasitären Effekte betrachtet werden, also die Kapazität des Instruments und der verbundenen Kabel.
 \begin{equation}
-    f_c = \frac{1}{2\pi Z_out C_in}
-    \label{eq: voltagedividerfreq}
+  f_c = \frac{1}{2\pi Z_{out} C_{in}}
+    \label{eq:voltagedividerfreq}
 \end{equation}
-Somit ist die Bandbreite der Spannungsmesung mit einem Spannungsteiler auf diese Bandbreite begrenzt. Anteile die über dieser Frequenz liegen werden verstärkt und verschoben und führen so zu Ungenauigkeiten. 
+Somit ist die Bandbreite der Spannungsmessung mit einem Spannungsteiler auf diese Bandbreite begrenzt. Anteile, die über dieser Frequenz liegen, werden abgeschwächt und verschoben und führen so zu Ungenauigkeiten. 
 
 \subsection{Spannungsteiler}
 \label{sec:voltage_divider}
-Für die Messung der Spannung des Netzteils, also der Spannung an der Funkenstrecke wurde ein Spannungsteiler aus einem \SI{100}{\mega\ohm} und einem \SI{100}{\kilo\ohm} Widerstand angefertigt, die Funktionsweise wurde in \secref{sec:voltagedividertheo} behandelt. In \figref{fig:setup_voltage_divider} ist ein Schaltplan für diesen Spannungteiler aufgetragen. Aus \equref{eq:voltagedivider} lässt sich somit das Verhältnis des Spannungsteilers bestimmen, es ergibt sich eine Reduktion der Spannung um den Faktor 1001. Es wird im folgenden vereinfachend der Wert 1000 verwendet.
+Für die Messung der Spannung des Netzteils, also der Spannung an der Funkenstrecke, wurde ein Spannungsteiler aus einem \SI{100}{\mega\ohm}- und einem \SI{100}{\kilo\ohm}-Widerstand angefertigt; die Funktionsweise wurde in \secref{sec:voltagedividertheo} behandelt. In \figref{fig:setup_voltage_divider} ist ein Schaltplan für diesen Spannungsteiler dargestellt. Aus \equref{eq:voltagedivider} lässt sich somit das Verhältnis des Spannungsteilers bestimmen; es ergibt sich eine Reduktion der Spannung um den Faktor 1001. Im Folgenden wird vereinfachend der Wert 1000 verwendet.
 
 \begin{figure}[H]
     \centering
@@ -68,7 +68,11 @@ Für die Messung der Spannung des Netzteils, also der Spannung an der Funkenstre
 
 \subsection{Messboxen}
 \label{sec:messbox}
-Für die Messung des abfließenden Stroms von der Funkenstrecke hinzur Erde, wurde eine Messbox verwendet. Die Messung des Stroms erfolgt über den Spannungsabfall eines Widerstandes. Um die Spannung zubegrenzen um mit großen Widerständen kleine Ströme sicher zu messen wurden zwei Dioden verwendet, die anti paralel parallel zum Widerstand angebracht wurden. In \figref{fig:setup_box} wird der Schaltplan einer solchen Box dargestellt. Es wurden drei Boxen angefertigt mit verschiedenen Konfigurationen. In \tabref{tab:boxsetup} Sind die diese verwendeten Konfigurationen angegeben.
+Für die Messung des abfließenden Stroms von der Funkenstrecke zur Erde wurden Messboxen verwendet. Die Messung des Stroms erfolgt indirekt über den Spannungsabfall an einem bekannten Widerstand. Um die Spannung am Messeingang zu begrenzen und die empfindliche Elektronik zu schützen, sind parallel zum Widerstand zwei antiparallel geschaltete Dioden angebracht. Je nach verwendetem Widerstand ergibt sich ein unterschiedlicher Messbereich und eine unterschiedliche Empfindlichkeit. In \figref{fig:setup_box} wird der Schaltplan einer solchen Box dargestellt. In \tabref{tab:boxsetup} sind die drei verwendeten Konfigurationen zusammengefasst. Der Skalierungsfaktor beschreibt die Umrechnung von gemessener Spannung am Oszilloskop in den tatsächlichen Strom:
+\begin{equation}
+  I = \frac{U_{\text{Oszi}}}{R_{\text{Box}}}
+\end{equation}
+Durch die Wahl eines größeren Widerstands kann eine höhere Empfindlichkeit für kleine Ströme erreicht werden; gleichzeitig wird der maximal messbare Strom durch die Dioden begrenzt.
 
 \begin{figure}[H]
     \centering
@@ -83,13 +87,13 @@ Für die Messung des abfließenden Stroms von der Funkenstrecke hinzur Erde, wur
 \centering
 \caption{Konfigurationen der Messboxen}
 \label{tab:boxsetup}
-\begin{tabular}{S[table-format=2.0] S[table-format=2.1] S[table-format=2.1]}
+\begin{tabular}{S[table-format=1.0] S[table-format=3.0] S[table-format=1.1e-1] l}
 \toprule
-\textbf{Box} & \textbf{Widerstand R [\si{\kilo\ohm}]} & \textbf{Diode [\si{\kilo\volt}]}\\
+\textbf{Box} & \textbf{Widerstand $R$ [\si{\kilo\ohm}]} & \textbf{Skalierungsfaktor [\si{\ampere\per\volt}]} &\textbf{Diode}\\
 \midrule
-A  & 100 & \text{P6KE7.6A} \\
-B  & 200 & \text{P6KE7.6A}\\
-C  & 100 & \text{UF407}\\
+A  & 100 & \num{1e-5} & P6KE7.6A \\
+B  & 200 & \num{5e-6} & P6KE7.6A\\
+C  & 100 & \num{1e-5} & UF407\\
 \bottomrule
 \end{tabular}
 \end{table}
