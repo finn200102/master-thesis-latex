@@ -1,9 +1,9 @@
-\chapter{Überblick der Daten}
+\chapter{Überblick über die Daten}
 \label{chap:overview}
 
 \section{Einleitung}
 \label{sec:overview}
-Im Ramen dieser Arbeit wurde ein Datensatz mit insgesamt 13148 Entladungen erstellt (davon 12708 volständig verwendbar). für jede wurde die Spannung (Kanal 1) also auch der abfließende Strom (Kanal 2) an der Funkenstrecke aufgenommen. Bei einem Teil der Messungen wurden zusätzlich der Ladestrom (Kanal 3) sowie elektromagnetische Strahlung (Kanal 4) erfasst. In \figref{fig:histogram-channels} ist die Verteilung dieser vier Messkanäle dargestellt.
+Im Rahmen dieser Arbeit wurde ein Datensatz mit insgesamt 13148 Entladungen erstellt (davon 12708 vollständig verwendbar). Für jede Entladung wurden die Spannung (Kanal 1) sowie der abfließende Strom (Kanal 2) an der Funkenstrecke aufgezeichnet. Bei einem Teil der Messungen wurden zusätzlich der Ladestrom (Kanal 3) sowie die elektromagnetische Strahlung (Kanal 4) erfasst. In \figref{fig:histogram-channels} ist die Verteilung dieser vier Messkanäle dargestellt.
 
 \begin{figure}[htbp]
     \centering
@@ -24,8 +24,8 @@ Im Ramen dieser Arbeit wurde ein Datensatz mit insgesamt 13148 Entladungen erste
 
 \section{Messaufbauten und Spaltabstände}
 
-In \figref{fig:histogram-setup} ist die Anzahl der Datensätze dargestellt, die mit der in \figref{fig:setup_electrodes} gezeigeten Stabelektrode (1) sowie mit der in \figref{fig:setup_plate_electrodes} dargestellt Plattenelektrode(2) aufgenommen wurden. Etwa drei Viertel der Entladungen wurden mit einer Stabelektrode durchgeführt, ein Viertel mit einer Plattenelektrode. 
-Für beide Setups wurden verschiedene Elektrodenabstände verwendet. \figref{fig:histogram-gap-stab} zeigt die verwendeten Abstände bei der Stabelektrode, \figref{fig:histogram-gap-platte} die bei der Plattenelektrode. Der häufigste Abstand bei der Stabelektrode war \SI{1}{\milli\metre}, um einen Vergleich der Entladungen bei unterschiedlichen Drücken zu ermöglichen. Weitere Entladungen wurden mit Abständen bis zu \SI{20}{\milli\metre} durchgeführt. Bei der Plattenelektrode lagen die Abstände im Bereich \SIrange{3}{25}{\milli\metre}. 
+In \figref{fig:histogram-setup} ist die Anzahl der Datensätze dargestellt, die mit der in \figref{fig:setup_electrodes} gezeigten Stabelektrode (1) sowie mit der in \figref{fig:setup_plate_electrodes} dargestellten Plattenelektrode (2) aufgenommen wurden. Etwa drei Viertel der Entladungen wurden mit einer Stabelektrode durchgeführt, ein Viertel mit einer Plattenelektrode. 
+Für beide Setups wurden verschiedene Elektrodenabstände verwendet. \figref{fig:histogram-gap-stab} zeigt die verwendeten Abstände bei der Stabelektrode, \figref{fig:histogram-gap-platte} die bei der Plattenelektrode. Der häufigste Abstand bei der Stabelektrode betrug \SI{1}{\milli\metre}, um einen Vergleich der Entladungen bei unterschiedlichen Drücken zu ermöglichen. Weitere Entladungen wurden mit Abständen bis \SI{20}{\milli\metre} durchgeführt. Bei der Plattenelektrode lagen die Abstände im Bereich von \SIrange{3}{25}{\milli\metre}. 
 
 \begin{figure}[H]
     \centering
@@ -45,7 +45,7 @@ Für beide Setups wurden verschiedene Elektrodenabstände verwendet. \figref{fig
 \end{figure}
 
 \section{Druckverteilung und Messfehler}
-Die aufgenommenen Druckwerte sind in \figref{fig:histogram-pressure-stab} und \figref{fig:histogram-pressure-platte} für beide Elektrodenkonfigurationen dargestellt. Messungen mit einem aufgezeichnet Druck von \SI{0}{\milli\bar} oder an der Grenze des Messbereich der Sensoren \SI{7}{\milli\bar} sind in rot makiert. Die Werte mit einem Druck von \SI{0}{\milli\bar} sind nicht physikalisch sinnvoll und deuten auf Kommunikationsprobleme zwischen Sensor und Server hin. Die Werte von an der Grenze werden ebenfalls gesondert behandelt, da Drücke über diesem Druck ebenfalls mit in diesem Grenzbereich aufgenommen werden. Es wurde Messungen bei einem Druck von ca. \SI{700}{\milli\bar} durchgeführt und diese liegen in diesem Grenzbereich.
+Die aufgezeichneten Druckwerte sind in \figref{fig:histogram-pressure-stab} und \figref{fig:histogram-pressure-platte} für beide Elektrodenkonfigurationen dargestellt. Messungen mit einem aufgezeichneten Druck von \SI{0}{\milli\bar} oder am Rand des Messbereichs der Sensoren von \SI{7}{\milli\bar} sind in Rot markiert. Die Werte mit einem Druck von \SI{0}{\milli\bar} sind nicht physikalisch sinnvoll und deuten auf Kommunikationsprobleme zwischen Sensor und Server hin. Die Werte am Rand des Messbereichs werden ebenfalls gesondert behandelt, da Drücke oberhalb dieses Bereichs ebenfalls in diesem Grenzbereich aufgezeichnet werden. Es wurden Messungen bei einem Druck von ca. \SI{700}{\milli\bar} durchgeführt die in diesen Grenzbereich fallen.
 \begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.47\textwidth}
@@ -64,7 +64,7 @@ Die aufgenommenen Druckwerte sind in \figref{fig:histogram-pressure-stab} und \f
 \end{figure}
 
 \section{Zeitliche Auflösung der Messungen}
-\figref{fig:histogram-timelen-stab} und \figref{fig:histogram-timelen-platte} zeigen die Verteilung der Aufnahmelängen auf einer logarithmischen Skaal. Der Großteil der Entladungen wurde mit einer Dauer von  \SIrange{50}{100}{\micro\second} aufgenommen. Diese hohe zeitliche Auflösung erlaubt die Untersuchung der mikroskopischen Dynamik der Entladungen. Zusätzlich wurden Datensätze mit längeren Zeitfenstern aufgenommen, um makroskopische Verläufe zur erfassen.
+\figref{fig:histogram-timelen-stab} und \figref{fig:histogram-timelen-platte} zeigen die Verteilung der Aufnahmelängen auf einer logarithmischen Skala. Der Großteil der Entladungen wurde mit einer Dauer von \SIrange{50}{100}{\micro\second} aufgezeichnet. Diese hohe zeitliche Auflösung ermöglicht die Untersuchung der mikroskopischen Dynamik der Entladungen. Zusätzlich wurden Datensätze mit längeren Zeitfenstern aufgenommen, um makroskopische Verläufe zu erfassen.
 
 
 \begin{figure}[htbp]
@@ -86,8 +86,8 @@ Die aufgenommenen Druckwerte sind in \figref{fig:histogram-pressure-stab} und \f
 
 \section{Kategorien der Daten}
 
-Die aufgenommenen Daten lassen sich in drei Hauptkategorien einteilen, in \tabref{tab:kategorien} ist diese Aufteilung dargestellt. Etwa 1000 Entladungen wurden mit einem großen Zoom aufgenommen, um den Stromverlauf vor der Entladungen sichtbar zu machen (\ref{fig:discharge-constend}). Hierbei ließen sich nach dem Start des Events keine weiteren Ströme mehr auflösen. 
-In dem Zeitbereich \SIrange{1}{200}{\m\second} wurden mehrere Entladungen hintereinander aufgenommen, in \figref{fig:discharge-multiple} ist eine solche Aufnahme dargestellt. Diese Messreihen eignen sich um die Selbstähnlichkeit zwischen hintereinander stattfindenen Entladungen zu untersuchen. In \figref{fig:lowres-discharge} und in \figref{fig:highres-discharge} ist jeweils eine Einzelentladung mit niedriger zeitlicher Auflösung und eine mit hoher zeitlicher Aulösung dargestellt. Somit lassen sich die Entladungen die über einen längeren Zeitraum als \SI{100}{\micro\second} aufgezeichnet wurden verwenden um die Makrostruktur dieser zu untersuchen und die Entladungen die unter \SI{100}{\micro\second} aufgenommen wurden, ermöglichen eine Untersuchung der Mikrostruktur dieser.
+Die aufgenommenen Daten lassen sich in drei Hauptkategorien einteilen; in \tabref{tab:kategorien} ist diese Aufteilung dargestellt. Etwa 1000 Entladungen wurden mit großem Zoom aufgenommen, um den Stromverlauf vor der Entladung sichtbar zu machen (\ref{fig:discharge-constend}). Hierbei ließen sich nach dem Start des Events keine weiteren Ströme mehr auflösen. 
+Im Zeitbereich von \SIrange{1}{200}{\m\second} wurden mehrere Entladungen hintereinander aufgezeichnet, in \figref{fig:discharge-multiple} ist eine solche Aufnahme dargestellt. Diese Messreihen eignen sich, um die Selbstähnlichkeit zwischen aufeinanderfolgenden Entladungen zu untersuchen. In \figref{fig:lowres-discharge} und \figref{fig:highres-discharge} ist jeweils eine Einzelentladung mit niedriger zeitlicher Auflösung bzw. hoher zeitlicher Auflösung dargestellt. Entladungen, die über einen längeren Zeitraum als \SI{100}{\micro\second} aufgezeichnet wurden, eignen sich zur Untersuchung der Makrostruktur, während Entladungen, die unter \SI{100}{\micro\second} aufgenommen wurden, die Untersuchung der Mikrostruktur ermöglichen.
 
 
 \begin{table}[H]
